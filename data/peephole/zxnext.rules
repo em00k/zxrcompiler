@@ -1,0 +1,312 @@
+# maxlen 4
+rule	000_o1_push_pop.opt	1	1
+replace	push\s+(?P<_1>.*)
+replace	pop\s+(?P<_1>.*)
+if	[]
+rule	000_o3_push_pop.opt	3	1
+replace	push\s+(?P<_1>.*)
+replace	pop\s+(?P<_1>.*)
+if	[]
+rule	060_o1_mul_de.opt	1	1
+replace	ld\s+h,\s+(?P<_1>.*)
+replace	ld\s+d,\s+h
+replace	ld\s+e,\s+a
+replace	mul\s+d,\s+e
+with	ld	 	d,	 	$1
+with	ld	 	e,	 	a
+with	mul	 	d,	 	e
+if	[]
+rule	001_o1_ld_XXYY_ldYYXX.opt	1	2
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+replace	ld\s+(?P<_2>.*),\s+(?P<_1>.*)
+with	ld	 	$1	,	 	$2
+if	[]
+rule	002_o1_push_hlde_to_ex.opt	1	3
+replace	push\s+(?P<_1>.*)
+replace	push\s+(?P<_2>.*)
+replace	pop\s+(?P<_1>.*)
+replace	pop\s+(?P<_2>.*)
+with	ex	 	de,	 	hl
+if	[[['$1', '==', 'hl'], '&&', ['$2', '==', 'de']], '||', [['$1', '==', 'de'], '&&', ['$2', '==', 'hl']]]
+rule	003_o1_useless_jp.opt	1	4
+replace	jp(?P<_1>.*)\s+(?P<_2>.*)
+replace	(?P<_2>.*):
+with	$2	:
+if	[]
+rule	004_o1_push_pop_ldld.opt	1	5
+replace	ld\s+d,\s+h
+replace	ld\s+e,\s+l
+replace	(?P<_1>.*)\s+hl(?P<_2>.*)
+with	ex	 	de,	 	hl
+with	$1	 	hl	$2
+if	[['$1', '==', 'pop'], '||', ['$1', '==', 'ld']]
+rule	005_o1_push_af_ld_aX.opt	1	6
+replace	ld\s+a,\s+(?P<_1>.*)
+replace	(?P<_2>.*)\s+a
+replace	ld\s+(?P<_1>.*),\s+a
+with	$2	 	$1
+if	[[['IS_INDIR', ['$1']], '||', ['$1', '==', '(hl)']], '&&', [[['$2', '==', 'cp'], '||', ['$2', '==', 'inc']], '||', ['$2', '==', 'dec']]]
+rule	006_o1_push_af_pop_XX.opt	1	7
+replace	push\s+(?P<_1>.*)
+replace	pop\s+(?P<_2>.*)
+with	ld	 	$4	,	 	$3
+if	[['$1', '<>', '$2'], '&&', [['$1', '==', 'af'], '||', ['$2', '==', 'af']]]
+define	$3	['HIREG', ['$1']]
+define	$4	['HIREG', ['$2']]
+rule	006_o3_push_af_pop_XX.opt	3	7
+replace	push\s+(?P<_1>.*)
+replace	pop\s+(?P<_2>.*)
+with	ld	 	$4	,	 	$3
+if	[['$1', '<>', '$2'], '&&', [['$1', '==', 'af'], '||', ['$2', '==', 'af']]]
+define	$3	['HIREG', ['$1']]
+define	$4	['HIREG', ['$2']]
+rule	007_o1_ex_de_hl.opt	1	8
+replace	ex(?P<_1>.*)
+replace	ex(?P<_1>.*)
+if	[]
+rule	008_o1_sbc_jp.opt	1	9
+replace	sbc\s+a,\s+a
+replace	or\s+a
+replace	(?P<_1>.*)\s+(?P<_2>.*),\s+(?P<_3>.*)
+with	$1	 	$4	,	 	$3
+if	[['$1', '==', 'jp'], '||', ['$1', '==', 'jr']]
+define	$4	[[['$2', '==', 'z'], '&&', 'nc'], '||', ['c']]
+rule	009_o1_inc_mem.opt	1	10
+replace	ld\s+a,\s+\((?P<_1>.*)\)
+replace	(?P<_2>.*)\s+a
+replace	ld\s+\((?P<_1>.*)\),\s+a
+with	ld	 	hl,	 	$1
+with	$2	 	(hl)
+if	[[['$2', '==', 'inc'], '||', ['$2', '==', 'dec']], '&&', [['$1', '<>', 'hl'], '&&', ['!', ['IS_INDIR', ['$3']]]]]
+define	$3	[['(', '+', '$1'], '+', ')']
+rule	010_o1_ld_de_hl_ex_de_hl.opt	1	11
+replace	push\s+(?P<_1>.*)
+replace	pop\s+(?P<_2>.*)
+with	ld	 	$5	,	 	$3
+with	ld	 	$6	,	 	$4
+if	[[['$1', '<>', '$2'], '&&', [[['$1', '==', 'hl'], '||', ['$1', '==', 'de']], '||', ['$1', '==', 'bc']]], '&&', [[['$2', '==', 'hl'], '||', ['$2', '==', 'de']], '||', ['$2', '==', 'bc']]]
+define	$3	['HIREG', ['$1']]
+define	$4	['LOREG', ['$1']]
+define	$5	['HIREG', ['$2']]
+define	$6	['LOREG', ['$2']]
+rule	011_o1_ld_h_a_pop_af_or_h.opt	1	12
+replace	ld\s+h,\s+a
+replace	pop\s+af
+replace	(?P<_1>.*)\s+h
+with	pop	 	de
+with	$1	 	d
+if	['$1', 'IN', ['or', ',', 'and', ',', 'xor']]
+rule	012_o1_ld_hl_push_pop_de.opt	1	13
+replace	ld\s+hl,\s+(?P<_1>.*)
+replace	push\s+hl
+replace	ld\s+hl,\s+(?P<_2>.*)
+replace	pop\s+de
+with	ld	 	de,	 	$1
+with	ld	 	hl,	 	$2
+if	[]
+rule	013_o1_neg_neg.opt	1	13
+replace	neg
+replace	neg
+if	[]
+rule	014_o1_or_sbc_a_a.opt	1	14
+replace	(?P<_1>.*)\s+a
+replace	sbc\s+a,\s+a
+with	xor	 	a
+if	['$1', 'IN', ['or', ',', 'and', ',', 'xor']]
+rule	015_o3_ld_r_n_not_required.opt	3	15
+replace	ld\s+a,\s+(?P<_1>.*)
+if	['!', ['IS_REQUIRED', ['a']]]
+rule	016_o1_xor_a_jp_z.opt	1	17
+replace	xor\s+a
+replace	(?P<_1>.*)\s+z,\s+(?P<_2>.*)
+with	$1	 	$2
+if	['$1', 'IN', ['jp', ',', 'jr']]
+rule	017_jp_cond_jp_labell.opt	1	17
+replace	(?P<_1>.*)\s+(?P<_2>.*),\s+(?P<_3>.*)
+replace	(?P<_4>.*)\s+(?P<_5>.*)
+replace	(?P<_3>.*):
+with	$4	 	$6	,	 	$5
+with	$3	:
+if	[[['$6', '&&', [['LEN', ['$5']], '==', '1']], '&&', [['$1', '==', 'jp'], '||', ['$1', '==', 'jr']]], '&&', [['$4', '==', 'jp'], '||', ['$4', '==', 'jr']]]
+define	$6	[[[[['$2', '==', 'nc'], '&&', 'c'], '||', [['$2', '==', 'c'], '&&', 'nc']], '||', [['$2', '==', 'nz'], '&&', 'z']], '||', [['$2', '==', 'z'], '&&', 'nz']]
+rule	018_EQ16_by_sbchl.opt	1	18
+replace	call\s+__EQ16
+replace	(?P<_1>.*)\s+a
+replace	jp\s+(?P<_2>.*),\s+(?P<_3>.*)
+with	or	 	a
+with	sbc	 	hl,	 	de
+with	jp	 	$4	,	 	$3
+if	[['$1', '==', 'or'], '||', ['$1', '==', 'and']]
+define	$4	[[['$2', '==', 'nz'], '&&', 'z'], '||', 'nz']
+rule	019_sub1_jpnc_ora_jpz.opt	1	19
+replace	sub\s+1
+replace	(?P<_1>.*)\s+(?P<_2>.*),\s+(?P<_3>.*)
+with	or	 	a
+with	$1	 	$4	,	 	$3
+if	[[['$1', '==', 'jp'], '||', ['$1', '==', 'jr']], '&&', [['$2', '==', 'nc'], '||', ['$2', '==', 'c']]]
+define	$4	[[['$2', '==', 'nc'], '&&', 'nz'], '||', 'z']
+rule	020_o1_bool_norm_empty.opt	1	20
+replace	(?P<_1>.*)
+replace	sub\s+1
+replace	sbc\s+a,\s+a
+replace	inc\s+a
+with	$1
+if	['$1', 'IN', ['xor a', ',', 'ld a, 0', ',', 'call .core.__GEF', ',', 'call .core.__LEI16', ',', 'call .core.__LEI8', ',', 'call .core.__LTI8', ',', 'call .core.__ANDF', ',', 'call .core.__EQF', ',', 'call .core.__GTF', ',', 'call .core.__LTI16', ',', 'call .core.__LEF', ',', 'call .core.__LEI32', ',', 'call .core.__LTF', ',', 'call .core.__LTI32', ',', 'call .core.__NEF', ',', 'call .core.__NOTF', ',', 'call .core.__ORF', ',', 'call .core.__XORF', ',', 'call .core.__STREQ', ',', 'call .core.__STRNE', ',', 'call .core.__STRLT', ',', 'call .core.__STRLE', ',', 'call .core.__STRGT', ',', 'call .core.__STRGE']]
+rule	021_o1_bool_norm_neg.opt	1	21
+replace	(?P<_1>.*)
+replace	sub\s+1
+replace	sbc\s+a,\s+a
+replace	inc\s+a
+with	$1
+with	neg
+if	['$1', 'IN', ['sbc a, a', ',', 'call .core.__NOT32', ',', 'call .core.__XOR8', ',', 'call .core.__XOR16', ',', 'call .core.__XOR32']]
+rule	022_insr_a_or_a.opt	1	22
+replace	(?P<_1>.*)\s+(?P<_2>.*)
+replace	(?P<_3>.*)\s+a
+with	$1	 	$2
+if	[[['$3', '==', 'or'], '||', ['$3', '==', 'and']], '&&', [[[[[['$1', '==', 'or'], '||', ['$1', '==', 'sub']], '||', ['$1', '==', 'and']], '||', ['$1', '==', 'xor']], '||', ['$1', '==', 'cp']], '||', [['$2', '==', 'a'], '&&', [['$1', '==', 'dec'], '||', ['$1', '==', 'inc']]]]]
+rule	023_ld_hl_bc_outl.opt	1	23
+replace	(?P<_1>.*)\s+hl(?P<_2>.*)
+replace	ld\s+b,\s+h
+replace	ld\s+c,\s+l
+replace	(?P<_3>.*)
+with	$1	 	bc	$2
+with	$3
+if	[[['$1', '==', 'ld'], '||', ['$1', '==', 'pop']], '&&', [['$3', '==', 'out (c), a'], '||', ['$3', '==', 'in a, (c)']]]
+rule	024_o1_bool_norm_duble_neg.opt	1	24
+replace	sbc\s+a,\s+a
+replace	sub\s+1
+replace	sbc\s+a,\s+a
+replace	neg
+with	sbc	 	a,	 	a
+with	inc	 	a
+if	[]
+rule	025_ld_h_a_oper_A.opt	1	25
+replace	ld\s+h,\s+(?P<_1>.*)
+replace	ld\s+a,\s+(?P<_2>.*)
+replace	(?P<_3>.*)\s+h
+with	ld	 	a,	 	$2
+with	$3	 	$1
+if	[['$1', '<>', 'a'], '&&', [[[[[[['$3', '==', 'or'], '||', ['$3', '==', 'xor']], '||', ['$3', '==', 'and']], '||', ['$3', '==', 'cp']], '||', ['$3', '==', 'sub']], '||', ['$3', '==', 'add a,']], '||', ['$3', '==', 'sbc a,']]]
+rule	027_ld_h_a_oper_A.opt	1	27
+replace	ld\s+h,\s+(?P<_1>.*)
+replace	(?P<_2>.*)\s+h
+with	$2	 	$1
+if	['$2', 'IN', ['or', ',', 'xor', ',', 'and', ',', 'cp', ',', 'sub', ',', 'add a,', ',', 'sbc a,']]
+rule	028_o2_pop_up.opt	2	28
+replace	(?P<_2>.*)
+replace	pop\s+(?P<_1>.*)
+with	pop	 	$1
+with	$2
+if	[[[[['!', [['INSTR', ['$2']], 'IN', ['jp', ',', 'jr', ',', 'ret', ',', 'call', ',', 'djnz', ',', 'rst']]], '&&', ['!', ['NEEDS', ['$2', ',', ['sp', ',', '$1']]]]], '&&', ['!', ['IS_LABEL', ['$2']]]], '&&', [['OP1', ['$2']], '<>', 'sp']], '&&', [['OP2', ['$2']], '<>', 'sp']]
+rule	028_o3_pop_up.opt	3	28
+replace	(?P<_2>.*)
+replace	pop\s+(?P<_1>.*)
+with	pop	 	$1
+with	$2
+if	[[[['!', [['INSTR', ['$2']], 'IN', ['jp', ',', 'jr', ',', 'ret', ',', 'call', ',', 'djnz', ',', 'rst']]], '&&', ['!', ['NEEDS', ['$2', ',', ['sp', ',', '$1']]]]], '&&', ['!', ['IS_LABEL', ['$2']]]], '&&', [['OP1', ['$2']], '<>', 'sp']]
+rule	029_cp_0_or_a.opt	1	29
+replace	(?P<_1>.*)\s+0
+with	or	 	a
+if	[['$1', '==', 'cp'], '||', ['$1', '==', 'sub']]
+rule	030_ora_jp_nc_jp.opt	1	30
+replace	(?P<_1>.*)\s+a
+replace	(?P<_2>.*)\s+nc,\s+(?P<_3>.*)
+with	$2	 	$3
+if	[['$1', 'IN', ['or', ',', 'xor', ',', 'and', ',', 'cp', ',', 'sub']], '&&', [['$2', '==', 'jp'], '||', ['$2', '==', 'jr']]]
+rule	031_jpX_Y_jpX.opt	1	31
+replace	(?P<_1>.*)\s+(?P<_2>.*)
+replace	(?P<_3>.*)
+with	$1	 	$2
+if	[[[[['$1', '==', 'jp'], '||', ['$1', '==', 'jr']], '&&', ['!', ['IS_LABEL', ['$3']]]], '&&', [['LEN', ['$2']], '==', '1']], '&&', ['!', ['IS_ASM', ['$3']]]]
+rule	032_call_LOADSTR_ld_a1.opt	1	32
+replace	call\s+__LOADSTR
+replace	ld\s+a,\s+1
+replace	call\s+__PRINTSTR
+with	xor	 	a
+with	call	 	__PRINTSTR
+if	[]
+rule	050_o1_ld_a_ld_h_pop.opt	1	50
+replace	ld\s+a,\s+(?P<_4>.*)
+replace	ld\s+h,\s+a
+replace	ld\s+a,\s+(?P<_3>.*)
+with	ld	 	h,	 	$4
+with	ld	 	a,	 	$3
+if	[[['$4', '==', '(hl)'], '||', ['IS_INDIR', ['$4']]], '||', ['IS_REG8', ['$4']]]
+rule	051_o1_ld_a_ld_h_a_pop.opt	1	50
+replace	ld\s+a,\s+(?P<_1>.*)
+replace	ld\s+h,\s+a
+replace	pop\s+af
+with	pop	 	af
+with	ld	 	h,	 	$1
+if	[[['$1', '==', '(hl)'], '||', ['IS_INDIR', ['$1']]], '||', ['IS_REG8', ['$1']]]
+rule	052_o3_ldhl_ld_a_l.opt	3	52
+replace	ld\s+hl,\s+\((?P<_1>.*)\)
+replace	ld\s+a,\s+l
+with	ld	 	a,	 	(	$1	)
+if	['!', ['IS_REQUIRED', ['hl']]]
+rule	053_o1_ldh_nnn.opt	1	53
+replace	ld\s+a,\s+\((?P<_1>.*)\)
+replace	ld\s+h,\s+a
+replace	pop\s+af
+with	pop	 	af
+with	ld	 	hl,	 	(	$1	 	-	 	1)
+if	[]
+rule	054_o3_ld_a_N_ld_hl_a.opt	3	54
+replace	ld\s+a,\s+(?P<_1>.*)
+replace	ld\s+hl,\s+\((?P<_2>.*)\)
+replace	ld\s+\(hl\),\s+a
+with	ld	 	hl,	 	(	$2	)
+with	ld	 	(hl),	 	$1
+if	[['!', ['IS_REQUIRED', ['a']]], '&&', ['IS_IMMED', ['$1']]]
+rule	100_o3_ld_rr_N_ld_ss_N.opt	3	100
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+if	[[['GVAL', ['$1']], '==', ['GVAL', ['$2']]], '||', [[['IS_REG8', ['$1']], '||', ['IS_REG8', ['$2']]], '&&', [['LOVAL', ['GVAL', ['$1']]], '==', ['LOVAL', ['GVAL', ['$2']]]]]]
+rule	101_o3_ld_rr_N_ld_h_r_ld_l_r.opt	3	101
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+replace	ld\s+(?P<_3>.*),\s+(?P<_4>.*)
+replace	ld\s+(?P<_5>.*),\s+(?P<_6>.*)
+with	ld	 	$7	,	 	$2
+if	[[[[[[[['IS_REG16', ['$1']], '&&', ['IS_REG16', ['$7']]], '&&', ['!', ['IS_REQUIRED', ['$1']]]], '&&', ['IS_REG8', ['$5']]], '&&', ['IS_REG8', ['$3']]], '&&', ['IS_REG8', ['$4']]], '&&', ['IS_REG8', ['$6']]], '&&', [[[[[['HIREG', ['$1']], '==', '$4'], '&&', [['HIREG', ['$7']], '==', '$3']], '&&', [['LOREG', ['$1']], '==', '$6']], '&&', [['LOREG', ['$7']], '==', '$5']], '||', [[[[['HIREG', ['$1']], '==', '$6'], '&&', [['HIREG', ['$7']], '==', '$5']], '&&', [['LOREG', ['$1']], '==', '$4']], '&&', [['LOREG', ['$7']], '==', '$3']]]]
+define	$7	[[['IS_REG16', ['$3', '+', '$5']], '&&', ['$3', '+', '$5']], '||', ['$5', '+', '$3']]
+rule	102_o3_ld_r_n_ld_r_n2.opt	3	102
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+replace	ld\s+(?P<_1>.*),\s+(?P<_3>.*)
+with	ld	 	$1	,	 	$3
+if	[['$3', '<>', '$1'], '&&', ['!', [['$3', '==', '(hl)'], '&&', [['$1', '==', 'h'], '||', ['$1', '==', 'l']]]]]
+rule	103_o3_or_and_a.opt	3	103
+replace	(?P<_1>.*)\s+(?P<_2>.*)
+if	[[['$1', 'IN', ['and', ',', 'or']], '&&', [['$2', '==', 'a'], '||', ['!', ['IS_REQUIRED', ['a']]]]], '&&', ['!', ['IS_REQUIRED', ['f']]]]
+rule	103_o3_xor_a.opt	3	103
+replace	xor\s+a
+if	[[['GVAL', ['a']], '==', '0'], '&&', [[[['FLAGVAL', ['c']], '==', '0'], '&&', [['FLAGVAL', ['z']], '==', '1']], '||', ['!', ['IS_REQUIRED', ['f']]]]]
+rule	104_o3_opt27.opt	3	104
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+replace	(?P<_3>.*)\s+(?P<_1>.*)
+with	$3	 	$2
+if	[[[['$1', '<>', 'a'], '&&', ['!', ['IS_REQUIRED', ['$1']]]], '&&', ['!', ['IS_REQUIRED', ['f']]]], '&&', ['$3', 'IN', ['cp', ',', 'or', ',', 'and', ',', 'xor', ',', 'sub']]]
+rule	105_o3_opt27.opt	3	105
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+replace	(?P<_3>.*)\s+a,\s+(?P<_1>.*)
+with	$3	 	a,	 	$2
+if	[[[['$1', '<>', 'a'], '&&', ['!', ['IS_REQUIRED', ['$1']]]], '&&', ['!', ['IS_REQUIRED', ['f']]]], '&&', ['$3', 'IN', ['add', ',', 'adc', ',', 'sbc']]]
+rule	106_o3_exdehl.opt	3	106
+replace	ld\s+de,\s+(?P<_1>.*)
+with	ex	 	de,	 	hl
+if	[[['GVAL', ['hl']], '==', ['GVAL', ['$1']]], '&&', ['!', ['IS_REQUIRED', ['hl']]]]
+rule	107_o3_exdehl_ldde.opt	3	107
+replace	ld\s+hl,\s+(?P<_1>.*)
+replace	ex\s+de,\s+hl
+with	ld	 	de,	 	$1
+if	['!', ['IS_REQUIRED', ['hl']]]
+rule	108_o3_inc_dec.opt	3	108
+replace	ld\s+(?P<_1>.*),\s+(?P<_2>.*)
+with	$3	 	$1
+if	[['IS_REG16', ['$1']], '&&', ['$3', '<>', '']]
+define	$3	[[[['$2'], '==', [['GVAL', ['$1']], '.+', '1']], '&&', 'inc'], '||', [[['$2'], '==', [['GVAL', ['$1']], '.-', '1']], '&&', 'dec']]
+rule	109_o4_ld_mem_op_ld_mem.opt	4	109
+replace	(?P<_1>.*)\s+(?P<_2>.*),\s+(?P<_3>.*)
+if	[[[['$2', '<>', 'sp'], '&&', ['$2', '<>', 'ix']], '&&', ['!', ['IS_REQUIRED', ['$2']]]], '&&', [['$1', '==', 'ld'], '||', [['!', ['IS_REQUIRED', ['f']]], '&&', [[['$1', '==', 'add'], '||', ['$1', '==', 'adc']], '||', ['$1', '==', 'sbc']]]]]
+rule	110_o4_ld_mem_op_ld_mem.opt	4	110
+replace	(?P<_1>.*)\s+(?P<_2>.*)
+if	[[[[[['$1', '==', 'inc'], '||', ['$1', '==', 'dec']], '&&', ['!', ['IS_REQUIRED', ['$2']]]], '||', [['$1', '==', 'sub'], '&&', ['!', ['IS_REQUIRED', ['a']]]]], '&&', ['$2', '<>', 'sp']], '&&', ['!', ['IS_REQUIRED', ['f']]]]

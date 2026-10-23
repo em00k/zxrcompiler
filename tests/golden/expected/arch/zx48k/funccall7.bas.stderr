@@ -1,0 +1,11 @@
+funccall7.bas:1: warning: [W100] Using default implicit type 'float' for 'a'
+funccall7.bas:1: warning: [W100] Using default implicit type 'float' for 'b'
+funccall7.bas:2: warning: [W100] Using default implicit type 'float' for 'SNETopen'
+funccall7.bas:1: warning: [W150] Parameter 'x' is never used
+funccall7.bas:1: warning: [W150] Parameter 'n' is never used
+funccall7.bas:1: warning: [W150] Parameter 'a' is never used
+funccall7.bas:1: warning: [W150] Parameter 'b' is never used
+funccall7.bas:5: warning: [W100] Using default implicit type 'float' for 'SNETcurrMPoint'
+funccall7.bas:8: warning: [W100] Using default implicit type 'float' for 'flags'
+funccall7.bas:6: warning: [W150] Parameter 'mode' is never used
+funccall7.bas:12: error: Function 'SNETcurrMPoint' (previously declared at 4) type mismatch

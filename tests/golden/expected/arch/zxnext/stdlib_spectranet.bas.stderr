@@ -1,0 +1,63 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:53: warning: [W520] missing whitespace after macro name
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:58: warning: [W150] Parameter 'stype' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:67: warning: [W160] FUNCTION 'SNETbind' declared as FASTCALL with 2 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:67: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:67: warning: [W150] Parameter 'port' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:78: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:86: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:94: warning: [W160] FUNCTION 'SNETconnect' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:94: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:94: warning: [W150] Parameter 'ip' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:94: warning: [W150] Parameter 'port' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:113: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:121: warning: [W160] FUNCTION 'SNETrecv' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:121: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:121: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:121: warning: [W150] Parameter 'length' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:133: warning: [W160] FUNCTION 'SNETsend' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:133: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:133: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:133: warning: [W150] Parameter 'length' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:145: warning: [W150] Parameter 'socket' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:159: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:185: warning: [W150] Parameter 'mpoint' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:227: warning: [W100] Using default implicit type 'float' for 'mpoint'
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:227: warning: [W150] Parameter 'mpoint' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:241: warning: [W150] Parameter 'mpoint' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:264: warning: [W150] Parameter 'mpoint' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:264: warning: [W150] Parameter 'flags' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:264: warning: [W150] Parameter 'chmod' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:291: warning: [W160] FUNCTION 'SNETfread' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:291: warning: [W150] Parameter 'fhandle' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:291: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:291: warning: [W150] Parameter 'size' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:315: warning: [W160] FUNCTION 'SNETfwrite' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:315: warning: [W150] Parameter 'fhandle' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:315: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:315: warning: [W150] Parameter 'size' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:365: warning: [W150] Parameter 'fhandle' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:382: warning: [W160] FUNCTION 'SNETfseek' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:382: warning: [W150] Parameter 'fhandle' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:382: warning: [W150] Parameter 'op' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:382: warning: [W150] Parameter 'pos' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:59: warning: [W190] Function 'SNETsocket' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:68: warning: [W190] Function 'SNETbind' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:79: warning: [W190] Function 'SNETlisten' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:87: warning: [W190] Function 'SNETaccept' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:95: warning: [W190] Function 'SNETconnect' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:114: warning: [W190] Function 'SNETclose' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:122: warning: [W190] Function 'SNETrecv' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:134: warning: [W190] Function 'SNETsend' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:146: warning: [W190] Function 'SNETpollfd' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:160: warning: [W190] Function 'SNETpeekUinteger' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:203: warning: [W190] Function 'SNETmount' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:242: warning: [W190] Function 'SNETumount' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:268: warning: [W190] Function 'SNETopen' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:292: warning: [W190] Function 'SNETfread' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:316: warning: [W190] Function 'SNETfwrite' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:366: warning: [W190] Function 'SNETfclose' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:383: warning: [W190] Function 'SNETfseek' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/spectranet.bas:411: warning: [W190] Function 'SNETunlink' should return a value
+stdlib_spectranet.bas:194: warning: [W150] Variable 'ix' is never used
+stdlib_spectranet.bas:265: warning: [W150] Variable 'addrOfFname' is never used
+stdlib_spectranet.bas:409: warning: [W150] Variable 'addr' is never used

@@ -1,0 +1,3 @@
+callable_err.bas:1: error: 's' is neither an array nor a function.
+callable_err.bas:1: warning: [W100] Using default implicit type 'float' for 'vm'
+callable_err.bas:1: warning: [W100] Using default implicit type 'float' for 'hm'

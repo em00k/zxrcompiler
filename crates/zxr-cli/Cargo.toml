@@ -1,0 +1,32 @@
+[package]
+name = "zxr-cli"
+description = "The command-line tools: zxbc, zxbasm and zxbpp"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-core = { path = "../zxr-core" }
+zxr-asm = { path = "../zxr-asm" }
+zxr-nex = { path = "../zxr-nex" }
+zxr-pp = { path = "../zxr-pp" }
+zxr-syntax = { path = "../zxr-syntax" }
+zxr-ir = { path = "../zxr-ir" }
+zxr-z80 = { path = "../zxr-z80" }
+
+[[bin]]
+name = "zxbpp"
+path = "src/bin/zxbpp.rs"
+
+[[bin]]
+name = "zxbc"
+path = "src/bin/zxbc.rs"
+
+[[bin]]
+name = "zxbasm"
+path = "src/bin/zxbasm.rs"
+
+[[bin]]
+name = "zxnex"
+path = "src/bin/zxnex.rs"

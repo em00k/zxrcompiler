@@ -1,0 +1,2 @@
+valcrash1.bas:4: warning: [W100] Using default implicit type 'float' for 'c'
+valcrash1.bas:4: warning: [W150] Variable 'c' is never used

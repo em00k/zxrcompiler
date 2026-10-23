@@ -1,0 +1,2 @@
+lbound3.bas:4: warning: [W100] Using default implicit type 'uinteger' for 'c'
+lbound3.bas:4: warning: [W150] Variable 'c' is never used

@@ -1,0 +1,3 @@
+25.bas:1: warning: [W100] Using default implicit type 'fixed' for 'a'
+25.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'c'
+25.bas:2: warning: [W150] Variable 'c' is never used

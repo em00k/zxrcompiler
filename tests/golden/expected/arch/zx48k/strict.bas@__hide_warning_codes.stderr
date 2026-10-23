@@ -1,0 +1,2 @@
+strict.bas:2: warning: Using default implicit type 'float' for 'b'
+strict.bas:4: error: strict mode: missing type declaration for 'a'

@@ -1,0 +1,6 @@
+let_array_local_const0.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'rightCellValue'
+let_array_local_const0.bas:3: warning: [W100] Using default implicit type 'ubyte' for 'downCellValue'
+let_array_local_const0.bas:4: warning: [W100] Using default implicit type 'ubyte' for 'leftCellValue'
+let_array_local_const0.bas:5: warning: [W100] Using default implicit type 'ubyte' for 'upCellValue'
+let_array_local_const0.bas:2: warning: [W150] Variable 'rightCellValue' is never used
+let_array_local_const0.bas:5: warning: [W150] Variable 'upCellValue' is never used

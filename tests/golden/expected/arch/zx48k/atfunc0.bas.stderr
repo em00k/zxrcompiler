@@ -1,0 +1,4 @@
+atfunc0.bas:3: warning: [W100] Using default implicit type 'float' for 'myfunc'
+atfunc0.bas:5: warning: [W100] Using default implicit type 'uinteger' for 'a'
+atfunc0.bas:2: warning: [W190] Function 'myfunc' should return a value
+atfunc0.bas:5: warning: [W150] Variable 'a' is never used

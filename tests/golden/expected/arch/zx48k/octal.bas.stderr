@@ -1,0 +1,2 @@
+octal.bas:2: warning: [W150] Variable 'a' is never used
+octal.bas:3: warning: [W150] Variable 'b' is never used

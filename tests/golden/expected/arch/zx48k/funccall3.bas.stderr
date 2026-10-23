@@ -1,0 +1,2 @@
+funccall3.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'a'
+funccall3.bas:4: error: 'a' is a VAR, not a FUNCTION

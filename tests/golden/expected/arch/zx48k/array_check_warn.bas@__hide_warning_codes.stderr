@@ -1,0 +1,2 @@
+array_check_warn.bas:3: warning: Array 'aux' subscript out of range
+array_check_warn.bas:6: warning: Array 'aux1' subscript out of range

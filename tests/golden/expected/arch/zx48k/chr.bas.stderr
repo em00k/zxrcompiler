@@ -1,0 +1,4 @@
+chr.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'b'
+chr.bas:3: warning: [W100] Using default implicit type 'string' for 'c'
+chr.bas:1: warning: [W150] Variable 'a' is never used
+chr.bas:3: warning: [W150] Variable 'c' is never used

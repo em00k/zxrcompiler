@@ -1,0 +1,2 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/hex.bas:29: warning: [W150] Parameter 'num' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/hex.bas:30: warning: [W190] Function 'hex' should return a value

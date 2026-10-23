@@ -1,0 +1,11 @@
+opt3_lcd_o3_crash.bas:7: warning: [W150] Variable 'adr' is never used
+opt3_lcd_o3_crash.bas:1: warning: [W150] Variable 'control' is never used
+opt3_lcd_o3_crash.bas:1: warning: [W150] Variable 'key' is never used
+opt3_lcd_o3_crash.bas:2: warning: [W150] Variable 'posx' is never used
+opt3_lcd_o3_crash.bas:2: warning: [W150] Variable 'posy' is never used
+opt3_lcd_o3_crash.bas:2: warning: [W150] Variable 'dir' is never used
+opt3_lcd_o3_crash.bas:2: warning: [W150] Variable 'drw' is never used
+opt3_lcd_o3_crash.bas:2: warning: [W150] Variable 'found' is never used
+opt3_lcd_o3_crash.bas:3: warning: [W150] Variable 'shtx' is never used
+opt3_lcd_o3_crash.bas:3: warning: [W150] Variable 'shty' is never used
+opt3_lcd_o3_crash.bas:3: warning: [W150] Variable 'shard' is never used

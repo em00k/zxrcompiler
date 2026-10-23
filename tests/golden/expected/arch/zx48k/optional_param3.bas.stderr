@@ -1,0 +1,2 @@
+optional_param3.bas:2: error: Cannot convert string to a value. Use VAL() function
+optional_param3.bas:6: error: Function 'test' takes 2 parameters, not 1

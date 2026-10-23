@@ -1,0 +1,4 @@
+strparam0.bas:4: warning: [W100] Using default implicit type 'float' for 'test2'
+strparam0.bas:8: warning: [W100] Using default implicit type 'float' for 'test1'
+strparam0.bas:5: warning: [W190] Function 'test2' should return a value
+strparam0.bas:8: warning: [W190] Function 'test1' should return a value

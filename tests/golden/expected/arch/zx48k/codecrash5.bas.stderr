@@ -1,0 +1,4 @@
+codecrash5.bas:4: warning: [W100] Using default implicit type 'ubyte' for 'b'
+codecrash5.bas:5: warning: [W100] Using default implicit type 'ubyte' for 'c'
+codecrash5.bas:4: warning: [W150] Variable 'b' is never used
+codecrash5.bas:5: warning: [W150] Variable 'c' is never used

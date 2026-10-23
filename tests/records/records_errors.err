@@ -1,0 +1,16 @@
+records_errors.bas:6: error: 'name': STRING fields are not supported; hold the address in a UINTEGER
+records_errors.bas:7: error: 'p': a PTR field points to a TYPE; for a UBYTE address use UINTEGER
+records_errors.bas:8: error: 'x': no type 'Nowhere'
+records_errors.bas:10: error: A TYPE holds fields only: methods are not supported
+records_errors.bas:12: error: TYPE 'Loop1' contains itself
+records_errors.bas:22: error: A record cannot be given a value in its DIM: set its fields
+records_errors.bas:23: error: TYPE 'Point' has no field 'z'
+records_errors.bas:24: error: 'pp' is a pointer: use '->'
+records_errors.bas:25: error: 'pt' is a record, not a pointer: use '.'
+records_errors.bas:26: error: 'pt' is a record: name one of its fields (pt.field), or take its address (@pt)
+records_errors.bas:27: error: 'pts' is an array of records: pts(i)
+records_errors.bas:28: error: 'pt' is a record, not an array of them
+records_errors.bas:29: error: A record cannot be assigned as a whole: assign its fields one by one
+records_errors.bas:30: error: A field cannot be the variable of a FOR: count in a variable and copy it
+records_errors.bas:31: error: A record is passed by pointer: 'p AS Point PTR', and '@record' in the call
+records_errors.bas:33: error: A FUNCTION returns a pointer to a record: 'AS Point PTR'

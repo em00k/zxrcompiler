@@ -1,0 +1,2 @@
+opt2_usr_opt.bas:2: warning: [W100] Using default implicit type 'uinteger' for 'c'
+opt2_usr_opt.bas:2: warning: [W150] Variable 'c' is never used

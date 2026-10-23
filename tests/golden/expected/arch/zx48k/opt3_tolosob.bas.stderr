@@ -1,0 +1,3 @@
+opt3_tolosob.bas:3: warning: [W150] Variable 'toloLongSec' is never used
+opt3_tolosob.bas:3: warning: [W150] Variable 'toloNSec' is never used
+opt3_tolosob.bas:3: warning: [W150] Variable 'toloDelayAnim' is never used

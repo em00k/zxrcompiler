@@ -1,0 +1,2 @@
+70.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'b'
+70.bas:3: warning: [W100] Using default implicit type 'float' for 'a'

@@ -1,0 +1,5 @@
+optspeed.bas:8: warning: [W100] Using default implicit type 'ubyte' for 'modo'
+optspeed.bas:17: warning: [W100] Using default implicit type 'float' for 'ds2'
+optspeed.bas:4: warning: [W190] Function 'choque' should return a value
+optspeed.bas:8: warning: [W150] Variable 'modo' is never used
+optspeed.bas:1: warning: [W150] Variable 'modoi' is never used

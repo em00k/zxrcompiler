@@ -1,0 +1,3 @@
+array.bas:1: error: Array 'a' is too large: it does not fit in 64K
+array.bas:2: error: Array 'b' is too large: it does not fit in 64K
+array.bas:3: error: Array 'c' is too large: it does not fit in 64K

@@ -1,0 +1,2 @@
+declare6.bas:2: warning: [W100] Using default implicit type 'float' for 'f'
+declare6.bas:4: error: Function 'f' (previously declared at 1) type mismatch

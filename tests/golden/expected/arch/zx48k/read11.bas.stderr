@@ -1,0 +1,9 @@
+read11.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'spheres'
+read11.bas:2: error: Array bounds must be constants
+read11.bas:2: warning: [W100] Using default implicit type 'float' for 'c'
+read11.bas:2: warning: [W100] Using default implicit type 'float' for 'r'
+read11.bas:2: warning: [W100] Using default implicit type 'float' for 'q'
+read11.bas:3: error: Array 'c' has 1 dimensions, not 2
+read11.bas:3: error: Syntax Error. Unexpected token ':' <CO>
+read11.bas:3: error: Syntax Error. Unexpected token '*' <MUL>
+read11.bas:3: error: 'k' is a VAR, not a FUNCTION

@@ -1,0 +1,1 @@
+substr_expr_err.bas:3: error: Expected a string type expression. Got byte type instead

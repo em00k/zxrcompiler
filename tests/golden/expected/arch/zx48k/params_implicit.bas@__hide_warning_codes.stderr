@@ -1,0 +1,2 @@
+params_implicit.bas:2: warning: Using default implicit type 'float' for 'y'
+params_implicit.bas:2: warning: Parameter 'y' is never used

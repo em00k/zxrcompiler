@@ -1,0 +1,3 @@
+dowhilesplitted.bas:2: warning: [W100] Using default implicit type 'float' for 'i'
+dowhilesplitted.bas:3: warning: [W100] Using default implicit type 'ubyte' for 'M'
+dowhilesplitted.bas:3: warning: [W150] Variable 'M' is never used

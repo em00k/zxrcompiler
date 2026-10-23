@@ -1,0 +1,4 @@
+pararray11.bas:13: warning: [W100] Using default implicit type 'float' for 'func3'
+pararray11.bas:17: warning: [W100] Using default implicit type 'uinteger' for 'c'
+pararray11.bas:16: warning: [W190] Function 'func3' should return a value
+pararray11.bas:17: warning: [W150] Variable 'c' is never used

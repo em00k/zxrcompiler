@@ -1,0 +1,2 @@
+opt2_if_unused_call.bas:4: warning: [W150] Variable 'flag' is never used
+opt2_if_unused_call.bas:12: warning: [W140] Useless empty IF ignored

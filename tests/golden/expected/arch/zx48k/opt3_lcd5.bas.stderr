@@ -1,0 +1,4 @@
+opt3_lcd5.bas:4: warning: [W100] Using default implicit type 'integer' for 'adr'
+opt3_lcd5.bas:24: warning: [W100] Using default implicit type 'float' for 'x'
+opt3_lcd5.bas:24: warning: [W100] Using default implicit type 'float' for 'y'
+opt3_lcd5.bas:3: warning: [W190] Function 'ScanField' should return a value

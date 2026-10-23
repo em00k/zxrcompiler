@@ -1,0 +1,5 @@
+18.bas:1: warning: [W100] Using default implicit type 'ubyte' for 'a'
+18.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'c'
+18.bas:3: warning: [W100] Using default implicit type 'ubyte' for 'b'
+18.bas:2: warning: [W150] Variable 'c' is never used
+18.bas:3: warning: [W150] Variable 'b' is never used

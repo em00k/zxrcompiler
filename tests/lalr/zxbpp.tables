@@ -1,0 +1,2599 @@
+productions 101
+0	S'	1	-	start
+1	start	1	p_start	program
+2	program	1	p_program	include_file
+3	program	1	p_program	line
+4	program	1	p_program	init
+5	program	1	p_program	undef
+6	program	1	p_program	ifdef
+7	program	1	p_program	require
+8	program	1	p_program	pragma
+9	program	1	p_program	errormsg
+10	program	1	p_program	warningmsg
+11	program	2	p_program_tokenstring	defs NEWLINE
+12	program	2	p_program_tokenstring_2	define NEWLINE
+13	program	2	p_program_char	program include_file
+14	program	2	p_program_char	program line
+15	program	2	p_program_char	program init
+16	program	2	p_program_char	program undef
+17	program	2	p_program_char	program ifdef
+18	program	2	p_program_char	program require
+19	program	2	p_program_char	program pragma
+20	program	2	p_program_char	program errormsg
+21	program	2	p_program_char	program warningmsg
+22	program	3	p_program_newline	program defs NEWLINE
+23	program	3	p_program_newline_2	program define NEWLINE
+24	token	1	p_token	STRING
+25	token	1	p_token	TOKEN
+26	token	1	p_token	CONTINUE
+27	token	1	p_token	SEPARATOR
+28	token	1	p_token	NUMBER
+29	include_file	4	p_include_file	include NEWLINE program _ENDFILE_
+30	include_file	3	p_include_file_empty	include NEWLINE _ENDFILE_
+31	include_file	3	p_include_once_empty	include_once NEWLINE _ENDFILE_
+32	include_file	4	p_include_once_ok	include_once NEWLINE program _ENDFILE_
+33	include	3	p_include_fname	INCLUDE include_modifier FILENAME
+34	include	3	p_include_macro	INCLUDE include_modifier expr
+35	include_once	4	p_include_once	INCLUDE ONCE include_modifier STRING
+36	include_once	4	p_include_once_fname	INCLUDE ONCE include_modifier FILENAME
+37	include_modifier	0	p_include_modifier	
+38	include_modifier	5	p_include_modifier	LB ID CO ID RB
+39	line	3	p_line	LINE INTEGER NEWLINE
+40	line	4	p_line_file	LINE INTEGER STRING NEWLINE
+41	require	3	p_require_file	REQUIRE STRING NEWLINE
+42	init	3	p_init	INIT ID NEWLINE
+43	init	3	p_init_str	INIT STRING NEWLINE
+44	undef	2	p_undef	UNDEF ID
+45	errormsg	2	p_errormsg	ERROR TEXT
+46	warningmsg	2	p_warningmsg	WARNING TEXT
+47	define	4	p_define	DEFINE ID params defs
+48	params	0	p_define_params_epsilon	
+49	params	2	p_define_params_empty	LP RP
+50	params	3	p_define_params_paramlist	LP paramlist RP
+51	paramlist	1	p_paramlist_single	ID
+52	paramlist	3	p_paramlist_paramlist	paramlist COMMA ID
+53	pragma	2	p_pragma_id	PRAGMA ID
+54	pragma	4	p_pragma_id_expr	PRAGMA ID EQ ID
+55	pragma	4	p_pragma_id_expr	PRAGMA ID EQ INTEGER
+56	pragma	4	p_pragma_id_string	PRAGMA ID EQ STRING
+57	pragma	5	p_pragma_push	PRAGMA PUSH LP ID RP
+58	pragma	5	p_pragma_push	PRAGMA POP LP ID RP
+59	pragma	2	p_pragma_once	PRAGMA ONCE
+60	ifdef	4	p_ifdef	if_header NEWLINE program ENDIF
+61	ifdef	3	p_ifdef_else	ifdefelsea ifdefelseb ENDIF
+62	ifdefelsea	3	p_ifdef_else_a	if_header NEWLINE program
+63	ifdefelseb	3	p_ifdef_else_b	ELSE NEWLINE program
+64	if_header	2	p_if_header	IFDEF ID
+65	if_header	2	p_ifn_header	IFNDEF ID
+66	if_header	2	p_if_expr_header	IF expr
+67	expr	1	p_expr	macrocall
+68	expr	1	p_expr_val	NUMBER
+69	expr	1	p_expr_str	STRING
+70	expr	3	p_exprand	expr AND expr
+71	expr	3	p_expror	expr OR expr
+72	expr	3	p_exprne	expr NE expr
+73	expr	3	p_expreq	expr EQ expr
+74	expr	3	p_exprlt	expr LT expr
+75	expr	3	p_exprle	expr LE expr
+76	expr	3	p_exprgt	expr GT expr
+77	expr	3	p_exprge	expr GE expr
+78	expr	3	p_expr_par	LLP expr RRP
+79	defs	0	p_defs_list_eps	
+80	defs	2	p_defs_list	defs def
+81	def	1	p_def	token
+82	def	1	p_def	COMMA
+83	def	1	p_def	RRP
+84	def	1	p_def	LLP
+85	def	1	p_def_macrocall	macrocall
+86	macrocall	1	p_macrocall	ID
+87	macrocall	2	p_macrocall_args	macrocall args
+88	macrocall	3	p_macrocall_paste	macrocall PASTE macrocall
+89	macrocall	2	p_macrocall_stringizing	STRINGIZING macrocall
+90	args	3	p_args	LLP arglist RRP
+91	arglist	3	p_arglist	arglist COMMA arg
+92	arglist	1	p_arglist_arg	arg
+93	arg	0	p_arg_eps	
+94	arg	1	p_arg_argstring	argstring
+95	argstring	1	p_argstring	token
+96	argstring	1	p_argstring	macrocall
+97	argstring	3	p_argstring_argslist	LLP arglist RRP
+98	argstring	2	p_argstring_token	argstring token
+99	argstring	2	p_argstring_token	argstring macrocall
+100	argstring	4	p_argstring_argstring	argstring LLP arglist RRP
+state 0
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+g define 13
+g defs 12
+g errormsg 10
+g if_header 19
+g ifdef 7
+g ifdefelsea 20
+g include 14
+g include_file 3
+g include_once 15
+g init 5
+g line 4
+g pragma 9
+g program 2
+g require 8
+g start 1
+g undef 6
+g warningmsg 11
+state 1
+a $end 0
+state 2
+a $end -1
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+g define 40
+g defs 39
+g errormsg 37
+g if_header 19
+g ifdef 34
+g ifdefelsea 20
+g include 14
+g include_file 30
+g include_once 15
+g init 32
+g line 31
+g pragma 36
+g require 35
+g undef 33
+g warningmsg 38
+state 3
+a $end -2
+a COMMA -2
+a CONTINUE -2
+a DEFINE -2
+a ELSE -2
+a ENDIF -2
+a ERROR -2
+a ID -2
+a IF -2
+a IFDEF -2
+a IFNDEF -2
+a INCLUDE -2
+a INIT -2
+a LINE -2
+a LLP -2
+a NEWLINE -2
+a NUMBER -2
+a PRAGMA -2
+a REQUIRE -2
+a RRP -2
+a SEPARATOR -2
+a STRING -2
+a STRINGIZING -2
+a TOKEN -2
+a UNDEF -2
+a WARNING -2
+a _ENDFILE_ -2
+state 4
+a $end -3
+a COMMA -3
+a CONTINUE -3
+a DEFINE -3
+a ELSE -3
+a ENDIF -3
+a ERROR -3
+a ID -3
+a IF -3
+a IFDEF -3
+a IFNDEF -3
+a INCLUDE -3
+a INIT -3
+a LINE -3
+a LLP -3
+a NEWLINE -3
+a NUMBER -3
+a PRAGMA -3
+a REQUIRE -3
+a RRP -3
+a SEPARATOR -3
+a STRING -3
+a STRINGIZING -3
+a TOKEN -3
+a UNDEF -3
+a WARNING -3
+a _ENDFILE_ -3
+state 5
+a $end -4
+a COMMA -4
+a CONTINUE -4
+a DEFINE -4
+a ELSE -4
+a ENDIF -4
+a ERROR -4
+a ID -4
+a IF -4
+a IFDEF -4
+a IFNDEF -4
+a INCLUDE -4
+a INIT -4
+a LINE -4
+a LLP -4
+a NEWLINE -4
+a NUMBER -4
+a PRAGMA -4
+a REQUIRE -4
+a RRP -4
+a SEPARATOR -4
+a STRING -4
+a STRINGIZING -4
+a TOKEN -4
+a UNDEF -4
+a WARNING -4
+a _ENDFILE_ -4
+state 6
+a $end -5
+a COMMA -5
+a CONTINUE -5
+a DEFINE -5
+a ELSE -5
+a ENDIF -5
+a ERROR -5
+a ID -5
+a IF -5
+a IFDEF -5
+a IFNDEF -5
+a INCLUDE -5
+a INIT -5
+a LINE -5
+a LLP -5
+a NEWLINE -5
+a NUMBER -5
+a PRAGMA -5
+a REQUIRE -5
+a RRP -5
+a SEPARATOR -5
+a STRING -5
+a STRINGIZING -5
+a TOKEN -5
+a UNDEF -5
+a WARNING -5
+a _ENDFILE_ -5
+state 7
+a $end -6
+a COMMA -6
+a CONTINUE -6
+a DEFINE -6
+a ELSE -6
+a ENDIF -6
+a ERROR -6
+a ID -6
+a IF -6
+a IFDEF -6
+a IFNDEF -6
+a INCLUDE -6
+a INIT -6
+a LINE -6
+a LLP -6
+a NEWLINE -6
+a NUMBER -6
+a PRAGMA -6
+a REQUIRE -6
+a RRP -6
+a SEPARATOR -6
+a STRING -6
+a STRINGIZING -6
+a TOKEN -6
+a UNDEF -6
+a WARNING -6
+a _ENDFILE_ -6
+state 8
+a $end -7
+a COMMA -7
+a CONTINUE -7
+a DEFINE -7
+a ELSE -7
+a ENDIF -7
+a ERROR -7
+a ID -7
+a IF -7
+a IFDEF -7
+a IFNDEF -7
+a INCLUDE -7
+a INIT -7
+a LINE -7
+a LLP -7
+a NEWLINE -7
+a NUMBER -7
+a PRAGMA -7
+a REQUIRE -7
+a RRP -7
+a SEPARATOR -7
+a STRING -7
+a STRINGIZING -7
+a TOKEN -7
+a UNDEF -7
+a WARNING -7
+a _ENDFILE_ -7
+state 9
+a $end -8
+a COMMA -8
+a CONTINUE -8
+a DEFINE -8
+a ELSE -8
+a ENDIF -8
+a ERROR -8
+a ID -8
+a IF -8
+a IFDEF -8
+a IFNDEF -8
+a INCLUDE -8
+a INIT -8
+a LINE -8
+a LLP -8
+a NEWLINE -8
+a NUMBER -8
+a PRAGMA -8
+a REQUIRE -8
+a RRP -8
+a SEPARATOR -8
+a STRING -8
+a STRINGIZING -8
+a TOKEN -8
+a UNDEF -8
+a WARNING -8
+a _ENDFILE_ -8
+state 10
+a $end -9
+a COMMA -9
+a CONTINUE -9
+a DEFINE -9
+a ELSE -9
+a ENDIF -9
+a ERROR -9
+a ID -9
+a IF -9
+a IFDEF -9
+a IFNDEF -9
+a INCLUDE -9
+a INIT -9
+a LINE -9
+a LLP -9
+a NEWLINE -9
+a NUMBER -9
+a PRAGMA -9
+a REQUIRE -9
+a RRP -9
+a SEPARATOR -9
+a STRING -9
+a STRINGIZING -9
+a TOKEN -9
+a UNDEF -9
+a WARNING -9
+a _ENDFILE_ -9
+state 11
+a $end -10
+a COMMA -10
+a CONTINUE -10
+a DEFINE -10
+a ELSE -10
+a ENDIF -10
+a ERROR -10
+a ID -10
+a IF -10
+a IFDEF -10
+a IFNDEF -10
+a INCLUDE -10
+a INIT -10
+a LINE -10
+a LLP -10
+a NEWLINE -10
+a NUMBER -10
+a PRAGMA -10
+a REQUIRE -10
+a RRP -10
+a SEPARATOR -10
+a STRING -10
+a STRINGIZING -10
+a TOKEN -10
+a UNDEF -10
+a WARNING -10
+a _ENDFILE_ -10
+state 12
+a COMMA 44
+a CONTINUE 50
+a ID 53
+a LLP 46
+a NEWLINE 41
+a NUMBER 52
+a RRP 45
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g def 42
+g macrocall 47
+g token 43
+state 13
+a NEWLINE 55
+state 14
+a NEWLINE 56
+state 15
+a NEWLINE 57
+state 16
+a INTEGER 58
+state 17
+a ID 59
+a STRING 60
+state 18
+a ID 61
+state 19
+a NEWLINE 62
+state 20
+a ELSE 64
+g ifdefelseb 63
+state 21
+a STRING 65
+state 22
+a ID 66
+a ONCE 69
+a POP 68
+a PUSH 67
+state 23
+a TEXT 70
+state 24
+a TEXT 71
+state 25
+a ID 72
+state 26
+a FILENAME -37
+a ID -37
+a LB 75
+a LLP -37
+a NUMBER -37
+a ONCE 74
+a STRING -37
+a STRINGIZING -37
+g include_modifier 73
+state 27
+a ID 76
+state 28
+a ID 77
+state 29
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 78
+g macrocall 79
+state 30
+a $end -13
+a COMMA -13
+a CONTINUE -13
+a DEFINE -13
+a ELSE -13
+a ENDIF -13
+a ERROR -13
+a ID -13
+a IF -13
+a IFDEF -13
+a IFNDEF -13
+a INCLUDE -13
+a INIT -13
+a LINE -13
+a LLP -13
+a NEWLINE -13
+a NUMBER -13
+a PRAGMA -13
+a REQUIRE -13
+a RRP -13
+a SEPARATOR -13
+a STRING -13
+a STRINGIZING -13
+a TOKEN -13
+a UNDEF -13
+a WARNING -13
+a _ENDFILE_ -13
+state 31
+a $end -14
+a COMMA -14
+a CONTINUE -14
+a DEFINE -14
+a ELSE -14
+a ENDIF -14
+a ERROR -14
+a ID -14
+a IF -14
+a IFDEF -14
+a IFNDEF -14
+a INCLUDE -14
+a INIT -14
+a LINE -14
+a LLP -14
+a NEWLINE -14
+a NUMBER -14
+a PRAGMA -14
+a REQUIRE -14
+a RRP -14
+a SEPARATOR -14
+a STRING -14
+a STRINGIZING -14
+a TOKEN -14
+a UNDEF -14
+a WARNING -14
+a _ENDFILE_ -14
+state 32
+a $end -15
+a COMMA -15
+a CONTINUE -15
+a DEFINE -15
+a ELSE -15
+a ENDIF -15
+a ERROR -15
+a ID -15
+a IF -15
+a IFDEF -15
+a IFNDEF -15
+a INCLUDE -15
+a INIT -15
+a LINE -15
+a LLP -15
+a NEWLINE -15
+a NUMBER -15
+a PRAGMA -15
+a REQUIRE -15
+a RRP -15
+a SEPARATOR -15
+a STRING -15
+a STRINGIZING -15
+a TOKEN -15
+a UNDEF -15
+a WARNING -15
+a _ENDFILE_ -15
+state 33
+a $end -16
+a COMMA -16
+a CONTINUE -16
+a DEFINE -16
+a ELSE -16
+a ENDIF -16
+a ERROR -16
+a ID -16
+a IF -16
+a IFDEF -16
+a IFNDEF -16
+a INCLUDE -16
+a INIT -16
+a LINE -16
+a LLP -16
+a NEWLINE -16
+a NUMBER -16
+a PRAGMA -16
+a REQUIRE -16
+a RRP -16
+a SEPARATOR -16
+a STRING -16
+a STRINGIZING -16
+a TOKEN -16
+a UNDEF -16
+a WARNING -16
+a _ENDFILE_ -16
+state 34
+a $end -17
+a COMMA -17
+a CONTINUE -17
+a DEFINE -17
+a ELSE -17
+a ENDIF -17
+a ERROR -17
+a ID -17
+a IF -17
+a IFDEF -17
+a IFNDEF -17
+a INCLUDE -17
+a INIT -17
+a LINE -17
+a LLP -17
+a NEWLINE -17
+a NUMBER -17
+a PRAGMA -17
+a REQUIRE -17
+a RRP -17
+a SEPARATOR -17
+a STRING -17
+a STRINGIZING -17
+a TOKEN -17
+a UNDEF -17
+a WARNING -17
+a _ENDFILE_ -17
+state 35
+a $end -18
+a COMMA -18
+a CONTINUE -18
+a DEFINE -18
+a ELSE -18
+a ENDIF -18
+a ERROR -18
+a ID -18
+a IF -18
+a IFDEF -18
+a IFNDEF -18
+a INCLUDE -18
+a INIT -18
+a LINE -18
+a LLP -18
+a NEWLINE -18
+a NUMBER -18
+a PRAGMA -18
+a REQUIRE -18
+a RRP -18
+a SEPARATOR -18
+a STRING -18
+a STRINGIZING -18
+a TOKEN -18
+a UNDEF -18
+a WARNING -18
+a _ENDFILE_ -18
+state 36
+a $end -19
+a COMMA -19
+a CONTINUE -19
+a DEFINE -19
+a ELSE -19
+a ENDIF -19
+a ERROR -19
+a ID -19
+a IF -19
+a IFDEF -19
+a IFNDEF -19
+a INCLUDE -19
+a INIT -19
+a LINE -19
+a LLP -19
+a NEWLINE -19
+a NUMBER -19
+a PRAGMA -19
+a REQUIRE -19
+a RRP -19
+a SEPARATOR -19
+a STRING -19
+a STRINGIZING -19
+a TOKEN -19
+a UNDEF -19
+a WARNING -19
+a _ENDFILE_ -19
+state 37
+a $end -20
+a COMMA -20
+a CONTINUE -20
+a DEFINE -20
+a ELSE -20
+a ENDIF -20
+a ERROR -20
+a ID -20
+a IF -20
+a IFDEF -20
+a IFNDEF -20
+a INCLUDE -20
+a INIT -20
+a LINE -20
+a LLP -20
+a NEWLINE -20
+a NUMBER -20
+a PRAGMA -20
+a REQUIRE -20
+a RRP -20
+a SEPARATOR -20
+a STRING -20
+a STRINGIZING -20
+a TOKEN -20
+a UNDEF -20
+a WARNING -20
+a _ENDFILE_ -20
+state 38
+a $end -21
+a COMMA -21
+a CONTINUE -21
+a DEFINE -21
+a ELSE -21
+a ENDIF -21
+a ERROR -21
+a ID -21
+a IF -21
+a IFDEF -21
+a IFNDEF -21
+a INCLUDE -21
+a INIT -21
+a LINE -21
+a LLP -21
+a NEWLINE -21
+a NUMBER -21
+a PRAGMA -21
+a REQUIRE -21
+a RRP -21
+a SEPARATOR -21
+a STRING -21
+a STRINGIZING -21
+a TOKEN -21
+a UNDEF -21
+a WARNING -21
+a _ENDFILE_ -21
+state 39
+a COMMA 44
+a CONTINUE 50
+a ID 53
+a LLP 46
+a NEWLINE 83
+a NUMBER 52
+a RRP 45
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g def 42
+g macrocall 47
+g token 43
+state 40
+a NEWLINE 84
+state 41
+a $end -11
+a COMMA -11
+a CONTINUE -11
+a DEFINE -11
+a ELSE -11
+a ENDIF -11
+a ERROR -11
+a ID -11
+a IF -11
+a IFDEF -11
+a IFNDEF -11
+a INCLUDE -11
+a INIT -11
+a LINE -11
+a LLP -11
+a NEWLINE -11
+a NUMBER -11
+a PRAGMA -11
+a REQUIRE -11
+a RRP -11
+a SEPARATOR -11
+a STRING -11
+a STRINGIZING -11
+a TOKEN -11
+a UNDEF -11
+a WARNING -11
+a _ENDFILE_ -11
+state 42
+a COMMA -80
+a CONTINUE -80
+a ID -80
+a LLP -80
+a NEWLINE -80
+a NUMBER -80
+a RRP -80
+a SEPARATOR -80
+a STRING -80
+a STRINGIZING -80
+a TOKEN -80
+state 43
+a COMMA -81
+a CONTINUE -81
+a ID -81
+a LLP -81
+a NEWLINE -81
+a NUMBER -81
+a RRP -81
+a SEPARATOR -81
+a STRING -81
+a STRINGIZING -81
+a TOKEN -81
+state 44
+a COMMA -82
+a CONTINUE -82
+a ID -82
+a LLP -82
+a NEWLINE -82
+a NUMBER -82
+a RRP -82
+a SEPARATOR -82
+a STRING -82
+a STRINGIZING -82
+a TOKEN -82
+state 45
+a COMMA -83
+a CONTINUE -83
+a ID -83
+a LLP -83
+a NEWLINE -83
+a NUMBER -83
+a RRP -83
+a SEPARATOR -83
+a STRING -83
+a STRINGIZING -83
+a TOKEN -83
+state 46
+a COMMA -84
+a CONTINUE -84
+a ID -84
+a LLP -84
+a NEWLINE -84
+a NUMBER -84
+a RRP -84
+a SEPARATOR -84
+a STRING -84
+a STRINGIZING -84
+a TOKEN -84
+state 47
+a COMMA -85
+a CONTINUE -85
+a ID -85
+a LLP 87
+a NEWLINE -85
+a NUMBER -85
+a PASTE 86
+a RRP -85
+a SEPARATOR -85
+a STRING -85
+a STRINGIZING -85
+a TOKEN -85
+g args 85
+state 48
+a COMMA -24
+a CONTINUE -24
+a ID -24
+a LLP -24
+a NEWLINE -24
+a NUMBER -24
+a RRP -24
+a SEPARATOR -24
+a STRING -24
+a STRINGIZING -24
+a TOKEN -24
+state 49
+a COMMA -25
+a CONTINUE -25
+a ID -25
+a LLP -25
+a NEWLINE -25
+a NUMBER -25
+a RRP -25
+a SEPARATOR -25
+a STRING -25
+a STRINGIZING -25
+a TOKEN -25
+state 50
+a COMMA -26
+a CONTINUE -26
+a ID -26
+a LLP -26
+a NEWLINE -26
+a NUMBER -26
+a RRP -26
+a SEPARATOR -26
+a STRING -26
+a STRINGIZING -26
+a TOKEN -26
+state 51
+a COMMA -27
+a CONTINUE -27
+a ID -27
+a LLP -27
+a NEWLINE -27
+a NUMBER -27
+a RRP -27
+a SEPARATOR -27
+a STRING -27
+a STRINGIZING -27
+a TOKEN -27
+state 52
+a COMMA -28
+a CONTINUE -28
+a ID -28
+a LLP -28
+a NEWLINE -28
+a NUMBER -28
+a RRP -28
+a SEPARATOR -28
+a STRING -28
+a STRINGIZING -28
+a TOKEN -28
+state 53
+a AND -86
+a COMMA -86
+a CONTINUE -86
+a EQ -86
+a GE -86
+a GT -86
+a ID -86
+a LE -86
+a LLP -86
+a LT -86
+a NE -86
+a NEWLINE -86
+a NUMBER -86
+a OR -86
+a PASTE -86
+a RRP -86
+a SEPARATOR -86
+a STRING -86
+a STRINGIZING -86
+a TOKEN -86
+state 54
+a ID 53
+a STRINGIZING 54
+g macrocall 88
+state 55
+a $end -12
+a COMMA -12
+a CONTINUE -12
+a DEFINE -12
+a ELSE -12
+a ENDIF -12
+a ERROR -12
+a ID -12
+a IF -12
+a IFDEF -12
+a IFNDEF -12
+a INCLUDE -12
+a INIT -12
+a LINE -12
+a LLP -12
+a NEWLINE -12
+a NUMBER -12
+a PRAGMA -12
+a REQUIRE -12
+a RRP -12
+a SEPARATOR -12
+a STRING -12
+a STRINGIZING -12
+a TOKEN -12
+a UNDEF -12
+a WARNING -12
+a _ENDFILE_ -12
+state 56
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+a _ENDFILE_ 90
+g define 13
+g defs 12
+g errormsg 10
+g if_header 19
+g ifdef 7
+g ifdefelsea 20
+g include 14
+g include_file 3
+g include_once 15
+g init 5
+g line 4
+g pragma 9
+g program 89
+g require 8
+g undef 6
+g warningmsg 11
+state 57
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+a _ENDFILE_ 91
+g define 13
+g defs 12
+g errormsg 10
+g if_header 19
+g ifdef 7
+g ifdefelsea 20
+g include 14
+g include_file 3
+g include_once 15
+g init 5
+g line 4
+g pragma 9
+g program 92
+g require 8
+g undef 6
+g warningmsg 11
+state 58
+a NEWLINE 93
+a STRING 94
+state 59
+a NEWLINE 95
+state 60
+a NEWLINE 96
+state 61
+a $end -44
+a COMMA -44
+a CONTINUE -44
+a DEFINE -44
+a ELSE -44
+a ENDIF -44
+a ERROR -44
+a ID -44
+a IF -44
+a IFDEF -44
+a IFNDEF -44
+a INCLUDE -44
+a INIT -44
+a LINE -44
+a LLP -44
+a NEWLINE -44
+a NUMBER -44
+a PRAGMA -44
+a REQUIRE -44
+a RRP -44
+a SEPARATOR -44
+a STRING -44
+a STRINGIZING -44
+a TOKEN -44
+a UNDEF -44
+a WARNING -44
+a _ENDFILE_ -44
+state 62
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+g define 13
+g defs 12
+g errormsg 10
+g if_header 19
+g ifdef 7
+g ifdefelsea 20
+g include 14
+g include_file 3
+g include_once 15
+g init 5
+g line 4
+g pragma 9
+g program 97
+g require 8
+g undef 6
+g warningmsg 11
+state 63
+a ENDIF 98
+state 64
+a NEWLINE 99
+state 65
+a NEWLINE 100
+state 66
+a $end -53
+a COMMA -53
+a CONTINUE -53
+a DEFINE -53
+a ELSE -53
+a ENDIF -53
+a EQ 101
+a ERROR -53
+a ID -53
+a IF -53
+a IFDEF -53
+a IFNDEF -53
+a INCLUDE -53
+a INIT -53
+a LINE -53
+a LLP -53
+a NEWLINE -53
+a NUMBER -53
+a PRAGMA -53
+a REQUIRE -53
+a RRP -53
+a SEPARATOR -53
+a STRING -53
+a STRINGIZING -53
+a TOKEN -53
+a UNDEF -53
+a WARNING -53
+a _ENDFILE_ -53
+state 67
+a LP 102
+state 68
+a LP 103
+state 69
+a $end -59
+a COMMA -59
+a CONTINUE -59
+a DEFINE -59
+a ELSE -59
+a ENDIF -59
+a ERROR -59
+a ID -59
+a IF -59
+a IFDEF -59
+a IFNDEF -59
+a INCLUDE -59
+a INIT -59
+a LINE -59
+a LLP -59
+a NEWLINE -59
+a NUMBER -59
+a PRAGMA -59
+a REQUIRE -59
+a RRP -59
+a SEPARATOR -59
+a STRING -59
+a STRINGIZING -59
+a TOKEN -59
+a UNDEF -59
+a WARNING -59
+a _ENDFILE_ -59
+state 70
+a $end -45
+a COMMA -45
+a CONTINUE -45
+a DEFINE -45
+a ELSE -45
+a ENDIF -45
+a ERROR -45
+a ID -45
+a IF -45
+a IFDEF -45
+a IFNDEF -45
+a INCLUDE -45
+a INIT -45
+a LINE -45
+a LLP -45
+a NEWLINE -45
+a NUMBER -45
+a PRAGMA -45
+a REQUIRE -45
+a RRP -45
+a SEPARATOR -45
+a STRING -45
+a STRINGIZING -45
+a TOKEN -45
+a UNDEF -45
+a WARNING -45
+a _ENDFILE_ -45
+state 71
+a $end -46
+a COMMA -46
+a CONTINUE -46
+a DEFINE -46
+a ELSE -46
+a ENDIF -46
+a ERROR -46
+a ID -46
+a IF -46
+a IFDEF -46
+a IFNDEF -46
+a INCLUDE -46
+a INIT -46
+a LINE -46
+a LLP -46
+a NEWLINE -46
+a NUMBER -46
+a PRAGMA -46
+a REQUIRE -46
+a RRP -46
+a SEPARATOR -46
+a STRING -46
+a STRINGIZING -46
+a TOKEN -46
+a UNDEF -46
+a WARNING -46
+a _ENDFILE_ -46
+state 72
+a COMMA -48
+a CONTINUE -48
+a ID -48
+a LLP -48
+a LP 105
+a NEWLINE -48
+a NUMBER -48
+a RRP -48
+a SEPARATOR -48
+a STRING -48
+a STRINGIZING -48
+a TOKEN -48
+g params 104
+state 73
+a FILENAME 106
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 107
+g macrocall 79
+state 74
+a FILENAME -37
+a LB 75
+a STRING -37
+g include_modifier 108
+state 75
+a ID 109
+state 76
+a NEWLINE -64
+state 77
+a NEWLINE -65
+state 78
+a AND 110
+a EQ 113
+a GE 117
+a GT 116
+a LE 115
+a LT 114
+a NE 112
+a NEWLINE -66
+a OR 111
+state 79
+a AND -67
+a EQ -67
+a GE -67
+a GT -67
+a LE -67
+a LLP 87
+a LT -67
+a NE -67
+a NEWLINE -67
+a OR -67
+a PASTE 86
+a RRP -67
+g args 85
+state 80
+a AND -68
+a EQ -68
+a GE -68
+a GT -68
+a LE -68
+a LT -68
+a NE -68
+a NEWLINE -68
+a OR -68
+a RRP -68
+state 81
+a AND -69
+a EQ -69
+a GE -69
+a GT -69
+a LE -69
+a LT -69
+a NE -69
+a NEWLINE -69
+a OR -69
+a RRP -69
+state 82
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 118
+g macrocall 79
+state 83
+a $end -22
+a COMMA -22
+a CONTINUE -22
+a DEFINE -22
+a ELSE -22
+a ENDIF -22
+a ERROR -22
+a ID -22
+a IF -22
+a IFDEF -22
+a IFNDEF -22
+a INCLUDE -22
+a INIT -22
+a LINE -22
+a LLP -22
+a NEWLINE -22
+a NUMBER -22
+a PRAGMA -22
+a REQUIRE -22
+a RRP -22
+a SEPARATOR -22
+a STRING -22
+a STRINGIZING -22
+a TOKEN -22
+a UNDEF -22
+a WARNING -22
+a _ENDFILE_ -22
+state 84
+a $end -23
+a COMMA -23
+a CONTINUE -23
+a DEFINE -23
+a ELSE -23
+a ENDIF -23
+a ERROR -23
+a ID -23
+a IF -23
+a IFDEF -23
+a IFNDEF -23
+a INCLUDE -23
+a INIT -23
+a LINE -23
+a LLP -23
+a NEWLINE -23
+a NUMBER -23
+a PRAGMA -23
+a REQUIRE -23
+a RRP -23
+a SEPARATOR -23
+a STRING -23
+a STRINGIZING -23
+a TOKEN -23
+a UNDEF -23
+a WARNING -23
+a _ENDFILE_ -23
+state 85
+a AND -87
+a COMMA -87
+a CONTINUE -87
+a EQ -87
+a GE -87
+a GT -87
+a ID -87
+a LE -87
+a LLP -87
+a LT -87
+a NE -87
+a NEWLINE -87
+a NUMBER -87
+a OR -87
+a PASTE -87
+a RRP -87
+a SEPARATOR -87
+a STRING -87
+a STRINGIZING -87
+a TOKEN -87
+state 86
+a ID 53
+a STRINGIZING 54
+g macrocall 119
+state 87
+a COMMA -93
+a CONTINUE 50
+a ID 53
+a LLP 120
+a NUMBER 52
+a RRP -93
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g arg 122
+g arglist 121
+g argstring 123
+g macrocall 125
+g token 124
+state 88
+a AND -89
+a COMMA -89
+a CONTINUE -89
+a EQ -89
+a GE -89
+a GT -89
+a ID -89
+a LE -89
+a LLP -89
+a LT -89
+a NE -89
+a NEWLINE -89
+a NUMBER -89
+a OR -89
+a PASTE -89
+a RRP -89
+a SEPARATOR -89
+a STRING -89
+a STRINGIZING -89
+a TOKEN -89
+g args 85
+state 89
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+a _ENDFILE_ 126
+g define 40
+g defs 39
+g errormsg 37
+g if_header 19
+g ifdef 34
+g ifdefelsea 20
+g include 14
+g include_file 30
+g include_once 15
+g init 32
+g line 31
+g pragma 36
+g require 35
+g undef 33
+g warningmsg 38
+state 90
+a $end -30
+a COMMA -30
+a CONTINUE -30
+a DEFINE -30
+a ELSE -30
+a ENDIF -30
+a ERROR -30
+a ID -30
+a IF -30
+a IFDEF -30
+a IFNDEF -30
+a INCLUDE -30
+a INIT -30
+a LINE -30
+a LLP -30
+a NEWLINE -30
+a NUMBER -30
+a PRAGMA -30
+a REQUIRE -30
+a RRP -30
+a SEPARATOR -30
+a STRING -30
+a STRINGIZING -30
+a TOKEN -30
+a UNDEF -30
+a WARNING -30
+a _ENDFILE_ -30
+state 91
+a $end -31
+a COMMA -31
+a CONTINUE -31
+a DEFINE -31
+a ELSE -31
+a ENDIF -31
+a ERROR -31
+a ID -31
+a IF -31
+a IFDEF -31
+a IFNDEF -31
+a INCLUDE -31
+a INIT -31
+a LINE -31
+a LLP -31
+a NEWLINE -31
+a NUMBER -31
+a PRAGMA -31
+a REQUIRE -31
+a RRP -31
+a SEPARATOR -31
+a STRING -31
+a STRINGIZING -31
+a TOKEN -31
+a UNDEF -31
+a WARNING -31
+a _ENDFILE_ -31
+state 92
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+a _ENDFILE_ 127
+g define 40
+g defs 39
+g errormsg 37
+g if_header 19
+g ifdef 34
+g ifdefelsea 20
+g include 14
+g include_file 30
+g include_once 15
+g init 32
+g line 31
+g pragma 36
+g require 35
+g undef 33
+g warningmsg 38
+state 93
+a $end -39
+a COMMA -39
+a CONTINUE -39
+a DEFINE -39
+a ELSE -39
+a ENDIF -39
+a ERROR -39
+a ID -39
+a IF -39
+a IFDEF -39
+a IFNDEF -39
+a INCLUDE -39
+a INIT -39
+a LINE -39
+a LLP -39
+a NEWLINE -39
+a NUMBER -39
+a PRAGMA -39
+a REQUIRE -39
+a RRP -39
+a SEPARATOR -39
+a STRING -39
+a STRINGIZING -39
+a TOKEN -39
+a UNDEF -39
+a WARNING -39
+a _ENDFILE_ -39
+state 94
+a NEWLINE 128
+state 95
+a $end -42
+a COMMA -42
+a CONTINUE -42
+a DEFINE -42
+a ELSE -42
+a ENDIF -42
+a ERROR -42
+a ID -42
+a IF -42
+a IFDEF -42
+a IFNDEF -42
+a INCLUDE -42
+a INIT -42
+a LINE -42
+a LLP -42
+a NEWLINE -42
+a NUMBER -42
+a PRAGMA -42
+a REQUIRE -42
+a RRP -42
+a SEPARATOR -42
+a STRING -42
+a STRINGIZING -42
+a TOKEN -42
+a UNDEF -42
+a WARNING -42
+a _ENDFILE_ -42
+state 96
+a $end -43
+a COMMA -43
+a CONTINUE -43
+a DEFINE -43
+a ELSE -43
+a ENDIF -43
+a ERROR -43
+a ID -43
+a IF -43
+a IFDEF -43
+a IFNDEF -43
+a INCLUDE -43
+a INIT -43
+a LINE -43
+a LLP -43
+a NEWLINE -43
+a NUMBER -43
+a PRAGMA -43
+a REQUIRE -43
+a RRP -43
+a SEPARATOR -43
+a STRING -43
+a STRINGIZING -43
+a TOKEN -43
+a UNDEF -43
+a WARNING -43
+a _ENDFILE_ -43
+state 97
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ELSE -62
+a ENDIF 129
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+g define 40
+g defs 39
+g errormsg 37
+g if_header 19
+g ifdef 34
+g ifdefelsea 20
+g include 14
+g include_file 30
+g include_once 15
+g init 32
+g line 31
+g pragma 36
+g require 35
+g undef 33
+g warningmsg 38
+state 98
+a $end -61
+a COMMA -61
+a CONTINUE -61
+a DEFINE -61
+a ELSE -61
+a ENDIF -61
+a ERROR -61
+a ID -61
+a IF -61
+a IFDEF -61
+a IFNDEF -61
+a INCLUDE -61
+a INIT -61
+a LINE -61
+a LLP -61
+a NEWLINE -61
+a NUMBER -61
+a PRAGMA -61
+a REQUIRE -61
+a RRP -61
+a SEPARATOR -61
+a STRING -61
+a STRINGIZING -61
+a TOKEN -61
+a UNDEF -61
+a WARNING -61
+a _ENDFILE_ -61
+state 99
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+g define 13
+g defs 12
+g errormsg 10
+g if_header 19
+g ifdef 7
+g ifdefelsea 20
+g include 14
+g include_file 3
+g include_once 15
+g init 5
+g line 4
+g pragma 9
+g program 130
+g require 8
+g undef 6
+g warningmsg 11
+state 100
+a $end -41
+a COMMA -41
+a CONTINUE -41
+a DEFINE -41
+a ELSE -41
+a ENDIF -41
+a ERROR -41
+a ID -41
+a IF -41
+a IFDEF -41
+a IFNDEF -41
+a INCLUDE -41
+a INIT -41
+a LINE -41
+a LLP -41
+a NEWLINE -41
+a NUMBER -41
+a PRAGMA -41
+a REQUIRE -41
+a RRP -41
+a SEPARATOR -41
+a STRING -41
+a STRINGIZING -41
+a TOKEN -41
+a UNDEF -41
+a WARNING -41
+a _ENDFILE_ -41
+state 101
+a ID 131
+a INTEGER 132
+a STRING 133
+state 102
+a ID 134
+state 103
+a ID 135
+state 104
+a COMMA -79
+a CONTINUE -79
+a ID -79
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+g defs 136
+state 105
+a ID 139
+a RP 137
+g paramlist 138
+state 106
+a NEWLINE -33
+state 107
+a AND 110
+a EQ 113
+a GE 117
+a GT 116
+a LE 115
+a LT 114
+a NE 112
+a NEWLINE -34
+a OR 111
+state 108
+a FILENAME 141
+a STRING 140
+state 109
+a CO 142
+state 110
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 143
+g macrocall 79
+state 111
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 144
+g macrocall 79
+state 112
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 145
+g macrocall 79
+state 113
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 146
+g macrocall 79
+state 114
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 147
+g macrocall 79
+state 115
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 148
+g macrocall 79
+state 116
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 149
+g macrocall 79
+state 117
+a ID 53
+a LLP 82
+a NUMBER 80
+a STRING 81
+a STRINGIZING 54
+g expr 150
+g macrocall 79
+state 118
+a AND 110
+a EQ 113
+a GE 117
+a GT 116
+a LE 115
+a LT 114
+a NE 112
+a OR 111
+a RRP 151
+state 119
+a AND -88
+a COMMA -88
+a CONTINUE -88
+a EQ -88
+a GE -88
+a GT -88
+a ID -88
+a LE -88
+a LLP -88
+a LT -88
+a NE -88
+a NEWLINE -88
+a NUMBER -88
+a OR -88
+a PASTE -88
+a RRP -88
+a SEPARATOR -88
+a STRING -88
+a STRINGIZING -88
+a TOKEN -88
+g args 85
+state 120
+a COMMA -93
+a CONTINUE 50
+a ID 53
+a LLP 120
+a NUMBER 52
+a RRP -93
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g arg 122
+g arglist 152
+g argstring 123
+g macrocall 125
+g token 124
+state 121
+a COMMA 154
+a RRP 153
+state 122
+a COMMA -92
+a RRP -92
+state 123
+a COMMA -94
+a CONTINUE 50
+a ID 53
+a LLP 157
+a NUMBER 52
+a RRP -94
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g macrocall 156
+g token 155
+state 124
+a COMMA -95
+a CONTINUE -95
+a ID -95
+a LLP -95
+a NUMBER -95
+a RRP -95
+a SEPARATOR -95
+a STRING -95
+a STRINGIZING -95
+a TOKEN -95
+state 125
+a COMMA -96
+a CONTINUE -96
+a ID -96
+a LLP 87
+a NUMBER -96
+a PASTE 86
+a RRP -96
+a SEPARATOR -96
+a STRING -96
+a STRINGIZING -96
+a TOKEN -96
+g args 85
+state 126
+a $end -29
+a COMMA -29
+a CONTINUE -29
+a DEFINE -29
+a ELSE -29
+a ENDIF -29
+a ERROR -29
+a ID -29
+a IF -29
+a IFDEF -29
+a IFNDEF -29
+a INCLUDE -29
+a INIT -29
+a LINE -29
+a LLP -29
+a NEWLINE -29
+a NUMBER -29
+a PRAGMA -29
+a REQUIRE -29
+a RRP -29
+a SEPARATOR -29
+a STRING -29
+a STRINGIZING -29
+a TOKEN -29
+a UNDEF -29
+a WARNING -29
+a _ENDFILE_ -29
+state 127
+a $end -32
+a COMMA -32
+a CONTINUE -32
+a DEFINE -32
+a ELSE -32
+a ENDIF -32
+a ERROR -32
+a ID -32
+a IF -32
+a IFDEF -32
+a IFNDEF -32
+a INCLUDE -32
+a INIT -32
+a LINE -32
+a LLP -32
+a NEWLINE -32
+a NUMBER -32
+a PRAGMA -32
+a REQUIRE -32
+a RRP -32
+a SEPARATOR -32
+a STRING -32
+a STRINGIZING -32
+a TOKEN -32
+a UNDEF -32
+a WARNING -32
+a _ENDFILE_ -32
+state 128
+a $end -40
+a COMMA -40
+a CONTINUE -40
+a DEFINE -40
+a ELSE -40
+a ENDIF -40
+a ERROR -40
+a ID -40
+a IF -40
+a IFDEF -40
+a IFNDEF -40
+a INCLUDE -40
+a INIT -40
+a LINE -40
+a LLP -40
+a NEWLINE -40
+a NUMBER -40
+a PRAGMA -40
+a REQUIRE -40
+a RRP -40
+a SEPARATOR -40
+a STRING -40
+a STRINGIZING -40
+a TOKEN -40
+a UNDEF -40
+a WARNING -40
+a _ENDFILE_ -40
+state 129
+a $end -60
+a COMMA -60
+a CONTINUE -60
+a DEFINE -60
+a ELSE -60
+a ENDIF -60
+a ERROR -60
+a ID -60
+a IF -60
+a IFDEF -60
+a IFNDEF -60
+a INCLUDE -60
+a INIT -60
+a LINE -60
+a LLP -60
+a NEWLINE -60
+a NUMBER -60
+a PRAGMA -60
+a REQUIRE -60
+a RRP -60
+a SEPARATOR -60
+a STRING -60
+a STRINGIZING -60
+a TOKEN -60
+a UNDEF -60
+a WARNING -60
+a _ENDFILE_ -60
+state 130
+a COMMA -79
+a CONTINUE -79
+a DEFINE 25
+a ENDIF -63
+a ERROR 23
+a ID -79
+a IF 29
+a IFDEF 27
+a IFNDEF 28
+a INCLUDE 26
+a INIT 17
+a LINE 16
+a LLP -79
+a NEWLINE -79
+a NUMBER -79
+a PRAGMA 22
+a REQUIRE 21
+a RRP -79
+a SEPARATOR -79
+a STRING -79
+a STRINGIZING -79
+a TOKEN -79
+a UNDEF 18
+a WARNING 24
+g define 40
+g defs 39
+g errormsg 37
+g if_header 19
+g ifdef 34
+g ifdefelsea 20
+g include 14
+g include_file 30
+g include_once 15
+g init 32
+g line 31
+g pragma 36
+g require 35
+g undef 33
+g warningmsg 38
+state 131
+a $end -54
+a COMMA -54
+a CONTINUE -54
+a DEFINE -54
+a ELSE -54
+a ENDIF -54
+a ERROR -54
+a ID -54
+a IF -54
+a IFDEF -54
+a IFNDEF -54
+a INCLUDE -54
+a INIT -54
+a LINE -54
+a LLP -54
+a NEWLINE -54
+a NUMBER -54
+a PRAGMA -54
+a REQUIRE -54
+a RRP -54
+a SEPARATOR -54
+a STRING -54
+a STRINGIZING -54
+a TOKEN -54
+a UNDEF -54
+a WARNING -54
+a _ENDFILE_ -54
+state 132
+a $end -55
+a COMMA -55
+a CONTINUE -55
+a DEFINE -55
+a ELSE -55
+a ENDIF -55
+a ERROR -55
+a ID -55
+a IF -55
+a IFDEF -55
+a IFNDEF -55
+a INCLUDE -55
+a INIT -55
+a LINE -55
+a LLP -55
+a NEWLINE -55
+a NUMBER -55
+a PRAGMA -55
+a REQUIRE -55
+a RRP -55
+a SEPARATOR -55
+a STRING -55
+a STRINGIZING -55
+a TOKEN -55
+a UNDEF -55
+a WARNING -55
+a _ENDFILE_ -55
+state 133
+a $end -56
+a COMMA -56
+a CONTINUE -56
+a DEFINE -56
+a ELSE -56
+a ENDIF -56
+a ERROR -56
+a ID -56
+a IF -56
+a IFDEF -56
+a IFNDEF -56
+a INCLUDE -56
+a INIT -56
+a LINE -56
+a LLP -56
+a NEWLINE -56
+a NUMBER -56
+a PRAGMA -56
+a REQUIRE -56
+a RRP -56
+a SEPARATOR -56
+a STRING -56
+a STRINGIZING -56
+a TOKEN -56
+a UNDEF -56
+a WARNING -56
+a _ENDFILE_ -56
+state 134
+a RP 158
+state 135
+a RP 159
+state 136
+a COMMA 44
+a CONTINUE 50
+a ID 53
+a LLP 46
+a NEWLINE -47
+a NUMBER 52
+a RRP 45
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g def 42
+g macrocall 47
+g token 43
+state 137
+a COMMA -49
+a CONTINUE -49
+a ID -49
+a LLP -49
+a NEWLINE -49
+a NUMBER -49
+a RRP -49
+a SEPARATOR -49
+a STRING -49
+a STRINGIZING -49
+a TOKEN -49
+state 138
+a COMMA 161
+a RP 160
+state 139
+a COMMA -51
+a RP -51
+state 140
+a NEWLINE -35
+state 141
+a NEWLINE -36
+state 142
+a ID 162
+state 143
+a AND -70
+a EQ 113
+a GE 117
+a GT 116
+a LE 115
+a LT 114
+a NE 112
+a NEWLINE -70
+a OR -70
+a RRP -70
+state 144
+a AND 110
+a EQ 113
+a GE 117
+a GT 116
+a LE 115
+a LT 114
+a NE 112
+a NEWLINE -71
+a OR -71
+a RRP -71
+state 145
+a AND -72
+a EQ -72
+a GE -72
+a GT -72
+a LE -72
+a LT -72
+a NE -72
+a NEWLINE -72
+a OR -72
+a RRP -72
+state 146
+a AND -73
+a EQ -73
+a GE -73
+a GT -73
+a LE -73
+a LT -73
+a NE -73
+a NEWLINE -73
+a OR -73
+a RRP -73
+state 147
+a AND -74
+a EQ -74
+a GE -74
+a GT -74
+a LE -74
+a LT -74
+a NE -74
+a NEWLINE -74
+a OR -74
+a RRP -74
+state 148
+a AND -75
+a EQ -75
+a GE -75
+a GT -75
+a LE -75
+a LT -75
+a NE -75
+a NEWLINE -75
+a OR -75
+a RRP -75
+state 149
+a AND -76
+a EQ -76
+a GE -76
+a GT -76
+a LE -76
+a LT -76
+a NE -76
+a NEWLINE -76
+a OR -76
+a RRP -76
+state 150
+a AND -77
+a EQ -77
+a GE -77
+a GT -77
+a LE -77
+a LT -77
+a NE -77
+a NEWLINE -77
+a OR -77
+a RRP -77
+state 151
+a AND -78
+a EQ -78
+a GE -78
+a GT -78
+a LE -78
+a LT -78
+a NE -78
+a NEWLINE -78
+a OR -78
+a RRP -78
+state 152
+a COMMA 154
+a RRP 163
+state 153
+a AND -90
+a COMMA -90
+a CONTINUE -90
+a EQ -90
+a GE -90
+a GT -90
+a ID -90
+a LE -90
+a LLP -90
+a LT -90
+a NE -90
+a NEWLINE -90
+a NUMBER -90
+a OR -90
+a PASTE -90
+a RRP -90
+a SEPARATOR -90
+a STRING -90
+a STRINGIZING -90
+a TOKEN -90
+state 154
+a COMMA -93
+a CONTINUE 50
+a ID 53
+a LLP 120
+a NUMBER 52
+a RRP -93
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g arg 164
+g argstring 123
+g macrocall 125
+g token 124
+state 155
+a COMMA -98
+a CONTINUE -98
+a ID -98
+a LLP -98
+a NUMBER -98
+a RRP -98
+a SEPARATOR -98
+a STRING -98
+a STRINGIZING -98
+a TOKEN -98
+state 156
+a COMMA -99
+a CONTINUE -99
+a ID -99
+a LLP 87
+a NUMBER -99
+a PASTE 86
+a RRP -99
+a SEPARATOR -99
+a STRING -99
+a STRINGIZING -99
+a TOKEN -99
+g args 85
+state 157
+a COMMA -93
+a CONTINUE 50
+a ID 53
+a LLP 120
+a NUMBER 52
+a RRP -93
+a SEPARATOR 51
+a STRING 48
+a STRINGIZING 54
+a TOKEN 49
+g arg 122
+g arglist 165
+g argstring 123
+g macrocall 125
+g token 124
+state 158
+a $end -57
+a COMMA -57
+a CONTINUE -57
+a DEFINE -57
+a ELSE -57
+a ENDIF -57
+a ERROR -57
+a ID -57
+a IF -57
+a IFDEF -57
+a IFNDEF -57
+a INCLUDE -57
+a INIT -57
+a LINE -57
+a LLP -57
+a NEWLINE -57
+a NUMBER -57
+a PRAGMA -57
+a REQUIRE -57
+a RRP -57
+a SEPARATOR -57
+a STRING -57
+a STRINGIZING -57
+a TOKEN -57
+a UNDEF -57
+a WARNING -57
+a _ENDFILE_ -57
+state 159
+a $end -58
+a COMMA -58
+a CONTINUE -58
+a DEFINE -58
+a ELSE -58
+a ENDIF -58
+a ERROR -58
+a ID -58
+a IF -58
+a IFDEF -58
+a IFNDEF -58
+a INCLUDE -58
+a INIT -58
+a LINE -58
+a LLP -58
+a NEWLINE -58
+a NUMBER -58
+a PRAGMA -58
+a REQUIRE -58
+a RRP -58
+a SEPARATOR -58
+a STRING -58
+a STRINGIZING -58
+a TOKEN -58
+a UNDEF -58
+a WARNING -58
+a _ENDFILE_ -58
+state 160
+a COMMA -50
+a CONTINUE -50
+a ID -50
+a LLP -50
+a NEWLINE -50
+a NUMBER -50
+a RRP -50
+a SEPARATOR -50
+a STRING -50
+a STRINGIZING -50
+a TOKEN -50
+state 161
+a ID 166
+state 162
+a RB 167
+state 163
+a COMMA -97
+a CONTINUE -97
+a ID -97
+a LLP -97
+a NUMBER -97
+a RRP -97
+a SEPARATOR -97
+a STRING -97
+a STRINGIZING -97
+a TOKEN -97
+state 164
+a COMMA -91
+a RRP -91
+state 165
+a COMMA 154
+a RRP 168
+state 166
+a COMMA -52
+a RP -52
+state 167
+a FILENAME -38
+a ID -38
+a LLP -38
+a NUMBER -38
+a STRING -38
+a STRINGIZING -38
+state 168
+a COMMA -100
+a CONTINUE -100
+a ID -100
+a LLP -100
+a NUMBER -100
+a RRP -100
+a SEPARATOR -100
+a STRING -100
+a STRINGIZING -100
+a TOKEN -100

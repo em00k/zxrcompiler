@@ -1,0 +1,2 @@
+opt3_atolo4.bas:8: warning: [W100] Using default implicit type 'byte' for 'c'
+opt3_atolo4.bas:8: warning: [W150] Variable 'c' is never used

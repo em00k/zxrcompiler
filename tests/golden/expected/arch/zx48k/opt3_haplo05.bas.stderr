@@ -1,0 +1,4 @@
+opt3_haplo05.bas:1: warning: [W150] Variable 'dw1' is never used
+opt3_haplo05.bas:1: warning: [W150] Variable 'dw2' is never used
+opt3_haplo05.bas:1: warning: [W150] Variable 'dw3' is never used
+opt3_haplo05.bas:1: warning: [W150] Variable 'tB' is never used

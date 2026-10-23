@@ -1,0 +1,1 @@
+cyclic_equ.asm:2: error: Label '.foo' is defined in terms of itself

@@ -1,0 +1,40 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:26: warning: [W160] SUB 'ScrollRight' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:25: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:25: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:25: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:25: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:195: warning: [W160] SUB 'ScrollLeft' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:194: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:194: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:194: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:194: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:366: warning: [W160] SUB 'ScrollUp' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:365: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:365: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:365: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:365: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:546: warning: [W160] SUB 'ScrollDown' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:545: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:545: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:545: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:545: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:729: warning: [W160] SUB 'ScrollRightAligned' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:728: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:728: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:728: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:728: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:798: warning: [W160] SUB 'ScrollLeftAligned' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:797: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:797: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:797: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:797: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:868: warning: [W160] SUB 'ScrollUpAligned' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:867: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:867: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:867: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:867: warning: [W150] Parameter 'y2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:956: warning: [W160] SUB 'ScrollDownAligned' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:955: warning: [W150] Parameter 'x1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:955: warning: [W150] Parameter 'y1' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:955: warning: [W150] Parameter 'x2' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scroll.bas:955: warning: [W150] Parameter 'y2' is never used

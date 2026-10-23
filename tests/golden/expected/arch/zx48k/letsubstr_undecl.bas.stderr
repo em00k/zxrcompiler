@@ -1,0 +1,1 @@
+letsubstr_undecl.bas:1: warning: [W101] Accessing uninitialized string variable 'S'

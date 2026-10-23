@@ -1,0 +1,11 @@
+[package]
+name = "zxr-opt"
+description = "The peephole optimiser: rule files, pattern matching and the engine"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-core = { path = "../zxr-core" }
+zxr-re = { path = "../zxr-re" }

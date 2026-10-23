@@ -1,0 +1,20 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:27: warning: [W160] SUB 'WinScrollRight' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:26: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:26: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:26: warning: [W150] Parameter 'width' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:26: warning: [W150] Parameter 'height' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:149: warning: [W160] SUB 'WinScrollLeft' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:148: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:148: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:148: warning: [W150] Parameter 'width' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:148: warning: [W150] Parameter 'height' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:268: warning: [W160] SUB 'WinScrollUp' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:267: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:267: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:267: warning: [W150] Parameter 'width' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:267: warning: [W150] Parameter 'height' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:412: warning: [W160] SUB 'WinScrollDown' declared as FASTCALL with 4 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:411: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:411: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:411: warning: [W150] Parameter 'width' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/winscroll.bas:411: warning: [W150] Parameter 'height' is never used

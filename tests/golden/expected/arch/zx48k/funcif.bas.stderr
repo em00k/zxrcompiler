@@ -1,0 +1,2 @@
+funcif.bas:9: warning: [W100] Using default implicit type 'float' for 'x'
+funcif.bas:9: warning: [W100] Using default implicit type 'float' for 'y'

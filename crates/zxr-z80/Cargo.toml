@@ -1,0 +1,14 @@
+[package]
+name = "zxr-z80"
+description = "The Z80 backend: quads to assembly text, and the end of a compile"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-core = { path = "../zxr-core" }
+zxr-ir = { path = "../zxr-ir" }
+zxr-opt = { path = "../zxr-opt" }
+zxr-pp = { path = "../zxr-pp" }
+zxr-re = { path = "../zxr-re" }

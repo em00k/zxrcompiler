@@ -1,0 +1,2 @@
+refconstparam4.bas:2: warning: [W150] Parameter 'a' is never used
+refconstparam4.bas:6: warning: [W100] Using default implicit type 'uinteger' for 'b'

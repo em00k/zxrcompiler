@@ -1,0 +1,17 @@
+[package]
+name = "zxr-pp"
+description = "The preprocessor (zxbpp), in its BASIC and ASM modes"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-core = { path = "../zxr-core" }
+zxr-lalr = { path = "../zxr-lalr" }
+zxr-lex = { path = "../zxr-lex" }
+zxr-re = { path = "../zxr-re" }
+
+[build-dependencies]
+zxr-lalr = { path = "../zxr-lalr" }
+zxr-lex = { path = "../zxr-lex" }

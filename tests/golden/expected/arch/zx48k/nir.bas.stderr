@@ -1,0 +1,4 @@
+nir.bas:3: warning: [W100] Using default implicit type 'ubyte' for 'lin'
+nir.bas:4: warning: [W100] Using default implicit type 'ubyte' for 'col'
+nir.bas:3: warning: [W150] Variable 'lin' is never used
+nir.bas:4: warning: [W150] Variable 'col' is never used

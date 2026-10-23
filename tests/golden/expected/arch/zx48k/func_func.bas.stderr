@@ -1,0 +1,3 @@
+func_func.bas:2: warning: [W100] Using default implicit type 'float' for 'Test'
+func_func.bas:2: warning: [W190] Function 'Test' should return a value
+func_func.bas:2: warning: [W150] Variable 'Test1' is never used

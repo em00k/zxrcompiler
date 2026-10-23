@@ -1,0 +1,4 @@
+explicit_crash.bas:9: error: Undeclared variable "x"
+explicit_crash.bas:10: error: Undeclared variable "y"
+explicit_crash.bas:11: error: Undeclared variable "y"
+explicit_crash.bas:11: error: Undeclared variable "x"

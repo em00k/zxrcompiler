@@ -1,0 +1,12 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:31: warning: [W160] SUB 'MemMove' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:30: warning: [W150] Parameter 'source' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:30: warning: [W150] Parameter 'dest' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:30: warning: [W150] Parameter 'length' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:67: warning: [W160] SUB 'MemCopy' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:66: warning: [W150] Parameter 'source' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:66: warning: [W150] Parameter 'dest' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:66: warning: [W150] Parameter 'length' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:100: warning: [W160] SUB 'MemSet' declared as FASTCALL with 3 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:99: warning: [W150] Parameter 'dest' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:99: warning: [W150] Parameter 'value' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/memcopy.bas:99: warning: [W150] Parameter 'length' is never used

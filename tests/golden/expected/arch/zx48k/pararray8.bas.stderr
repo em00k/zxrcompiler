@@ -1,0 +1,2 @@
+pararray8.bas:12: warning: [W100] Using default implicit type 'ubyte' for 'maximum'
+pararray8.bas:12: warning: [W150] Variable 'maximum' is never used

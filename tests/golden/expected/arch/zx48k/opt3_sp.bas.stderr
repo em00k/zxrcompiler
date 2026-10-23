@@ -1,0 +1,7 @@
+opt3_sp.bas:5: warning: [W100] Using default implicit type 'float' for 'a1'
+opt3_sp.bas:5: warning: [W100] Using default implicit type 'float' for 'a2'
+opt3_sp.bas:5: warning: [W100] Using default implicit type 'float' for 'a3'
+opt3_sp.bas:5: warning: [W100] Using default implicit type 'float' for 'a4'
+opt3_sp.bas:5: warning: [W100] Using default implicit type 'float' for 'a5'
+opt3_sp.bas:5: warning: [W150] Variable 'a4' is never used
+opt3_sp.bas:5: warning: [W150] Variable 'a5' is never used

@@ -1,0 +1,2 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/basic.bas:48: warning: [W150] Parameter 'basic' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/basic.bas:49: warning: [W190] Function 'EvalBASIC' should return a value

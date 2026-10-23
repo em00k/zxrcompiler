@@ -1,0 +1,2 @@
+str01.bas:4: warning: [W100] Using default implicit type 'ubyte' for 'b'
+str01.bas:5: warning: [W150] Variable 'a' is never used

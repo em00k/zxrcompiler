@@ -1,0 +1,2 @@
+pararray6.bas:2: warning: [W150] Parameter 'a' is never used
+pararray6.bas:4: warning: [W190] Function 'test' should return a value

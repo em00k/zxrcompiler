@@ -1,0 +1,10 @@
+[package]
+name = "zxr-lex"
+description = "A lexer driver with the matching rules of PLY's lex"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-re = { path = "../zxr-re" }

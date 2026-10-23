@@ -1,0 +1,3 @@
+asmerror2.asm:2: error: illegal preprocessor character '@'
+asmerror2.asm:2: error: illegal character '#'
+asmerror2.asm:2: error: Syntax error. Unexpected end of line [NEWLINE]

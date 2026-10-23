@@ -1,0 +1,2 @@
+while.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+while.bas:10: warning: [W180] Unreachable code

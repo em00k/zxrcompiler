@@ -1,0 +1,5 @@
+lint_fastcall.bas:3: warning: [W150] Parameter 'x' is never used
+lint_fastcall.bas:9: warning: [W940] FASTCALL SUB 'ReadsParam' has no stack frame, but its BASIC code uses parameter 'x', which would be read from the caller's frame. Take the argument from A or HL in an ASM block, or drop FASTCALL
+lint_fastcall.bas:13: warning: [W150] Parameter 'x' is never used
+lint_fastcall.bas:13: warning: [W940] FASTCALL FUNCTION 'HasLocal' has no stack frame, but its BASIC code uses local variables, which would be read from the caller's frame. Take the argument from A or HL in an ASM block, or drop FASTCALL
+lint_fastcall.bas:4: warning: [W190] Function 'Fine' should return a value

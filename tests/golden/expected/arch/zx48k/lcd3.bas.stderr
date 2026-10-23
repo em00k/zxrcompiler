@@ -1,0 +1,2 @@
+lcd3.bas:11: warning: [W100] Using default implicit type 'float' for 'adr'
+lcd3.bas:2: warning: [W150] Variable 'z' is never used

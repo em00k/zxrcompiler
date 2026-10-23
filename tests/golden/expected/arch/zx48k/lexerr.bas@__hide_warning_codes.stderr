@@ -1,0 +1,3 @@
+lexerr.bas:1: error: ignoring illegal character '%'
+lexerr.bas:1: warning: Using default implicit type 'float' for 'a'
+lexerr.bas:1: error: Syntax Error. Unexpected token '%' <ERROR>

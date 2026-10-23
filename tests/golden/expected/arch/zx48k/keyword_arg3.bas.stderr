@@ -1,0 +1,2 @@
+keyword_arg3.bas:5: error: Unexpected argument 'z'
+keyword_arg3.bas:5: warning: [W100] Using default implicit type 'ubyte' for 'a'

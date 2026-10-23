@@ -1,0 +1,2 @@
+const_str3.bas:4: warning: [W100] Using default implicit type 'string' for 'cs'
+const_str3.bas:4: warning: [W150] Variable 'cs' is never used

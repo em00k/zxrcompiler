@@ -1,0 +1,2 @@
+plot.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+plot.bas:5: warning: [W100] Using default implicit type 'float' for 'b'

@@ -1,0 +1,4 @@
+optional_param1.bas:6: warning: [W100] Using default implicit type 'float' for 'y'
+optional_param1.bas:6: error: Can't declare mandatory param 'y' after optional param 'x'
+optional_param1.bas:6: warning: [W150] Parameter 'x' is never used
+optional_param1.bas:6: warning: [W150] Parameter 'y' is never used

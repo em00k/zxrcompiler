@@ -1,0 +1,5 @@
+doloop3.bas:4: warning: [W100] Using default implicit type 'ubyte' for 'a'
+doloop3.bas:5: warning: [W110] Condition is always True
+doloop3.bas:8: warning: [W110] Condition is always True
+doloop3.bas:12: warning: [W110] Condition is always False
+doloop3.bas:4: warning: [W150] Variable 'a' is never used

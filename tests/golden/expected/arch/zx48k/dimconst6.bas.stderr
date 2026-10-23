@@ -1,0 +1,2 @@
+dimconst6.bas:1: warning: [W120] Conversion may lose significant digits
+dimconst6.bas:1: warning: [W150] Variable 'Map' is never used

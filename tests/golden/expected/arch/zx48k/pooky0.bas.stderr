@@ -1,0 +1,19 @@
+pooky0.bas:2: warning: [W100] Using default implicit type 'float' for 'Vidas'
+pooky0.bas:3: warning: [W100] Using default implicit type 'float' for 'PintarVidas'
+pooky0.bas:3: warning: [W100] Using default implicit type 'float' for 'Inicio'
+pooky0.bas:3: warning: [W100] Using default implicit type 'float' for 'x'
+pooky0.bas:3: warning: [W100] Using default implicit type 'float' for 'MaxY'
+pooky0.bas:3: warning: [W100] Using default implicit type 'float' for 'SPRITEWIDTH'
+pooky0.bas:2: warning: [W150] Parameter 'Vidas' is never used
+pooky0.bas:6: warning: [W100] Using default implicit type 'float' for 'OldX'
+pooky0.bas:6: warning: [W100] Using default implicit type 'float' for 'OldY'
+pooky0.bas:6: warning: [W100] Using default implicit type 'float' for 'X'
+pooky0.bas:6: warning: [W100] Using default implicit type 'float' for 'Y'
+pooky0.bas:6: warning: [W100] Using default implicit type 'float' for 'V'
+pooky0.bas:7: warning: [W100] Using default implicit type 'float' for 'PintarNave'
+pooky0.bas:6: warning: [W150] Parameter 'OldX' is never used
+pooky0.bas:6: warning: [W150] Parameter 'OldY' is never used
+pooky0.bas:6: warning: [W150] Parameter 'X' is never used
+pooky0.bas:6: warning: [W150] Parameter 'Y' is never used
+pooky0.bas:6: warning: [W150] Parameter 'V' is never used
+pooky0.bas:3: warning: [W190] Function 'PintarVidas' should return a value

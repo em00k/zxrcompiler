@@ -1,0 +1,2 @@
+tap_asm_error_line.bas:3: error: Syntax error. Unexpected token '10' [INTEGER]
+tap_asm_error_line.bas:7: error: Syntax error. Unexpected token '10' [INTEGER]

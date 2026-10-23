@@ -1,0 +1,2 @@
+chr1.bas:1: warning: [W100] Using default implicit type 'string' for 'a'
+chr1.bas:1: warning: [W150] Variable 'a' is never used

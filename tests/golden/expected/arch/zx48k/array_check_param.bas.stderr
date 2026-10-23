@@ -1,0 +1,2 @@
+array_check_param.bas:1: warning: [W300] Ignoring unknown pragma 'arrayCheck'
+array_check_param.bas:7: warning: [W100] Using default implicit type 'float' for 'choice'

@@ -1,0 +1,12 @@
+[workspace]
+resolver = "3"
+members = ["xtask", "crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.93"
+license = "AGPL-3.0-or-later"
+
+[profile.release]
+debug = 1

@@ -1,0 +1,2 @@
+opt2_recurse_filter2.bas:25: warning: [W180] Unreachable code
+opt2_recurse_filter2.bas:24: warning: [W150] Variable 'dummy' is never used

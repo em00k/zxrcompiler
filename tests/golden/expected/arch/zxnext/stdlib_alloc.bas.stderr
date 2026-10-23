@@ -1,0 +1,11 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:31: warning: [W150] Parameter 'n' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:61: warning: [W150] Parameter 'n' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:82: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:108: warning: [W160] FUNCTION 'reallocate' declared as FASTCALL with 2 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:108: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:108: warning: [W150] Parameter 'n' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:36: warning: [W190] Function 'allocate' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:66: warning: [W190] Function 'callocate' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:114: warning: [W190] Function 'reallocate' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:135: warning: [W190] Function 'memavail' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/alloc.bas:181: warning: [W190] Function 'maxavail' should return a value

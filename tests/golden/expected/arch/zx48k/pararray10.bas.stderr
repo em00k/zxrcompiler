@@ -1,0 +1,2 @@
+pararray10.bas:16: warning: [W100] Using default implicit type 'uinteger' for 'c'
+pararray10.bas:16: warning: [W150] Variable 'c' is never used

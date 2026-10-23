@@ -1,0 +1,4 @@
+const_expr.bas:4: warning: [W100] Using default implicit type 'ubyte' for 'f'
+const_expr.bas:12: warning: [W120] Conversion may lose significant digits
+const_expr.bas:21: warning: [W120] Conversion may lose significant digits
+const_expr.bas:4: warning: [W150] Variable 'f' is never used

@@ -1,0 +1,2 @@
+private_decl.bas:4: error: 'Nowhere' cannot be PRIVATE: it is not in a CODEBANK
+private_decl.bas:8: error: 'Loose' was declared without PRIVATE and is defined with it

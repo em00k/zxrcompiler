@@ -1,0 +1,3 @@
+param3.bas:5: error: Invalid $ suffix (or sigil) for numeric variable
+param3.bas:5: error: Function 'test' (previously declared at 3) type mismatch
+param3.bas:6: error: Type Error: Function must return a numeric value, not a string

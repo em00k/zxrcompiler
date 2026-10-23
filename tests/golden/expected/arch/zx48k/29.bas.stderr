@@ -1,0 +1,2 @@
+29.bas:2: warning: [W100] Using default implicit type 'uinteger' for 'b'
+29.bas:2: warning: [W150] Variable 'b' is never used

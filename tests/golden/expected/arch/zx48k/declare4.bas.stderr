@@ -1,0 +1,3 @@
+declare4.bas:4: warning: [W100] Using default implicit type 'float' for 'func0'
+declare4.bas:5: error: 'func0' is a FUNCTION, not a SUB
+declare4.bas:6: error: Unexpected token 'END SUB'. Should be 'END FUNCTION'

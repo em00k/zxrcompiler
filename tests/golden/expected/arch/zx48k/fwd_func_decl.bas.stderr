@@ -1,0 +1,4 @@
+fwd_func_decl.bas:4: warning: [W100] Using default implicit type 'float' for 'f'
+fwd_func_decl.bas:5: warning: [W100] Using default implicit type 'float' for 'q'
+fwd_func_decl.bas:3: warning: [W190] Function 'f' should return a value
+fwd_func_decl.bas:4: warning: [W190] Function 'q' should return a value

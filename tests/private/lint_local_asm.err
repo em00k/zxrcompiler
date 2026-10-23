@@ -1,0 +1,3 @@
+lint_local_asm.bas:4: warning: [W950] Local variable 'spare' of 'Tick' is not used by BASIC code and is removed at -O2 and above, which moves the other locals; the asm in 'Tick' addresses locals through IX
+lint_local_asm.bas:6: warning: [W950] Local variable 'arr' of 'Tick' is not used by BASIC code and is removed at -O2 and above, which moves the other locals; the asm in 'Tick' addresses locals through IX
+lint_local_asm.bas:15: warning: [W150] Parameter 'p' is never used

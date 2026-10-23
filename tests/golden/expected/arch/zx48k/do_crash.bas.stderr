@@ -1,0 +1,2 @@
+do_crash.bas:2: error: Cannot convert string to a value. Use VAL() function
+do_crash.bas:2: warning: [W130] Empty loop

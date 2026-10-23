@@ -1,0 +1,3 @@
+opt2_unused_var.bas:7: warning: [W100] Using default implicit type 'float' for 'TestPrint'
+opt2_unused_var.bas:8: warning: [W190] Function 'TestPrint' should return a value
+opt2_unused_var.bas:13: warning: [W150] Variable 'y' is never used

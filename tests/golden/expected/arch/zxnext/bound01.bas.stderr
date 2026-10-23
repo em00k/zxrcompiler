@@ -1,0 +1,4 @@
+bound01.bas:4: warning: [W100] Using default implicit type 'uinteger' for 'b'
+bound01.bas:5: warning: [W100] Using default implicit type 'uinteger' for 'c'
+bound01.bas:4: warning: [W150] Variable 'b' is never used
+bound01.bas:5: warning: [W150] Variable 'c' is never used

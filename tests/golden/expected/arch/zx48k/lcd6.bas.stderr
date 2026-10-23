@@ -1,0 +1,5 @@
+lcd6.bas:2: warning: [W150] Parameter 'x' is never used
+lcd6.bas:2: warning: [W150] Parameter 'y' is never used
+lcd6.bas:2: warning: [W150] Parameter 'value' is never used
+lcd6.bas:3: warning: [W150] Variable 'tile' is never used
+lcd6.bas:1: warning: [W150] Variable 'tile' is never used

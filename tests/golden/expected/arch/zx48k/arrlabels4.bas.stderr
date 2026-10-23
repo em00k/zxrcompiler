@@ -1,0 +1,2 @@
+arrlabels4.bas:7: warning: [W100] Using default implicit type 'float' for 'test'
+arrlabels4.bas:8: warning: [W190] Function 'test' should return a value

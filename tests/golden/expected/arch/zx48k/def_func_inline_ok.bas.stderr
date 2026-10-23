@@ -1,0 +1,2 @@
+def_func_inline_ok.bas:2: warning: [W100] Using default implicit type 'float' for 'f'
+def_func_inline_ok.bas:2: warning: [W190] Function 'f' should return a value

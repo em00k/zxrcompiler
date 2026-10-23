@@ -1,0 +1,18 @@
+[package]
+name = "zxr-asm"
+description = "The assembler (zxbasm): Z80 and Z80N, with ZX Next code-bank segments"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-core = { path = "../zxr-core" }
+zxr-lalr = { path = "../zxr-lalr" }
+zxr-lex = { path = "../zxr-lex" }
+zxr-pp = { path = "../zxr-pp" }
+zxr-re = { path = "../zxr-re" }
+
+[build-dependencies]
+zxr-lalr = { path = "../zxr-lalr" }
+zxr-lex = { path = "../zxr-lex" }

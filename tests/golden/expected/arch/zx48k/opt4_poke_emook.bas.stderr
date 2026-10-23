@@ -1,0 +1,4 @@
+opt4_poke_emook.bas:4: warning: [W150] Variable 'cha_wave_len' is never used
+opt4_poke_emook.bas:4: warning: [W150] Variable 'chb_wave_len' is never used
+opt4_poke_emook.bas:4: warning: [W150] Variable 'chc_wave_len' is never used
+opt4_poke_emook.bas:4: warning: [W150] Variable 'chan_select' is never used

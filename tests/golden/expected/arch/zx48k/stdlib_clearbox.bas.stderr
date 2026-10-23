@@ -1,0 +1,4 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/clearbox.bas:31: warning: [W150] Parameter 'x' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/clearbox.bas:31: warning: [W150] Parameter 'y' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/clearbox.bas:31: warning: [W150] Parameter 'width' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/clearbox.bas:31: warning: [W150] Parameter 'height' is never used

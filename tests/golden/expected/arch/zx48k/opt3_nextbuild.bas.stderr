@@ -1,0 +1,13 @@
+opt3_nextbuild.bas:3: warning: [W150] Parameter 'x' is never used
+opt3_nextbuild.bas:3: warning: [W150] Parameter 'y' is never used
+opt3_nextbuild.bas:3: warning: [W150] Parameter 'spriteid' is never used
+opt3_nextbuild.bas:3: warning: [W150] Parameter 'pattern' is never used
+opt3_nextbuild.bas:4: warning: [W150] Parameter 'mflip' is never used
+opt3_nextbuild.bas:4: warning: [W150] Parameter 'anchor' is never used
+opt3_nextbuild.bas:8: warning: [W150] Parameter 'address' is never used
+opt3_nextbuild.bas:8: warning: [W150] Parameter 'blkoff' is never used
+opt3_nextbuild.bas:8: warning: [W150] Parameter 'numberoftiles' is never used
+opt3_nextbuild.bas:8: warning: [W150] Parameter 'x' is never used
+opt3_nextbuild.bas:9: warning: [W150] Parameter 'y' is never used
+opt3_nextbuild.bas:9: warning: [W150] Parameter 'width' is never used
+opt3_nextbuild.bas:9: warning: [W150] Parameter 'mapwidth' is never used

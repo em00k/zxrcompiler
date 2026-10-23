@@ -1,0 +1,2 @@
+30.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+30.bas:2: warning: [W190] Function 'a' should return a value

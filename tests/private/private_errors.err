@@ -1,0 +1,3 @@
+private_errors.bas:4: error: 'Helper' is PRIVATE to CODEBANK 1 and cannot be called from the resident program
+private_errors.bas:5: error: 'Helper' is PRIVATE to CODEBANK 1 and cannot be addressed from the resident program
+private_errors.bas:16: error: 'Helper' is PRIVATE to CODEBANK 1 and cannot be called from CODEBANK 2

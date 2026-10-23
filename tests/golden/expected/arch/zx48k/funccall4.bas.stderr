@@ -1,0 +1,7 @@
+funccall4.bas:2: warning: [W100] Using default implicit type 'float' for 'b'
+funccall4.bas:2: warning: [W100] Using default implicit type 'float' for 'c'
+funccall4.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+funccall4.bas:2: warning: [W150] Parameter 'b' is never used
+funccall4.bas:2: warning: [W150] Parameter 'c' is never used
+funccall4.bas:5: warning: [W100] Using default implicit type 'float' for 'z'
+funccall4.bas:7: error: 'z' is a VAR, not a FUNCTION

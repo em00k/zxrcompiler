@@ -1,0 +1,5 @@
+/target/
+# The Python compiler being ported and the NextBuild source snapshot. Both are
+# pinned by oracle.lock and tests/corpus/SNAPSHOT, not committed here.
+/reference/
+/dist/

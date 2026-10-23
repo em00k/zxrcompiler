@@ -1,0 +1,5698 @@
+productions 355
+0	S'	1	-	start
+1	start	1	p_start	program
+2	start	2	p_start	program endline
+3	endline	2	p_program_endline	END NEWLINE
+4	endline	2	p_program_endline	endline NEWLINE
+5	endline	3	p_program_endline2	END expr NEWLINE
+6	endline	3	p_program_endline2	END pexpr NEWLINE
+7	program	1	p_program	line
+8	program	2	p_program_line	program line
+9	line	4	p_def_label	ID EQU expr NEWLINE
+10	line	4	p_def_label	ID EQU pexpr NEWLINE
+11	line	2	p_line_asm	asms NEWLINE
+12	line	3	p_line_asm	asms CO NEWLINE
+13	asms	0	p_asms_empty	
+14	asms	1	p_asms_asm	asm
+15	asms	3	p_asms_asms_asm	asms CO asm
+16	asm	1	p_asm_label	ID
+17	asm	1	p_asm_label	INTEGER
+18	asm	4	p_asm_ld8	LD reg8 COMMA reg8_hl
+19	asm	4	p_asm_ld8	LD reg8_hl COMMA reg8
+20	asm	4	p_asm_ld8	LD reg8 COMMA reg8
+21	asm	4	p_asm_ld8	LD SP COMMA HL
+22	asm	4	p_asm_ld8	LD SP COMMA reg16i
+23	asm	4	p_asm_ld8	LD A COMMA reg8
+24	asm	4	p_asm_ld8	LD reg8 COMMA A
+25	asm	4	p_asm_ld8	LD reg8_hl COMMA A
+26	asm	4	p_asm_ld8	LD A COMMA reg8_hl
+27	asm	4	p_asm_ld8	LD A COMMA A
+28	asm	4	p_asm_ld8	LD A COMMA I
+29	asm	4	p_asm_ld8	LD I COMMA A
+30	asm	4	p_asm_ld8	LD A COMMA R
+31	asm	4	p_asm_ld8	LD R COMMA A
+32	asm	4	p_asm_ld8	LD A COMMA reg8i
+33	asm	4	p_asm_ld8	LD reg8i COMMA A
+34	asm	4	p_asm_ld8	LD reg8 COMMA reg8i
+35	asm	4	p_asm_ld8	LD reg8i COMMA regBCDE
+36	asm	4	p_asm_ld8	LD reg8i COMMA reg8i
+37	asm	6	p_LDa	LD A COMMA LP BC RP
+38	asm	6	p_LDa	LD A COMMA LB BC RB
+39	asm	6	p_LDa	LD A COMMA LP DE RP
+40	asm	6	p_LDa	LD A COMMA LB DE RB
+41	asm	6	p_LDa	LD LP BC RP COMMA A
+42	asm	6	p_LDa	LD LB BC RB COMMA A
+43	asm	6	p_LDa	LD LP DE RP COMMA A
+44	asm	6	p_LDa	LD LB DE RB COMMA A
+45	asm	1	p_PROC	PROC
+46	asm	1	p_ENDP	ENDP
+47	asm	2	p_LOCAL	LOCAL id_list
+48	id_list	1	p_idlist	ID
+49	id_list	3	p_idlist_id	id_list COMMA ID
+50	asm	2	p_DEFB	DEFB expr_list
+51	asm	2	p_DEFS	DEFS number_list
+52	asm	2	p_DEFW	DEFW number_list
+53	expr_list	1	p_expr_list_from_string	STRING
+54	expr_list	1	p_expr_list_from_num	expr
+55	expr_list	1	p_expr_list_from_num	pexpr
+56	expr_list	3	p_expr_list_plus_expr	expr_list COMMA expr
+57	expr_list	3	p_expr_list_plus_expr	expr_list COMMA pexpr
+58	expr_list	3	p_expr_list_plus_string	expr_list COMMA STRING
+59	number_list	1	p_number_list	expr
+60	number_list	1	p_number_list	pexpr
+61	number_list	3	p_number_list_number	number_list COMMA expr
+62	number_list	3	p_number_list_number	number_list COMMA pexpr
+63	asm	4	p_asm_ldind_r8	LD reg8_I COMMA reg8
+64	asm	4	p_asm_ldind_r8	LD reg8_I COMMA A
+65	asm	4	p_asm_ldr8_ind	LD reg8 COMMA reg8_I
+66	asm	4	p_asm_ldr8_ind	LD A COMMA reg8_I
+67	reg8_hl	3	p_reg8_hl	LP HL RP
+68	reg8_hl	3	p_reg8_hl	LB HL RB
+69	reg8_I	4	p_ind8_I	LP IX expr RP
+70	reg8_I	4	p_ind8_I	LP IY expr RP
+71	reg8_I	5	p_ind8_I	LP IX PLUS pexpr RP
+72	reg8_I	5	p_ind8_I	LP IX MINUS pexpr RP
+73	reg8_I	5	p_ind8_I	LP IY PLUS pexpr RP
+74	reg8_I	5	p_ind8_I	LP IY MINUS pexpr RP
+75	reg8_I	4	p_ind8_I	LB IX expr RB
+76	reg8_I	4	p_ind8_I	LB IY expr RB
+77	reg8_I	5	p_ind8_I	LB IX PLUS pexpr RB
+78	reg8_I	5	p_ind8_I	LB IX MINUS pexpr RB
+79	reg8_I	5	p_ind8_I	LB IY PLUS pexpr RB
+80	reg8_I	5	p_ind8_I	LB IY MINUS pexpr RB
+81	asm	5	p_ex_af_af	EX AF COMMA AF APO
+82	asm	4	p_ex_de_hl	EX DE COMMA HL
+83	asm	2	p_org	ORG expr
+84	asm	2	p_org	ORG pexpr
+85	asm	2	p_namespace	NAMESPACE ID
+86	asm	2	p_push_namespace	PUSH NAMESPACE
+87	asm	3	p_push_namespace	PUSH NAMESPACE ID
+88	asm	2	p_pop_namespace	POP NAMESPACE
+89	asm	2	p_align	ALIGN expr
+90	asm	2	p_align	ALIGN pexpr
+91	asm	2	p_incbin	INCBIN STRING
+92	asm	4	p_incbin	INCBIN STRING COMMA expr
+93	asm	6	p_incbin	INCBIN STRING COMMA expr COMMA expr
+94	asm	6	p_ex_sp_reg8	EX LP SP RP COMMA reg16i
+95	asm	6	p_ex_sp_reg8	EX LB SP RB COMMA reg16i
+96	asm	6	p_ex_sp_reg8	EX LP SP RP COMMA HL
+97	asm	6	p_ex_sp_reg8	EX LB SP RB COMMA HL
+98	asm	2	p_incdec	INC inc_reg
+99	asm	2	p_incdec	DEC inc_reg
+100	asm	2	p_incdeci	INC reg8_I
+101	asm	2	p_incdeci	DEC reg8_I
+102	asm	4	p_LD_reg_val	LD reg8 COMMA expr
+103	asm	4	p_LD_reg_val	LD reg8 COMMA pexpr
+104	asm	4	p_LD_reg_val	LD reg16 COMMA expr
+105	asm	4	p_LD_reg_val	LD reg8_hl COMMA expr
+106	asm	4	p_LD_reg_val	LD A COMMA expr
+107	asm	4	p_LD_reg_val	LD SP COMMA expr
+108	asm	4	p_LD_reg_val	LD reg8i COMMA expr
+109	asm	4	p_LD_regI_val	LD reg8_I COMMA expr
+110	asm	2	p_JP_hl	JP reg8_hl
+111	asm	4	p_JP_hl	JP LP reg16i RP
+112	asm	4	p_JP_hl	JP LB reg16i RB
+113	asm	4	p_SBCADD	SBC A COMMA reg8
+114	asm	4	p_SBCADD	SBC A COMMA reg8i
+115	asm	4	p_SBCADD	SBC A COMMA A
+116	asm	4	p_SBCADD	SBC A COMMA reg8_hl
+117	asm	4	p_SBCADD	SBC HL COMMA SP
+118	asm	4	p_SBCADD	SBC HL COMMA BC
+119	asm	4	p_SBCADD	SBC HL COMMA DE
+120	asm	4	p_SBCADD	SBC HL COMMA HL
+121	asm	4	p_SBCADD	ADD A COMMA reg8
+122	asm	4	p_SBCADD	ADD A COMMA reg8i
+123	asm	4	p_SBCADD	ADD A COMMA A
+124	asm	4	p_SBCADD	ADD A COMMA reg8_hl
+125	asm	4	p_SBCADD	ADC A COMMA reg8
+126	asm	4	p_SBCADD	ADC A COMMA reg8i
+127	asm	4	p_SBCADD	ADC A COMMA A
+128	asm	4	p_SBCADD	ADC A COMMA reg8_hl
+129	asm	4	p_SBCADD	ADD HL COMMA BC
+130	asm	4	p_SBCADD	ADD HL COMMA DE
+131	asm	4	p_SBCADD	ADD HL COMMA HL
+132	asm	4	p_SBCADD	ADD HL COMMA SP
+133	asm	4	p_SBCADD	ADC HL COMMA BC
+134	asm	4	p_SBCADD	ADC HL COMMA DE
+135	asm	4	p_SBCADD	ADC HL COMMA HL
+136	asm	4	p_SBCADD	ADC HL COMMA SP
+137	asm	4	p_SBCADD	ADD reg16i COMMA BC
+138	asm	4	p_SBCADD	ADD reg16i COMMA DE
+139	asm	4	p_SBCADD	ADD reg16i COMMA HL
+140	asm	4	p_SBCADD	ADD reg16i COMMA SP
+141	asm	4	p_SBCADD	ADD reg16i COMMA reg16i
+142	asm	4	p_arith_A_expr	SBC A COMMA expr
+143	asm	4	p_arith_A_expr	SBC A COMMA pexpr
+144	asm	4	p_arith_A_expr	ADD A COMMA expr
+145	asm	4	p_arith_A_expr	ADD A COMMA pexpr
+146	asm	4	p_arith_A_expr	ADC A COMMA expr
+147	asm	4	p_arith_A_expr	ADC A COMMA pexpr
+148	asm	4	p_arith_A_regI	SBC A COMMA reg8_I
+149	asm	4	p_arith_A_regI	ADD A COMMA reg8_I
+150	asm	4	p_arith_A_regI	ADC A COMMA reg8_I
+151	asm	2	p_bitwiseop_reg	bitwiseop reg8
+152	asm	2	p_bitwiseop_reg	bitwiseop reg8i
+153	asm	2	p_bitwiseop_reg	bitwiseop A
+154	asm	2	p_bitwiseop_reg	bitwiseop reg8_hl
+155	asm	2	p_bitwiseop_regI	bitwiseop reg8_I
+156	asm	2	p_bitwise_expr	bitwiseop expr
+157	asm	2	p_bitwise_expr	bitwiseop pexpr
+158	bitwiseop	1	p_bitwise	OR
+159	bitwiseop	1	p_bitwise	AND
+160	bitwiseop	1	p_bitwise	XOR
+161	bitwiseop	1	p_bitwise	SUB
+162	bitwiseop	1	p_bitwise	CP
+163	asm	2	p_PUSH_POP	PUSH AF
+164	asm	2	p_PUSH_POP	PUSH reg16
+165	asm	2	p_PUSH_POP	POP AF
+166	asm	2	p_PUSH_POP	POP reg16
+167	asm	4	p_LD_addr_reg	LD pexpr COMMA A
+168	asm	4	p_LD_addr_reg	LD pexpr COMMA reg16
+169	asm	4	p_LD_addr_reg	LD pexpr COMMA SP
+170	asm	4	p_LD_addr_reg	LD mem_indir COMMA A
+171	asm	4	p_LD_addr_reg	LD mem_indir COMMA reg16
+172	asm	4	p_LD_addr_reg	LD mem_indir COMMA SP
+173	asm	4	p_LD_reg_addr	LD A COMMA pexpr
+174	asm	4	p_LD_reg_addr	LD reg16 COMMA pexpr
+175	asm	4	p_LD_reg_addr	LD SP COMMA pexpr
+176	asm	4	p_LD_reg_addr	LD A COMMA mem_indir
+177	asm	4	p_LD_reg_addr	LD reg16 COMMA mem_indir
+178	asm	4	p_LD_reg_addr	LD SP COMMA mem_indir
+179	asm	2	p_ROTATE	rotation reg8
+180	asm	2	p_ROTATE	rotation reg8_hl
+181	asm	2	p_ROTATE	rotation A
+182	asm	2	p_ROTATE_ix	rotation reg8_I
+183	asm	4	p_BIT	bitop expr COMMA A
+184	asm	4	p_BIT	bitop pexpr COMMA A
+185	asm	4	p_BIT	bitop expr COMMA reg8
+186	asm	4	p_BIT	bitop pexpr COMMA reg8
+187	asm	4	p_BIT	bitop expr COMMA reg8_hl
+188	asm	4	p_BIT	bitop pexpr COMMA reg8_hl
+189	asm	4	p_BIT_ix	bitop expr COMMA reg8_I
+190	asm	4	p_BIT_ix	bitop pexpr COMMA reg8_I
+191	bitop	1	p_bitop	BIT
+192	bitop	1	p_bitop	RES
+193	bitop	1	p_bitop	SET
+194	rotation	1	p_rotation	RR
+195	rotation	1	p_rotation	RL
+196	rotation	1	p_rotation	RRC
+197	rotation	1	p_rotation	RLC
+198	rotation	1	p_rotation	SLA
+199	rotation	1	p_rotation	SLL
+200	rotation	1	p_rotation	SRA
+201	rotation	1	p_rotation	SRL
+202	inc_reg	1	p_reg_inc	SP
+203	inc_reg	1	p_reg_inc	reg8
+204	inc_reg	1	p_reg_inc	reg16
+205	inc_reg	1	p_reg_inc	reg8_hl
+206	inc_reg	1	p_reg_inc	A
+207	inc_reg	1	p_reg_inc	reg8i
+208	reg8	1	p_reg8	H
+209	reg8	1	p_reg8	L
+210	reg8	1	p_reg8	regBCDE
+211	regBCDE	1	p_regBCDE	B
+212	regBCDE	1	p_regBCDE	C
+213	regBCDE	1	p_regBCDE	D
+214	regBCDE	1	p_regBCDE	E
+215	reg8i	1	p_reg8i	IXH
+216	reg8i	1	p_reg8i	IXL
+217	reg8i	1	p_reg8i	IYH
+218	reg8i	1	p_reg8i	IYL
+219	reg16	1	p_reg16	BC
+220	reg16	1	p_reg16	DE
+221	reg16	1	p_reg16	HL
+222	reg16	1	p_reg16	reg16i
+223	reg16i	1	p_reg16i	IX
+224	reg16i	1	p_reg16i	IY
+225	asm	4	p_jp	JP jp_flags COMMA expr
+226	asm	4	p_jp	JP jp_flags COMMA pexpr
+227	asm	4	p_jp	CALL jp_flags COMMA expr
+228	asm	4	p_jp	CALL jp_flags COMMA pexpr
+229	asm	2	p_ret	RET jp_flags
+230	jp_flags	1	p_jpflags_other	P
+231	jp_flags	1	p_jpflags_other	M
+232	jp_flags	1	p_jpflags_other	PO
+233	jp_flags	1	p_jpflags_other	PE
+234	jp_flags	1	p_jpflags_other	jr_flags
+235	asm	4	p_jr	JR jr_flags COMMA expr
+236	asm	4	p_jr	JR jr_flags COMMA pexpr
+237	jr_flags	1	p_jr_flags	Z
+238	jr_flags	1	p_jr_flags	C
+239	jr_flags	1	p_jr_flags	NZ
+240	jr_flags	1	p_jr_flags	NC
+241	asm	2	p_jrjp	JP expr
+242	asm	2	p_jrjp	JR expr
+243	asm	2	p_jrjp	CALL expr
+244	asm	2	p_jrjp	DJNZ expr
+245	asm	2	p_jrjp	JP pexpr
+246	asm	2	p_jrjp	JR pexpr
+247	asm	2	p_jrjp	CALL pexpr
+248	asm	2	p_jrjp	DJNZ pexpr
+249	asm	2	p_rst	RST expr
+250	asm	2	p_im	IM expr
+251	asm	6	p_in	IN A COMMA LP C RP
+252	asm	6	p_in	IN A COMMA LB C RB
+253	asm	6	p_in	IN reg8 COMMA LP C RP
+254	asm	6	p_in	IN reg8 COMMA LB C RB
+255	asm	6	p_out	OUT LP C RP COMMA A
+256	asm	6	p_out	OUT LB C RB COMMA A
+257	asm	6	p_out	OUT LP C RP COMMA reg8
+258	asm	6	p_out	OUT LB C RB COMMA reg8
+259	asm	4	p_in_expr	IN A COMMA mem_indir
+260	asm	4	p_in_expr	IN A COMMA pexpr
+261	asm	4	p_out_expr	OUT mem_indir COMMA A
+262	asm	4	p_out_expr	OUT pexpr COMMA A
+263	asm	1	p_single	NOP
+264	asm	1	p_single	EXX
+265	asm	1	p_single	CCF
+266	asm	1	p_single	SCF
+267	asm	1	p_single	LDIR
+268	asm	1	p_single	LDI
+269	asm	1	p_single	LDDR
+270	asm	1	p_single	LDD
+271	asm	1	p_single	CPIR
+272	asm	1	p_single	CPI
+273	asm	1	p_single	CPDR
+274	asm	1	p_single	CPD
+275	asm	1	p_single	DAA
+276	asm	1	p_single	NEG
+277	asm	1	p_single	CPL
+278	asm	1	p_single	HALT
+279	asm	1	p_single	EI
+280	asm	1	p_single	DI
+281	asm	1	p_single	OUTD
+282	asm	1	p_single	OUTI
+283	asm	1	p_single	OTDR
+284	asm	1	p_single	OTIR
+285	asm	1	p_single	IND
+286	asm	1	p_single	INI
+287	asm	1	p_single	INDR
+288	asm	1	p_single	INIR
+289	asm	1	p_single	RET
+290	asm	1	p_single	RETI
+291	asm	1	p_single	RETN
+292	asm	1	p_single	RLA
+293	asm	1	p_single	RLCA
+294	asm	1	p_single	RRA
+295	asm	1	p_single	RRCA
+296	asm	1	p_single	RLD
+297	asm	1	p_single	RRD
+298	expr	3	p_expr_div_expr	expr BAND expr
+299	expr	3	p_expr_div_expr	expr BOR expr
+300	expr	3	p_expr_div_expr	expr BXOR expr
+301	expr	3	p_expr_div_expr	expr PLUS expr
+302	expr	3	p_expr_div_expr	expr MINUS expr
+303	expr	3	p_expr_div_expr	expr MUL expr
+304	expr	3	p_expr_div_expr	expr DIV expr
+305	expr	3	p_expr_div_expr	expr MOD expr
+306	expr	3	p_expr_div_expr	expr POW expr
+307	expr	3	p_expr_div_expr	expr LSHIFT expr
+308	expr	3	p_expr_div_expr	expr RSHIFT expr
+309	expr	3	p_expr_div_expr	pexpr BAND expr
+310	expr	3	p_expr_div_expr	pexpr BOR expr
+311	expr	3	p_expr_div_expr	pexpr BXOR expr
+312	expr	3	p_expr_div_expr	pexpr PLUS expr
+313	expr	3	p_expr_div_expr	pexpr MINUS expr
+314	expr	3	p_expr_div_expr	pexpr MUL expr
+315	expr	3	p_expr_div_expr	pexpr DIV expr
+316	expr	3	p_expr_div_expr	pexpr MOD expr
+317	expr	3	p_expr_div_expr	pexpr POW expr
+318	expr	3	p_expr_div_expr	pexpr LSHIFT expr
+319	expr	3	p_expr_div_expr	pexpr RSHIFT expr
+320	expr	3	p_expr_div_expr	expr BAND pexpr
+321	expr	3	p_expr_div_expr	expr BOR pexpr
+322	expr	3	p_expr_div_expr	expr BXOR pexpr
+323	expr	3	p_expr_div_expr	expr PLUS pexpr
+324	expr	3	p_expr_div_expr	expr MINUS pexpr
+325	expr	3	p_expr_div_expr	expr MUL pexpr
+326	expr	3	p_expr_div_expr	expr DIV pexpr
+327	expr	3	p_expr_div_expr	expr MOD pexpr
+328	expr	3	p_expr_div_expr	expr POW pexpr
+329	expr	3	p_expr_div_expr	expr LSHIFT pexpr
+330	expr	3	p_expr_div_expr	expr RSHIFT pexpr
+331	expr	3	p_expr_div_expr	pexpr BAND pexpr
+332	expr	3	p_expr_div_expr	pexpr BOR pexpr
+333	expr	3	p_expr_div_expr	pexpr BXOR pexpr
+334	expr	3	p_expr_div_expr	pexpr PLUS pexpr
+335	expr	3	p_expr_div_expr	pexpr MINUS pexpr
+336	expr	3	p_expr_div_expr	pexpr MUL pexpr
+337	expr	3	p_expr_div_expr	pexpr DIV pexpr
+338	expr	3	p_expr_div_expr	pexpr MOD pexpr
+339	expr	3	p_expr_div_expr	pexpr POW pexpr
+340	expr	3	p_expr_div_expr	pexpr LSHIFT pexpr
+341	expr	3	p_expr_div_expr	pexpr RSHIFT pexpr
+342	pexpr	3	p_expr_lprp	LP expr RP
+343	pexpr	3	p_expr_lprp	LP pexpr RP
+344	mem_indir	3	p_mem_indir	LB expr RB
+345	expr	2	p_expr_uminus	MINUS expr
+346	expr	2	p_expr_uminus	PLUS expr
+347	expr	2	p_expr_uminus	MINUS pexpr
+348	expr	2	p_expr_uminus	PLUS pexpr
+349	expr	1	p_expr_int	INTEGER
+350	expr	1	p_expr_label	ID
+351	expr	3	p_expr_paren	LPP expr RPP
+352	expr	1	p_expr_addr	ADDR
+353	line	1	p_preprocessor_line	preproc_line
+354	preproc_line	2	p_preproc_line_init	_INIT STRING
+state 0
+a ADC 29
+a ADD 28
+a ALIGN 22
+a AND 76
+a BIT 88
+a CALL 33
+a CCF 43
+a CO -13
+a CP 79
+a CPD 52
+a CPDR 51
+a CPI 50
+a CPIR 49
+a CPL 55
+a DAA 53
+a DEC 25
+a DEFB 14
+a DEFS 15
+a DEFW 16
+a DI 58
+a DJNZ 36
+a EI 57
+a ENDP 12
+a EX 17
+a EXX 42
+a HALT 56
+a ID 4
+a IM 38
+a IN 39
+a INC 24
+a INCBIN 23
+a IND 63
+a INDR 65
+a INI 64
+a INIR 66
+a INTEGER 9
+a JP 26
+a JR 35
+a LD 10
+a LDD 48
+a LDDR 47
+a LDI 46
+a LDIR 45
+a LOCAL 13
+a NAMESPACE 19
+a NEG 54
+a NEWLINE -13
+a NOP 41
+a OR 75
+a ORG 18
+a OTDR 61
+a OTIR 62
+a OUT 40
+a OUTD 59
+a OUTI 60
+a POP 21
+a PROC 11
+a PUSH 20
+a RES 89
+a RET 34
+a RETI 67
+a RETN 68
+a RL 81
+a RLA 69
+a RLC 83
+a RLCA 70
+a RLD 73
+a RR 80
+a RRA 71
+a RRC 82
+a RRCA 72
+a RRD 74
+a RST 37
+a SBC 27
+a SCF 44
+a SET 90
+a SLA 84
+a SLL 85
+a SRA 86
+a SRL 87
+a SUB 78
+a XOR 77
+a _INIT 8
+g asm 7
+g asms 5
+g bitop 32
+g bitwiseop 30
+g line 3
+g preproc_line 6
+g program 2
+g rotation 31
+g start 1
+state 1
+a $end 0
+state 2
+a $end -1
+a ADC 29
+a ADD 28
+a ALIGN 22
+a AND 76
+a BIT 88
+a CALL 33
+a CCF 43
+a CO -13
+a CP 79
+a CPD 52
+a CPDR 51
+a CPI 50
+a CPIR 49
+a CPL 55
+a DAA 53
+a DEC 25
+a DEFB 14
+a DEFS 15
+a DEFW 16
+a DI 58
+a DJNZ 36
+a EI 57
+a END 93
+a ENDP 12
+a EX 17
+a EXX 42
+a HALT 56
+a ID 4
+a IM 38
+a IN 39
+a INC 24
+a INCBIN 23
+a IND 63
+a INDR 65
+a INI 64
+a INIR 66
+a INTEGER 9
+a JP 26
+a JR 35
+a LD 10
+a LDD 48
+a LDDR 47
+a LDI 46
+a LDIR 45
+a LOCAL 13
+a NAMESPACE 19
+a NEG 54
+a NEWLINE -13
+a NOP 41
+a OR 75
+a ORG 18
+a OTDR 61
+a OTIR 62
+a OUT 40
+a OUTD 59
+a OUTI 60
+a POP 21
+a PROC 11
+a PUSH 20
+a RES 89
+a RET 34
+a RETI 67
+a RETN 68
+a RL 81
+a RLA 69
+a RLC 83
+a RLCA 70
+a RLD 73
+a RR 80
+a RRA 71
+a RRC 82
+a RRCA 72
+a RRD 74
+a RST 37
+a SBC 27
+a SCF 44
+a SET 90
+a SLA 84
+a SLL 85
+a SRA 86
+a SRL 87
+a SUB 78
+a XOR 77
+a _INIT 8
+g asm 7
+g asms 5
+g bitop 32
+g bitwiseop 30
+g endline 91
+g line 92
+g preproc_line 6
+g rotation 31
+state 3
+a $end -7
+a ADC -7
+a ADD -7
+a ALIGN -7
+a AND -7
+a BIT -7
+a CALL -7
+a CCF -7
+a CO -7
+a CP -7
+a CPD -7
+a CPDR -7
+a CPI -7
+a CPIR -7
+a CPL -7
+a DAA -7
+a DEC -7
+a DEFB -7
+a DEFS -7
+a DEFW -7
+a DI -7
+a DJNZ -7
+a EI -7
+a END -7
+a ENDP -7
+a EX -7
+a EXX -7
+a HALT -7
+a ID -7
+a IM -7
+a IN -7
+a INC -7
+a INCBIN -7
+a IND -7
+a INDR -7
+a INI -7
+a INIR -7
+a INTEGER -7
+a JP -7
+a JR -7
+a LD -7
+a LDD -7
+a LDDR -7
+a LDI -7
+a LDIR -7
+a LOCAL -7
+a NAMESPACE -7
+a NEG -7
+a NEWLINE -7
+a NOP -7
+a OR -7
+a ORG -7
+a OTDR -7
+a OTIR -7
+a OUT -7
+a OUTD -7
+a OUTI -7
+a POP -7
+a PROC -7
+a PUSH -7
+a RES -7
+a RET -7
+a RETI -7
+a RETN -7
+a RL -7
+a RLA -7
+a RLC -7
+a RLCA -7
+a RLD -7
+a RR -7
+a RRA -7
+a RRC -7
+a RRCA -7
+a RRD -7
+a RST -7
+a SBC -7
+a SCF -7
+a SET -7
+a SLA -7
+a SLL -7
+a SRA -7
+a SRL -7
+a SUB -7
+a XOR -7
+a _INIT -7
+state 4
+a CO -16
+a EQU 94
+a NEWLINE -16
+state 5
+a CO 96
+a NEWLINE 95
+state 6
+a $end -353
+a ADC -353
+a ADD -353
+a ALIGN -353
+a AND -353
+a BIT -353
+a CALL -353
+a CCF -353
+a CO -353
+a CP -353
+a CPD -353
+a CPDR -353
+a CPI -353
+a CPIR -353
+a CPL -353
+a DAA -353
+a DEC -353
+a DEFB -353
+a DEFS -353
+a DEFW -353
+a DI -353
+a DJNZ -353
+a EI -353
+a END -353
+a ENDP -353
+a EX -353
+a EXX -353
+a HALT -353
+a ID -353
+a IM -353
+a IN -353
+a INC -353
+a INCBIN -353
+a IND -353
+a INDR -353
+a INI -353
+a INIR -353
+a INTEGER -353
+a JP -353
+a JR -353
+a LD -353
+a LDD -353
+a LDDR -353
+a LDI -353
+a LDIR -353
+a LOCAL -353
+a NAMESPACE -353
+a NEG -353
+a NEWLINE -353
+a NOP -353
+a OR -353
+a ORG -353
+a OTDR -353
+a OTIR -353
+a OUT -353
+a OUTD -353
+a OUTI -353
+a POP -353
+a PROC -353
+a PUSH -353
+a RES -353
+a RET -353
+a RETI -353
+a RETN -353
+a RL -353
+a RLA -353
+a RLC -353
+a RLCA -353
+a RLD -353
+a RR -353
+a RRA -353
+a RRC -353
+a RRCA -353
+a RRD -353
+a RST -353
+a SBC -353
+a SCF -353
+a SET -353
+a SLA -353
+a SLL -353
+a SRA -353
+a SRL -353
+a SUB -353
+a XOR -353
+a _INIT -353
+state 7
+a CO -14
+a NEWLINE -14
+state 8
+a STRING 97
+state 9
+a CO -17
+a NEWLINE -17
+state 10
+a A 103
+a B 124
+a BC 109
+a C 125
+a D 126
+a DE 111
+a E 127
+a H 116
+a HL 101
+a I 104
+a IX 122
+a IXH 118
+a IXL 119
+a IY 123
+a IYH 120
+a IYL 121
+a L 117
+a LB 110
+a LP 108
+a R 105
+a SP 100
+g mem_indir 115
+g pexpr 113
+g reg16 114
+g reg16i 102
+g reg8 98
+g reg8_I 112
+g reg8_hl 99
+g reg8i 106
+g regBCDE 107
+state 11
+a CO -45
+a NEWLINE -45
+state 12
+a CO -46
+a NEWLINE -46
+state 13
+a ID 129
+g id_list 128
+state 14
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+a STRING 131
+g expr 132
+g expr_list 130
+g pexpr 133
+state 15
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 142
+g number_list 141
+g pexpr 143
+state 16
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 142
+g number_list 144
+g pexpr 143
+state 17
+a AF 145
+a DE 146
+a LB 148
+a LP 147
+state 18
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 149
+g pexpr 150
+state 19
+a ID 151
+state 20
+a AF 153
+a BC 109
+a DE 111
+a HL 101
+a IX 122
+a IY 123
+a NAMESPACE 152
+g reg16 154
+g reg16i 102
+state 21
+a AF 156
+a BC 109
+a DE 111
+a HL 101
+a IX 122
+a IY 123
+a NAMESPACE 155
+g reg16 157
+g reg16i 102
+state 22
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 158
+g pexpr 159
+state 23
+a STRING 160
+state 24
+a A 167
+a B 124
+a BC 109
+a C 125
+a D 126
+a DE 111
+a E 127
+a H 116
+a HL 101
+a IX 122
+a IXH 118
+a IXL 119
+a IY 123
+a IYH 120
+a IYL 121
+a L 117
+a LB 170
+a LP 169
+a SP 163
+g inc_reg 161
+g reg16 165
+g reg16i 102
+g reg8 164
+g reg8_I 162
+g reg8_hl 166
+g reg8i 168
+g regBCDE 107
+state 25
+a A 167
+a B 124
+a BC 109
+a C 125
+a D 126
+a DE 111
+a E 127
+a H 116
+a HL 101
+a IX 122
+a IXH 118
+a IXL 119
+a IY 123
+a IYH 120
+a IYL 121
+a L 117
+a LB 170
+a LP 169
+a SP 163
+g inc_reg 171
+g reg16 165
+g reg16i 102
+g reg8 164
+g reg8_I 172
+g reg8_hl 166
+g reg8i 168
+g regBCDE 107
+state 26
+a ADDR 139
+a C 185
+a ID 137
+a INTEGER 136
+a LB 175
+a LP 174
+a LPP 138
+a M 180
+a MINUS 135
+a NC 187
+a NZ 186
+a P 179
+a PE 182
+a PLUS 134
+a PO 181
+a Z 184
+g expr 177
+g jp_flags 176
+g jr_flags 183
+g pexpr 178
+g reg8_hl 173
+state 27
+a A 188
+a HL 189
+state 28
+a A 190
+a HL 191
+a IX 122
+a IY 123
+g reg16i 192
+state 29
+a A 193
+a HL 194
+state 30
+a A 197
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a L 117
+a LB 203
+a LP 202
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 200
+g pexpr 201
+g reg8 195
+g reg8_I 199
+g reg8_hl 198
+g reg8i 196
+g regBCDE 107
+state 31
+a A 206
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a L 117
+a LB 203
+a LP 208
+g reg8 204
+g reg8_I 207
+g reg8_hl 205
+g regBCDE 107
+state 32
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 209
+g pexpr 210
+state 33
+a ADDR 139
+a C 185
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a M 180
+a MINUS 135
+a NC 187
+a NZ 186
+a P 179
+a PE 182
+a PLUS 134
+a PO 181
+a Z 184
+g expr 212
+g jp_flags 211
+g jr_flags 183
+g pexpr 213
+state 34
+a C 185
+a CO -289
+a M 180
+a NC 187
+a NEWLINE -289
+a NZ 186
+a P 179
+a PE 182
+a PO 181
+a Z 184
+g jp_flags 214
+g jr_flags 183
+state 35
+a ADDR 139
+a C 185
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a NC 187
+a NZ 186
+a PLUS 134
+a Z 184
+g expr 216
+g jr_flags 215
+g pexpr 217
+state 36
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 218
+g pexpr 219
+state 37
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 220
+g pexpr 221
+state 38
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 222
+g pexpr 221
+state 39
+a A 223
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a L 117
+g reg8 224
+g regBCDE 107
+state 40
+a LB 226
+a LP 225
+g mem_indir 227
+g pexpr 228
+state 41
+a CO -263
+a NEWLINE -263
+state 42
+a CO -264
+a NEWLINE -264
+state 43
+a CO -265
+a NEWLINE -265
+state 44
+a CO -266
+a NEWLINE -266
+state 45
+a CO -267
+a NEWLINE -267
+state 46
+a CO -268
+a NEWLINE -268
+state 47
+a CO -269
+a NEWLINE -269
+state 48
+a CO -270
+a NEWLINE -270
+state 49
+a CO -271
+a NEWLINE -271
+state 50
+a CO -272
+a NEWLINE -272
+state 51
+a CO -273
+a NEWLINE -273
+state 52
+a CO -274
+a NEWLINE -274
+state 53
+a CO -275
+a NEWLINE -275
+state 54
+a CO -276
+a NEWLINE -276
+state 55
+a CO -277
+a NEWLINE -277
+state 56
+a CO -278
+a NEWLINE -278
+state 57
+a CO -279
+a NEWLINE -279
+state 58
+a CO -280
+a NEWLINE -280
+state 59
+a CO -281
+a NEWLINE -281
+state 60
+a CO -282
+a NEWLINE -282
+state 61
+a CO -283
+a NEWLINE -283
+state 62
+a CO -284
+a NEWLINE -284
+state 63
+a CO -285
+a NEWLINE -285
+state 64
+a CO -286
+a NEWLINE -286
+state 65
+a CO -287
+a NEWLINE -287
+state 66
+a CO -288
+a NEWLINE -288
+state 67
+a CO -290
+a NEWLINE -290
+state 68
+a CO -291
+a NEWLINE -291
+state 69
+a CO -292
+a NEWLINE -292
+state 70
+a CO -293
+a NEWLINE -293
+state 71
+a CO -294
+a NEWLINE -294
+state 72
+a CO -295
+a NEWLINE -295
+state 73
+a CO -296
+a NEWLINE -296
+state 74
+a CO -297
+a NEWLINE -297
+state 75
+a A -158
+a ADDR -158
+a B -158
+a C -158
+a D -158
+a E -158
+a H -158
+a ID -158
+a INTEGER -158
+a IXH -158
+a IXL -158
+a IYH -158
+a IYL -158
+a L -158
+a LB -158
+a LP -158
+a LPP -158
+a MINUS -158
+a PLUS -158
+state 76
+a A -159
+a ADDR -159
+a B -159
+a C -159
+a D -159
+a E -159
+a H -159
+a ID -159
+a INTEGER -159
+a IXH -159
+a IXL -159
+a IYH -159
+a IYL -159
+a L -159
+a LB -159
+a LP -159
+a LPP -159
+a MINUS -159
+a PLUS -159
+state 77
+a A -160
+a ADDR -160
+a B -160
+a C -160
+a D -160
+a E -160
+a H -160
+a ID -160
+a INTEGER -160
+a IXH -160
+a IXL -160
+a IYH -160
+a IYL -160
+a L -160
+a LB -160
+a LP -160
+a LPP -160
+a MINUS -160
+a PLUS -160
+state 78
+a A -161
+a ADDR -161
+a B -161
+a C -161
+a D -161
+a E -161
+a H -161
+a ID -161
+a INTEGER -161
+a IXH -161
+a IXL -161
+a IYH -161
+a IYL -161
+a L -161
+a LB -161
+a LP -161
+a LPP -161
+a MINUS -161
+a PLUS -161
+state 79
+a A -162
+a ADDR -162
+a B -162
+a C -162
+a D -162
+a E -162
+a H -162
+a ID -162
+a INTEGER -162
+a IXH -162
+a IXL -162
+a IYH -162
+a IYL -162
+a L -162
+a LB -162
+a LP -162
+a LPP -162
+a MINUS -162
+a PLUS -162
+state 80
+a A -194
+a B -194
+a C -194
+a D -194
+a E -194
+a H -194
+a L -194
+a LB -194
+a LP -194
+state 81
+a A -195
+a B -195
+a C -195
+a D -195
+a E -195
+a H -195
+a L -195
+a LB -195
+a LP -195
+state 82
+a A -196
+a B -196
+a C -196
+a D -196
+a E -196
+a H -196
+a L -196
+a LB -196
+a LP -196
+state 83
+a A -197
+a B -197
+a C -197
+a D -197
+a E -197
+a H -197
+a L -197
+a LB -197
+a LP -197
+state 84
+a A -198
+a B -198
+a C -198
+a D -198
+a E -198
+a H -198
+a L -198
+a LB -198
+a LP -198
+state 85
+a A -199
+a B -199
+a C -199
+a D -199
+a E -199
+a H -199
+a L -199
+a LB -199
+a LP -199
+state 86
+a A -200
+a B -200
+a C -200
+a D -200
+a E -200
+a H -200
+a L -200
+a LB -200
+a LP -200
+state 87
+a A -201
+a B -201
+a C -201
+a D -201
+a E -201
+a H -201
+a L -201
+a LB -201
+a LP -201
+state 88
+a ADDR -191
+a ID -191
+a INTEGER -191
+a LP -191
+a LPP -191
+a MINUS -191
+a PLUS -191
+state 89
+a ADDR -192
+a ID -192
+a INTEGER -192
+a LP -192
+a LPP -192
+a MINUS -192
+a PLUS -192
+state 90
+a ADDR -193
+a ID -193
+a INTEGER -193
+a LP -193
+a LPP -193
+a MINUS -193
+a PLUS -193
+state 91
+a $end -2
+a NEWLINE 229
+state 92
+a $end -8
+a ADC -8
+a ADD -8
+a ALIGN -8
+a AND -8
+a BIT -8
+a CALL -8
+a CCF -8
+a CO -8
+a CP -8
+a CPD -8
+a CPDR -8
+a CPI -8
+a CPIR -8
+a CPL -8
+a DAA -8
+a DEC -8
+a DEFB -8
+a DEFS -8
+a DEFW -8
+a DI -8
+a DJNZ -8
+a EI -8
+a END -8
+a ENDP -8
+a EX -8
+a EXX -8
+a HALT -8
+a ID -8
+a IM -8
+a IN -8
+a INC -8
+a INCBIN -8
+a IND -8
+a INDR -8
+a INI -8
+a INIR -8
+a INTEGER -8
+a JP -8
+a JR -8
+a LD -8
+a LDD -8
+a LDDR -8
+a LDI -8
+a LDIR -8
+a LOCAL -8
+a NAMESPACE -8
+a NEG -8
+a NEWLINE -8
+a NOP -8
+a OR -8
+a ORG -8
+a OTDR -8
+a OTIR -8
+a OUT -8
+a OUTD -8
+a OUTI -8
+a POP -8
+a PROC -8
+a PUSH -8
+a RES -8
+a RET -8
+a RETI -8
+a RETN -8
+a RL -8
+a RLA -8
+a RLC -8
+a RLCA -8
+a RLD -8
+a RR -8
+a RRA -8
+a RRC -8
+a RRCA -8
+a RRD -8
+a RST -8
+a SBC -8
+a SCF -8
+a SET -8
+a SLA -8
+a SLL -8
+a SRA -8
+a SRL -8
+a SUB -8
+a XOR -8
+a _INIT -8
+state 93
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a NEWLINE 230
+a PLUS 134
+g expr 231
+g pexpr 232
+state 94
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 233
+g pexpr 234
+state 95
+a $end -11
+a ADC -11
+a ADD -11
+a ALIGN -11
+a AND -11
+a BIT -11
+a CALL -11
+a CCF -11
+a CO -11
+a CP -11
+a CPD -11
+a CPDR -11
+a CPI -11
+a CPIR -11
+a CPL -11
+a DAA -11
+a DEC -11
+a DEFB -11
+a DEFS -11
+a DEFW -11
+a DI -11
+a DJNZ -11
+a EI -11
+a END -11
+a ENDP -11
+a EX -11
+a EXX -11
+a HALT -11
+a ID -11
+a IM -11
+a IN -11
+a INC -11
+a INCBIN -11
+a IND -11
+a INDR -11
+a INI -11
+a INIR -11
+a INTEGER -11
+a JP -11
+a JR -11
+a LD -11
+a LDD -11
+a LDDR -11
+a LDI -11
+a LDIR -11
+a LOCAL -11
+a NAMESPACE -11
+a NEG -11
+a NEWLINE -11
+a NOP -11
+a OR -11
+a ORG -11
+a OTDR -11
+a OTIR -11
+a OUT -11
+a OUTD -11
+a OUTI -11
+a POP -11
+a PROC -11
+a PUSH -11
+a RES -11
+a RET -11
+a RETI -11
+a RETN -11
+a RL -11
+a RLA -11
+a RLC -11
+a RLCA -11
+a RLD -11
+a RR -11
+a RRA -11
+a RRC -11
+a RRCA -11
+a RRD -11
+a RST -11
+a SBC -11
+a SCF -11
+a SET -11
+a SLA -11
+a SLL -11
+a SRA -11
+a SRL -11
+a SUB -11
+a XOR -11
+a _INIT -11
+state 96
+a ADC 29
+a ADD 28
+a ALIGN 22
+a AND 76
+a BIT 88
+a CALL 33
+a CCF 43
+a CP 79
+a CPD 52
+a CPDR 51
+a CPI 50
+a CPIR 49
+a CPL 55
+a DAA 53
+a DEC 25
+a DEFB 14
+a DEFS 15
+a DEFW 16
+a DI 58
+a DJNZ 36
+a EI 57
+a ENDP 12
+a EX 17
+a EXX 42
+a HALT 56
+a ID 237
+a IM 38
+a IN 39
+a INC 24
+a INCBIN 23
+a IND 63
+a INDR 65
+a INI 64
+a INIR 66
+a INTEGER 9
+a JP 26
+a JR 35
+a LD 10
+a LDD 48
+a LDDR 47
+a LDI 46
+a LDIR 45
+a LOCAL 13
+a NAMESPACE 19
+a NEG 54
+a NEWLINE 235
+a NOP 41
+a OR 75
+a ORG 18
+a OTDR 61
+a OTIR 62
+a OUT 40
+a OUTD 59
+a OUTI 60
+a POP 21
+a PROC 11
+a PUSH 20
+a RES 89
+a RET 34
+a RETI 67
+a RETN 68
+a RL 81
+a RLA 69
+a RLC 83
+a RLCA 70
+a RLD 73
+a RR 80
+a RRA 71
+a RRC 82
+a RRCA 72
+a RRD 74
+a RST 37
+a SBC 27
+a SCF 44
+a SET 90
+a SLA 84
+a SLL 85
+a SRA 86
+a SRL 87
+a SUB 78
+a XOR 77
+g asm 236
+g bitop 32
+g bitwiseop 30
+g rotation 31
+state 97
+a $end -354
+a ADC -354
+a ADD -354
+a ALIGN -354
+a AND -354
+a BIT -354
+a CALL -354
+a CCF -354
+a CO -354
+a CP -354
+a CPD -354
+a CPDR -354
+a CPI -354
+a CPIR -354
+a CPL -354
+a DAA -354
+a DEC -354
+a DEFB -354
+a DEFS -354
+a DEFW -354
+a DI -354
+a DJNZ -354
+a EI -354
+a END -354
+a ENDP -354
+a EX -354
+a EXX -354
+a HALT -354
+a ID -354
+a IM -354
+a IN -354
+a INC -354
+a INCBIN -354
+a IND -354
+a INDR -354
+a INI -354
+a INIR -354
+a INTEGER -354
+a JP -354
+a JR -354
+a LD -354
+a LDD -354
+a LDDR -354
+a LDI -354
+a LDIR -354
+a LOCAL -354
+a NAMESPACE -354
+a NEG -354
+a NEWLINE -354
+a NOP -354
+a OR -354
+a ORG -354
+a OTDR -354
+a OTIR -354
+a OUT -354
+a OUTD -354
+a OUTI -354
+a POP -354
+a PROC -354
+a PUSH -354
+a RES -354
+a RET -354
+a RETI -354
+a RETN -354
+a RL -354
+a RLA -354
+a RLC -354
+a RLCA -354
+a RLD -354
+a RR -354
+a RRA -354
+a RRC -354
+a RRCA -354
+a RRD -354
+a RST -354
+a SBC -354
+a SCF -354
+a SET -354
+a SLA -354
+a SLL -354
+a SRA -354
+a SRL -354
+a SUB -354
+a XOR -354
+a _INIT -354
+state 98
+a COMMA 238
+state 99
+a COMMA 239
+state 100
+a COMMA 240
+state 101
+a CO -221
+a COMMA -221
+a NEWLINE -221
+state 102
+a CO -222
+a COMMA -222
+a NEWLINE -222
+state 103
+a COMMA 241
+state 104
+a COMMA 242
+state 105
+a COMMA 243
+state 106
+a COMMA 244
+state 107
+a CO -210
+a COMMA -210
+a NEWLINE -210
+state 108
+a ADDR 139
+a BC 245
+a DE 246
+a HL 247
+a ID 137
+a INTEGER 136
+a IX 248
+a IY 250
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 109
+a CO -219
+a COMMA -219
+a NEWLINE -219
+state 110
+a ADDR 139
+a BC 252
+a DE 253
+a HL 254
+a ID 137
+a INTEGER 136
+a IX 255
+a IY 257
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 256
+g pexpr 221
+state 111
+a CO -220
+a COMMA -220
+a NEWLINE -220
+state 112
+a COMMA 258
+state 113
+a COMMA 259
+state 114
+a COMMA 260
+state 115
+a COMMA 261
+state 116
+a CO -208
+a COMMA -208
+a NEWLINE -208
+state 117
+a CO -209
+a COMMA -209
+a NEWLINE -209
+state 118
+a CO -215
+a COMMA -215
+a NEWLINE -215
+state 119
+a CO -216
+a COMMA -216
+a NEWLINE -216
+state 120
+a CO -217
+a COMMA -217
+a NEWLINE -217
+state 121
+a CO -218
+a COMMA -218
+a NEWLINE -218
+state 122
+a CO -223
+a COMMA -223
+a NEWLINE -223
+a RB -223
+a RP -223
+state 123
+a CO -224
+a COMMA -224
+a NEWLINE -224
+a RB -224
+a RP -224
+state 124
+a CO -211
+a COMMA -211
+a NEWLINE -211
+state 125
+a CO -212
+a COMMA -212
+a NEWLINE -212
+state 126
+a CO -213
+a COMMA -213
+a NEWLINE -213
+state 127
+a CO -214
+a COMMA -214
+a NEWLINE -214
+state 128
+a CO -47
+a COMMA 262
+a NEWLINE -47
+state 129
+a CO -48
+a COMMA -48
+a NEWLINE -48
+state 130
+a CO -50
+a COMMA 263
+a NEWLINE -50
+state 131
+a CO -53
+a COMMA -53
+a NEWLINE -53
+state 132
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -54
+a COMMA -54
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -54
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 133
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -55
+a COMMA -55
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -55
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 134
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 286
+g pexpr 287
+state 135
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 288
+g pexpr 289
+state 136
+a BAND -349
+a BOR -349
+a BXOR -349
+a CO -349
+a COMMA -349
+a DIV -349
+a LSHIFT -349
+a MINUS -349
+a MOD -349
+a MUL -349
+a NEWLINE -349
+a PLUS -349
+a POW -349
+a RB -349
+a RP -349
+a RPP -349
+a RSHIFT -349
+state 137
+a BAND -350
+a BOR -350
+a BXOR -350
+a CO -350
+a COMMA -350
+a DIV -350
+a LSHIFT -350
+a MINUS -350
+a MOD -350
+a MUL -350
+a NEWLINE -350
+a PLUS -350
+a POW -350
+a RB -350
+a RP -350
+a RPP -350
+a RSHIFT -350
+state 138
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 290
+g pexpr 221
+state 139
+a BAND -352
+a BOR -352
+a BXOR -352
+a CO -352
+a COMMA -352
+a DIV -352
+a LSHIFT -352
+a MINUS -352
+a MOD -352
+a MUL -352
+a NEWLINE -352
+a PLUS -352
+a POW -352
+a RB -352
+a RP -352
+a RPP -352
+a RSHIFT -352
+state 140
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 141
+a CO -51
+a COMMA 291
+a NEWLINE -51
+state 142
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -59
+a COMMA -59
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -59
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 143
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -60
+a COMMA -60
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -60
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 144
+a CO -52
+a COMMA 291
+a NEWLINE -52
+state 145
+a COMMA 292
+state 146
+a COMMA 293
+state 147
+a SP 294
+state 148
+a SP 295
+state 149
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -83
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -83
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 150
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -84
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -84
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 151
+a CO -85
+a NEWLINE -85
+state 152
+a CO -86
+a ID 296
+a NEWLINE -86
+state 153
+a CO -163
+a NEWLINE -163
+state 154
+a CO -164
+a NEWLINE -164
+state 155
+a CO -88
+a NEWLINE -88
+state 156
+a CO -165
+a NEWLINE -165
+state 157
+a CO -166
+a NEWLINE -166
+state 158
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -89
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -89
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 159
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -90
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -90
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 160
+a CO -91
+a COMMA 297
+a NEWLINE -91
+state 161
+a CO -98
+a NEWLINE -98
+state 162
+a CO -100
+a NEWLINE -100
+state 163
+a CO -202
+a NEWLINE -202
+state 164
+a CO -203
+a NEWLINE -203
+state 165
+a CO -204
+a NEWLINE -204
+state 166
+a CO -205
+a NEWLINE -205
+state 167
+a CO -206
+a NEWLINE -206
+state 168
+a CO -207
+a NEWLINE -207
+state 169
+a HL 247
+a IX 248
+a IY 250
+state 170
+a HL 254
+a IX 255
+a IY 257
+state 171
+a CO -99
+a NEWLINE -99
+state 172
+a CO -101
+a NEWLINE -101
+state 173
+a CO -110
+a NEWLINE -110
+state 174
+a ADDR 139
+a HL 247
+a ID 137
+a INTEGER 136
+a IX 122
+a IY 123
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+g reg16i 298
+state 175
+a HL 254
+a IX 122
+a IY 123
+g reg16i 299
+state 176
+a COMMA 300
+state 177
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -241
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -241
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 178
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -245
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -245
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 179
+a CO -230
+a COMMA -230
+a NEWLINE -230
+state 180
+a CO -231
+a COMMA -231
+a NEWLINE -231
+state 181
+a CO -232
+a COMMA -232
+a NEWLINE -232
+state 182
+a CO -233
+a COMMA -233
+a NEWLINE -233
+state 183
+a CO -234
+a COMMA -234
+a NEWLINE -234
+state 184
+a CO -237
+a COMMA -237
+a NEWLINE -237
+state 185
+a CO -238
+a COMMA -238
+a NEWLINE -238
+state 186
+a CO -239
+a COMMA -239
+a NEWLINE -239
+state 187
+a CO -240
+a COMMA -240
+a NEWLINE -240
+state 188
+a COMMA 301
+state 189
+a COMMA 302
+state 190
+a COMMA 303
+state 191
+a COMMA 304
+state 192
+a COMMA 305
+state 193
+a COMMA 306
+state 194
+a COMMA 307
+state 195
+a CO -151
+a NEWLINE -151
+state 196
+a CO -152
+a NEWLINE -152
+state 197
+a CO -153
+a NEWLINE -153
+state 198
+a CO -154
+a NEWLINE -154
+state 199
+a CO -155
+a NEWLINE -155
+state 200
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -156
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -156
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 201
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -157
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -157
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 202
+a ADDR 139
+a HL 247
+a ID 137
+a INTEGER 136
+a IX 248
+a IY 250
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 203
+a HL 254
+a IX 255
+a IY 257
+state 204
+a CO -179
+a NEWLINE -179
+state 205
+a CO -180
+a NEWLINE -180
+state 206
+a CO -181
+a NEWLINE -181
+state 207
+a CO -182
+a NEWLINE -182
+state 208
+a HL 247
+a IX 248
+a IY 250
+state 209
+a BAND 264
+a BOR 265
+a BXOR 266
+a COMMA 308
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 210
+a BAND 275
+a BOR 276
+a BXOR 277
+a COMMA 309
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 211
+a COMMA 310
+state 212
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -243
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -243
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 213
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -247
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -247
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 214
+a CO -229
+a NEWLINE -229
+state 215
+a COMMA 311
+state 216
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -242
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -242
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 217
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -246
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -246
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 218
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -244
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -244
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 219
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -248
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -248
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 220
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -249
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -249
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 221
+a BAND 275
+a BOR 276
+a BXOR 277
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 222
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -250
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -250
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 223
+a COMMA 312
+state 224
+a COMMA 313
+state 225
+a ADDR 139
+a C 314
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 226
+a ADDR 139
+a C 315
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 256
+g pexpr 221
+state 227
+a COMMA 316
+state 228
+a COMMA 317
+state 229
+a $end -4
+a NEWLINE -4
+state 230
+a $end -3
+a NEWLINE -3
+state 231
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE 318
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 232
+a BAND 275
+a BOR 276
+a BXOR 277
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE 319
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 233
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE 320
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 234
+a BAND 275
+a BOR 276
+a BXOR 277
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE 321
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 235
+a $end -12
+a ADC -12
+a ADD -12
+a ALIGN -12
+a AND -12
+a BIT -12
+a CALL -12
+a CCF -12
+a CO -12
+a CP -12
+a CPD -12
+a CPDR -12
+a CPI -12
+a CPIR -12
+a CPL -12
+a DAA -12
+a DEC -12
+a DEFB -12
+a DEFS -12
+a DEFW -12
+a DI -12
+a DJNZ -12
+a EI -12
+a END -12
+a ENDP -12
+a EX -12
+a EXX -12
+a HALT -12
+a ID -12
+a IM -12
+a IN -12
+a INC -12
+a INCBIN -12
+a IND -12
+a INDR -12
+a INI -12
+a INIR -12
+a INTEGER -12
+a JP -12
+a JR -12
+a LD -12
+a LDD -12
+a LDDR -12
+a LDI -12
+a LDIR -12
+a LOCAL -12
+a NAMESPACE -12
+a NEG -12
+a NEWLINE -12
+a NOP -12
+a OR -12
+a ORG -12
+a OTDR -12
+a OTIR -12
+a OUT -12
+a OUTD -12
+a OUTI -12
+a POP -12
+a PROC -12
+a PUSH -12
+a RES -12
+a RET -12
+a RETI -12
+a RETN -12
+a RL -12
+a RLA -12
+a RLC -12
+a RLCA -12
+a RLD -12
+a RR -12
+a RRA -12
+a RRC -12
+a RRCA -12
+a RRD -12
+a RST -12
+a SBC -12
+a SCF -12
+a SET -12
+a SLA -12
+a SLL -12
+a SRA -12
+a SRL -12
+a SUB -12
+a XOR -12
+a _INIT -12
+state 236
+a CO -15
+a NEWLINE -15
+state 237
+a CO -16
+a NEWLINE -16
+state 238
+a A 324
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a L 117
+a LB 203
+a LP 202
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 327
+g pexpr 328
+g reg8 322
+g reg8_I 326
+g reg8_hl 323
+g reg8i 325
+g regBCDE 107
+state 239
+a A 330
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a L 117
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 331
+g pexpr 221
+g reg8 329
+g regBCDE 107
+state 240
+a ADDR 139
+a HL 332
+a ID 137
+a INTEGER 136
+a IX 122
+a IY 123
+a LB 337
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 334
+g mem_indir 336
+g pexpr 335
+g reg16i 333
+state 241
+a A 338
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a I 341
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a L 117
+a LB 345
+a LP 344
+a LPP 138
+a MINUS 135
+a PLUS 134
+a R 342
+g expr 347
+g mem_indir 349
+g pexpr 348
+g reg8 339
+g reg8_I 346
+g reg8_hl 340
+g reg8i 343
+g regBCDE 107
+state 242
+a A 350
+state 243
+a A 351
+state 244
+a A 353
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 355
+g pexpr 221
+g reg8i 352
+g regBCDE 354
+state 245
+a RP 356
+state 246
+a RP 357
+state 247
+a RP 358
+state 248
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 361
+a PLUS 360
+g expr 359
+g pexpr 221
+state 249
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RP 362
+a RSHIFT 274
+state 250
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 365
+a PLUS 364
+g expr 363
+g pexpr 221
+state 251
+a BAND 275
+a BOR 276
+a BXOR 277
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a PLUS 278
+a POW 283
+a RP 366
+a RSHIFT 285
+state 252
+a RB 367
+state 253
+a RB 368
+state 254
+a RB 369
+state 255
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 372
+a PLUS 371
+g expr 370
+g pexpr 221
+state 256
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RB 373
+a RSHIFT 274
+state 257
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 376
+a PLUS 375
+g expr 374
+g pexpr 221
+state 258
+a A 378
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a L 117
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 379
+g pexpr 221
+g reg8 377
+g regBCDE 107
+state 259
+a A 380
+a BC 109
+a DE 111
+a HL 101
+a IX 122
+a IY 123
+a SP 382
+g reg16 381
+g reg16i 102
+state 260
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LB 337
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 383
+g mem_indir 385
+g pexpr 384
+state 261
+a A 386
+a BC 109
+a DE 111
+a HL 101
+a IX 122
+a IY 123
+a SP 388
+g reg16 387
+g reg16i 102
+state 262
+a ID 389
+state 263
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+a STRING 392
+g expr 390
+g pexpr 391
+state 264
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 393
+g pexpr 394
+state 265
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 395
+g pexpr 396
+state 266
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 397
+g pexpr 398
+state 267
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 399
+g pexpr 400
+state 268
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 401
+g pexpr 402
+state 269
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 403
+g pexpr 404
+state 270
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 405
+g pexpr 406
+state 271
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 407
+g pexpr 408
+state 272
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 409
+g pexpr 410
+state 273
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 411
+g pexpr 412
+state 274
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 413
+g pexpr 414
+state 275
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 416
+g pexpr 415
+state 276
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 418
+g pexpr 417
+state 277
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 420
+g pexpr 419
+state 278
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 422
+g pexpr 421
+state 279
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 424
+g pexpr 423
+state 280
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 426
+g pexpr 425
+state 281
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 428
+g pexpr 427
+state 282
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 430
+g pexpr 429
+state 283
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 432
+g pexpr 431
+state 284
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 434
+g pexpr 433
+state 285
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 436
+g pexpr 435
+state 286
+a BAND -346
+a BOR -346
+a BXOR -346
+a CO -346
+a COMMA -346
+a DIV -346
+a LSHIFT -346
+a MINUS -346
+a MOD -346
+a MUL -346
+a NEWLINE -346
+a PLUS -346
+a POW -346
+a RB -346
+a RP -346
+a RPP -346
+a RSHIFT -346
+state 287
+a BAND -348
+a BOR -348
+a BXOR -348
+a CO -348
+a COMMA -348
+a DIV -348
+a LSHIFT -348
+a MINUS -348
+a MOD -348
+a MUL -348
+a NEWLINE -348
+a PLUS -348
+a POW -348
+a RB -348
+a RP -348
+a RPP -348
+a RSHIFT -348
+state 288
+a BAND -345
+a BOR -345
+a BXOR -345
+a CO -345
+a COMMA -345
+a DIV -345
+a LSHIFT -345
+a MINUS -345
+a MOD -345
+a MUL -345
+a NEWLINE -345
+a PLUS -345
+a POW -345
+a RB -345
+a RP -345
+a RPP -345
+a RSHIFT -345
+state 289
+a BAND -347
+a BOR -347
+a BXOR -347
+a CO -347
+a COMMA -347
+a DIV -347
+a LSHIFT -347
+a MINUS -347
+a MOD -347
+a MUL -347
+a NEWLINE -347
+a PLUS -347
+a POW -347
+a RB -347
+a RP -347
+a RPP -347
+a RSHIFT -347
+state 290
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RPP 437
+a RSHIFT 274
+state 291
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 438
+g pexpr 439
+state 292
+a AF 440
+state 293
+a HL 441
+state 294
+a RP 442
+state 295
+a RB 443
+state 296
+a CO -87
+a NEWLINE -87
+state 297
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 444
+g pexpr 221
+state 298
+a RP 445
+state 299
+a RB 446
+state 300
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 447
+g pexpr 448
+state 301
+a A 449
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a L 117
+a LB 203
+a LP 456
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 453
+g pexpr 454
+g reg8 450
+g reg8_I 455
+g reg8_hl 452
+g reg8i 451
+g regBCDE 107
+state 302
+a BC 459
+a DE 460
+a HL 457
+a SP 458
+state 303
+a A 461
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a L 117
+a LB 203
+a LP 456
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 465
+g pexpr 466
+g reg8 462
+g reg8_I 467
+g reg8_hl 464
+g reg8i 463
+g regBCDE 107
+state 304
+a BC 469
+a DE 470
+a HL 468
+a SP 471
+state 305
+a BC 473
+a DE 474
+a HL 475
+a IX 122
+a IY 123
+a SP 476
+g reg16i 472
+state 306
+a A 477
+a ADDR 139
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a ID 137
+a INTEGER 136
+a IXH 118
+a IXL 119
+a IYH 120
+a IYL 121
+a L 117
+a LB 203
+a LP 456
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 481
+g pexpr 482
+g reg8 478
+g reg8_I 483
+g reg8_hl 480
+g reg8i 479
+g regBCDE 107
+state 307
+a BC 485
+a DE 486
+a HL 484
+a SP 487
+state 308
+a A 488
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a L 117
+a LB 203
+a LP 208
+g reg8 489
+g reg8_I 491
+g reg8_hl 490
+g regBCDE 107
+state 309
+a A 492
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a L 117
+a LB 203
+a LP 208
+g reg8 493
+g reg8_I 495
+g reg8_hl 494
+g regBCDE 107
+state 310
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 496
+g pexpr 497
+state 311
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 498
+g pexpr 499
+state 312
+a LB 501
+a LP 500
+g mem_indir 502
+g pexpr 503
+state 313
+a LB 505
+a LP 504
+state 314
+a RP 506
+state 315
+a RB 507
+state 316
+a A 508
+state 317
+a A 509
+state 318
+a $end -5
+a NEWLINE -5
+state 319
+a $end -6
+a NEWLINE -6
+state 320
+a $end -9
+a ADC -9
+a ADD -9
+a ALIGN -9
+a AND -9
+a BIT -9
+a CALL -9
+a CCF -9
+a CO -9
+a CP -9
+a CPD -9
+a CPDR -9
+a CPI -9
+a CPIR -9
+a CPL -9
+a DAA -9
+a DEC -9
+a DEFB -9
+a DEFS -9
+a DEFW -9
+a DI -9
+a DJNZ -9
+a EI -9
+a END -9
+a ENDP -9
+a EX -9
+a EXX -9
+a HALT -9
+a ID -9
+a IM -9
+a IN -9
+a INC -9
+a INCBIN -9
+a IND -9
+a INDR -9
+a INI -9
+a INIR -9
+a INTEGER -9
+a JP -9
+a JR -9
+a LD -9
+a LDD -9
+a LDDR -9
+a LDI -9
+a LDIR -9
+a LOCAL -9
+a NAMESPACE -9
+a NEG -9
+a NEWLINE -9
+a NOP -9
+a OR -9
+a ORG -9
+a OTDR -9
+a OTIR -9
+a OUT -9
+a OUTD -9
+a OUTI -9
+a POP -9
+a PROC -9
+a PUSH -9
+a RES -9
+a RET -9
+a RETI -9
+a RETN -9
+a RL -9
+a RLA -9
+a RLC -9
+a RLCA -9
+a RLD -9
+a RR -9
+a RRA -9
+a RRC -9
+a RRCA -9
+a RRD -9
+a RST -9
+a SBC -9
+a SCF -9
+a SET -9
+a SLA -9
+a SLL -9
+a SRA -9
+a SRL -9
+a SUB -9
+a XOR -9
+a _INIT -9
+state 321
+a $end -10
+a ADC -10
+a ADD -10
+a ALIGN -10
+a AND -10
+a BIT -10
+a CALL -10
+a CCF -10
+a CO -10
+a CP -10
+a CPD -10
+a CPDR -10
+a CPI -10
+a CPIR -10
+a CPL -10
+a DAA -10
+a DEC -10
+a DEFB -10
+a DEFS -10
+a DEFW -10
+a DI -10
+a DJNZ -10
+a EI -10
+a END -10
+a ENDP -10
+a EX -10
+a EXX -10
+a HALT -10
+a ID -10
+a IM -10
+a IN -10
+a INC -10
+a INCBIN -10
+a IND -10
+a INDR -10
+a INI -10
+a INIR -10
+a INTEGER -10
+a JP -10
+a JR -10
+a LD -10
+a LDD -10
+a LDDR -10
+a LDI -10
+a LDIR -10
+a LOCAL -10
+a NAMESPACE -10
+a NEG -10
+a NEWLINE -10
+a NOP -10
+a OR -10
+a ORG -10
+a OTDR -10
+a OTIR -10
+a OUT -10
+a OUTD -10
+a OUTI -10
+a POP -10
+a PROC -10
+a PUSH -10
+a RES -10
+a RET -10
+a RETI -10
+a RETN -10
+a RL -10
+a RLA -10
+a RLC -10
+a RLCA -10
+a RLD -10
+a RR -10
+a RRA -10
+a RRC -10
+a RRCA -10
+a RRD -10
+a RST -10
+a SBC -10
+a SCF -10
+a SET -10
+a SLA -10
+a SLL -10
+a SRA -10
+a SRL -10
+a SUB -10
+a XOR -10
+a _INIT -10
+state 322
+a CO -20
+a NEWLINE -20
+state 323
+a CO -18
+a NEWLINE -18
+state 324
+a CO -24
+a NEWLINE -24
+state 325
+a CO -34
+a NEWLINE -34
+state 326
+a CO -65
+a NEWLINE -65
+state 327
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -102
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -102
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 328
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -103
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -103
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 329
+a CO -19
+a NEWLINE -19
+state 330
+a CO -25
+a NEWLINE -25
+state 331
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -105
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -105
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 332
+a CO -21
+a NEWLINE -21
+state 333
+a CO -22
+a NEWLINE -22
+state 334
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -107
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -107
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 335
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -175
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -175
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 336
+a CO -178
+a NEWLINE -178
+state 337
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 256
+g pexpr 221
+state 338
+a CO -27
+a NEWLINE -27
+state 339
+a CO -23
+a NEWLINE -23
+state 340
+a CO -26
+a NEWLINE -26
+state 341
+a CO -28
+a NEWLINE -28
+state 342
+a CO -30
+a NEWLINE -30
+state 343
+a CO -32
+a NEWLINE -32
+state 344
+a ADDR 139
+a BC 510
+a DE 511
+a HL 247
+a ID 137
+a INTEGER 136
+a IX 248
+a IY 250
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 345
+a ADDR 139
+a BC 512
+a DE 513
+a HL 254
+a ID 137
+a INTEGER 136
+a IX 255
+a IY 257
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 256
+g pexpr 221
+state 346
+a CO -66
+a NEWLINE -66
+state 347
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -106
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -106
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 348
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -173
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -173
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 349
+a CO -176
+a NEWLINE -176
+state 350
+a CO -29
+a NEWLINE -29
+state 351
+a CO -31
+a NEWLINE -31
+state 352
+a CO -36
+a NEWLINE -36
+state 353
+a CO -33
+a NEWLINE -33
+state 354
+a CO -35
+a NEWLINE -35
+state 355
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -108
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -108
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 356
+a COMMA 514
+state 357
+a COMMA 515
+state 358
+a CO -67
+a COMMA -67
+a NEWLINE -67
+state 359
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RP 516
+a RSHIFT 274
+state 360
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 286
+g pexpr 517
+state 361
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 288
+g pexpr 518
+state 362
+a BAND -342
+a BOR -342
+a BXOR -342
+a CO -342
+a COMMA -342
+a DIV -342
+a LSHIFT -342
+a MINUS -342
+a MOD -342
+a MUL -342
+a NEWLINE -342
+a PLUS -342
+a POW -342
+a RB -342
+a RP -342
+a RPP -342
+a RSHIFT -342
+state 363
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RP 519
+a RSHIFT 274
+state 364
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 286
+g pexpr 520
+state 365
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 288
+g pexpr 521
+state 366
+a BAND -343
+a BOR -343
+a BXOR -343
+a CO -343
+a COMMA -343
+a DIV -343
+a LSHIFT -343
+a MINUS -343
+a MOD -343
+a MUL -343
+a NEWLINE -343
+a PLUS -343
+a POW -343
+a RB -343
+a RP -343
+a RPP -343
+a RSHIFT -343
+state 367
+a COMMA 522
+state 368
+a COMMA 523
+state 369
+a CO -68
+a COMMA -68
+a NEWLINE -68
+state 370
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RB 524
+a RSHIFT 274
+state 371
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 286
+g pexpr 525
+state 372
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 288
+g pexpr 526
+state 373
+a CO -344
+a COMMA -344
+a NEWLINE -344
+state 374
+a BAND 264
+a BOR 265
+a BXOR 266
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a PLUS 267
+a POW 272
+a RB 527
+a RSHIFT 274
+state 375
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 286
+g pexpr 528
+state 376
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 288
+g pexpr 529
+state 377
+a CO -63
+a NEWLINE -63
+state 378
+a CO -64
+a NEWLINE -64
+state 379
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -109
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -109
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 380
+a CO -167
+a NEWLINE -167
+state 381
+a CO -168
+a NEWLINE -168
+state 382
+a CO -169
+a NEWLINE -169
+state 383
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -104
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -104
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 384
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -174
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -174
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 385
+a CO -177
+a NEWLINE -177
+state 386
+a CO -170
+a NEWLINE -170
+state 387
+a CO -171
+a NEWLINE -171
+state 388
+a CO -172
+a NEWLINE -172
+state 389
+a CO -49
+a COMMA -49
+a NEWLINE -49
+state 390
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -56
+a COMMA -56
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -56
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 391
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -57
+a COMMA -57
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -57
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 392
+a CO -58
+a COMMA -58
+a NEWLINE -58
+state 393
+a BAND -298
+a BOR -298
+a BXOR -298
+a CO -298
+a COMMA -298
+a DIV 270
+a LSHIFT -298
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -298
+a PLUS 267
+a POW 272
+a RB -298
+a RP -298
+a RPP -298
+a RSHIFT -298
+state 394
+a BAND -320
+a BOR -320
+a BXOR -320
+a CO -320
+a COMMA -320
+a DIV 281
+a LSHIFT -320
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -320
+a PLUS 278
+a POW 283
+a RB -320
+a RP -320
+a RPP -320
+a RSHIFT -320
+state 395
+a BAND -299
+a BOR -299
+a BXOR -299
+a CO -299
+a COMMA -299
+a DIV 270
+a LSHIFT -299
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -299
+a PLUS 267
+a POW 272
+a RB -299
+a RP -299
+a RPP -299
+a RSHIFT -299
+state 396
+a BAND -321
+a BOR -321
+a BXOR -321
+a CO -321
+a COMMA -321
+a DIV 281
+a LSHIFT -321
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -321
+a PLUS 278
+a POW 283
+a RB -321
+a RP -321
+a RPP -321
+a RSHIFT -321
+state 397
+a BAND -300
+a BOR -300
+a BXOR -300
+a CO -300
+a COMMA -300
+a DIV 270
+a LSHIFT -300
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -300
+a PLUS 267
+a POW 272
+a RB -300
+a RP -300
+a RPP -300
+a RSHIFT -300
+state 398
+a BAND -322
+a BOR -322
+a BXOR -322
+a CO -322
+a COMMA -322
+a DIV 281
+a LSHIFT -322
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -322
+a PLUS 278
+a POW 283
+a RB -322
+a RP -322
+a RPP -322
+a RSHIFT -322
+state 399
+a BAND -301
+a BOR -301
+a BXOR -301
+a CO -301
+a COMMA -301
+a DIV 270
+a LSHIFT -301
+a MINUS -301
+a MOD 271
+a MUL 269
+a NEWLINE -301
+a PLUS -301
+a POW 272
+a RB -301
+a RP -301
+a RPP -301
+a RSHIFT -301
+state 400
+a BAND -323
+a BOR -323
+a BXOR -323
+a CO -323
+a COMMA -323
+a DIV 281
+a LSHIFT -323
+a MINUS -323
+a MOD 282
+a MUL 280
+a NEWLINE -323
+a PLUS -323
+a POW 283
+a RB -323
+a RP -323
+a RPP -323
+a RSHIFT -323
+state 401
+a BAND -302
+a BOR -302
+a BXOR -302
+a CO -302
+a COMMA -302
+a DIV 270
+a LSHIFT -302
+a MINUS -302
+a MOD 271
+a MUL 269
+a NEWLINE -302
+a PLUS -302
+a POW 272
+a RB -302
+a RP -302
+a RPP -302
+a RSHIFT -302
+state 402
+a BAND -324
+a BOR -324
+a BXOR -324
+a CO -324
+a COMMA -324
+a DIV 281
+a LSHIFT -324
+a MINUS -324
+a MOD 282
+a MUL 280
+a NEWLINE -324
+a PLUS -324
+a POW 283
+a RB -324
+a RP -324
+a RPP -324
+a RSHIFT -324
+state 403
+a BAND -303
+a BOR -303
+a BXOR -303
+a CO -303
+a COMMA -303
+a DIV -303
+a LSHIFT -303
+a MINUS -303
+a MOD -303
+a MUL -303
+a NEWLINE -303
+a PLUS -303
+a POW 272
+a RB -303
+a RP -303
+a RPP -303
+a RSHIFT -303
+state 404
+a BAND -325
+a BOR -325
+a BXOR -325
+a CO -325
+a COMMA -325
+a DIV -325
+a LSHIFT -325
+a MINUS -325
+a MOD -325
+a MUL -325
+a NEWLINE -325
+a PLUS -325
+a POW 283
+a RB -325
+a RP -325
+a RPP -325
+a RSHIFT -325
+state 405
+a BAND -304
+a BOR -304
+a BXOR -304
+a CO -304
+a COMMA -304
+a DIV -304
+a LSHIFT -304
+a MINUS -304
+a MOD -304
+a MUL -304
+a NEWLINE -304
+a PLUS -304
+a POW 272
+a RB -304
+a RP -304
+a RPP -304
+a RSHIFT -304
+state 406
+a BAND -326
+a BOR -326
+a BXOR -326
+a CO -326
+a COMMA -326
+a DIV -326
+a LSHIFT -326
+a MINUS -326
+a MOD -326
+a MUL -326
+a NEWLINE -326
+a PLUS -326
+a POW 283
+a RB -326
+a RP -326
+a RPP -326
+a RSHIFT -326
+state 407
+a BAND -305
+a BOR -305
+a BXOR -305
+a CO -305
+a COMMA -305
+a DIV -305
+a LSHIFT -305
+a MINUS -305
+a MOD -305
+a MUL -305
+a NEWLINE -305
+a PLUS -305
+a POW 272
+a RB -305
+a RP -305
+a RPP -305
+a RSHIFT -305
+state 408
+a BAND -327
+a BOR -327
+a BXOR -327
+a CO -327
+a COMMA -327
+a DIV -327
+a LSHIFT -327
+a MINUS -327
+a MOD -327
+a MUL -327
+a NEWLINE -327
+a PLUS -327
+a POW 283
+a RB -327
+a RP -327
+a RPP -327
+a RSHIFT -327
+state 409
+a BAND -306
+a BOR -306
+a BXOR -306
+a CO -306
+a COMMA -306
+a DIV -306
+a LSHIFT -306
+a MINUS -306
+a MOD -306
+a MUL -306
+a NEWLINE -306
+a PLUS -306
+a POW 272
+a RB -306
+a RP -306
+a RPP -306
+a RSHIFT -306
+state 410
+a BAND -328
+a BOR -328
+a BXOR -328
+a CO -328
+a COMMA -328
+a DIV -328
+a LSHIFT -328
+a MINUS -328
+a MOD -328
+a MUL -328
+a NEWLINE -328
+a PLUS -328
+a POW 283
+a RB -328
+a RP -328
+a RPP -328
+a RSHIFT -328
+state 411
+a BAND -307
+a BOR -307
+a BXOR -307
+a CO -307
+a COMMA -307
+a DIV 270
+a LSHIFT -307
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -307
+a PLUS 267
+a POW 272
+a RB -307
+a RP -307
+a RPP -307
+a RSHIFT -307
+state 412
+a BAND -329
+a BOR -329
+a BXOR -329
+a CO -329
+a COMMA -329
+a DIV 281
+a LSHIFT -329
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -329
+a PLUS 278
+a POW 283
+a RB -329
+a RP -329
+a RPP -329
+a RSHIFT -329
+state 413
+a BAND -308
+a BOR -308
+a BXOR -308
+a CO -308
+a COMMA -308
+a DIV 270
+a LSHIFT -308
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -308
+a PLUS 267
+a POW 272
+a RB -308
+a RP -308
+a RPP -308
+a RSHIFT -308
+state 414
+a BAND -330
+a BOR -330
+a BXOR -330
+a CO -330
+a COMMA -330
+a DIV 281
+a LSHIFT -330
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -330
+a PLUS 278
+a POW 283
+a RB -330
+a RP -330
+a RPP -330
+a RSHIFT -330
+state 415
+a BAND -331
+a BOR -331
+a BXOR -331
+a CO -331
+a COMMA -331
+a DIV 281
+a LSHIFT -331
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -331
+a PLUS 278
+a POW 283
+a RB -331
+a RP -331
+a RPP -331
+a RSHIFT -331
+state 416
+a BAND -309
+a BOR -309
+a BXOR -309
+a CO -309
+a COMMA -309
+a DIV 270
+a LSHIFT -309
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -309
+a PLUS 267
+a POW 272
+a RB -309
+a RP -309
+a RPP -309
+a RSHIFT -309
+state 417
+a BAND -332
+a BOR -332
+a BXOR -332
+a CO -332
+a COMMA -332
+a DIV 281
+a LSHIFT -332
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -332
+a PLUS 278
+a POW 283
+a RB -332
+a RP -332
+a RPP -332
+a RSHIFT -332
+state 418
+a BAND -310
+a BOR -310
+a BXOR -310
+a CO -310
+a COMMA -310
+a DIV 270
+a LSHIFT -310
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -310
+a PLUS 267
+a POW 272
+a RB -310
+a RP -310
+a RPP -310
+a RSHIFT -310
+state 419
+a BAND -333
+a BOR -333
+a BXOR -333
+a CO -333
+a COMMA -333
+a DIV 281
+a LSHIFT -333
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -333
+a PLUS 278
+a POW 283
+a RB -333
+a RP -333
+a RPP -333
+a RSHIFT -333
+state 420
+a BAND -311
+a BOR -311
+a BXOR -311
+a CO -311
+a COMMA -311
+a DIV 270
+a LSHIFT -311
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -311
+a PLUS 267
+a POW 272
+a RB -311
+a RP -311
+a RPP -311
+a RSHIFT -311
+state 421
+a BAND -334
+a BOR -334
+a BXOR -334
+a CO -334
+a COMMA -334
+a DIV 281
+a LSHIFT -334
+a MINUS -334
+a MOD 282
+a MUL 280
+a NEWLINE -334
+a PLUS -334
+a POW 283
+a RB -334
+a RP -334
+a RPP -334
+a RSHIFT -334
+state 422
+a BAND -312
+a BOR -312
+a BXOR -312
+a CO -312
+a COMMA -312
+a DIV 270
+a LSHIFT -312
+a MINUS -312
+a MOD 271
+a MUL 269
+a NEWLINE -312
+a PLUS -312
+a POW 272
+a RB -312
+a RP -312
+a RPP -312
+a RSHIFT -312
+state 423
+a BAND -335
+a BOR -335
+a BXOR -335
+a CO -335
+a COMMA -335
+a DIV 281
+a LSHIFT -335
+a MINUS -335
+a MOD 282
+a MUL 280
+a NEWLINE -335
+a PLUS -335
+a POW 283
+a RB -335
+a RP -335
+a RPP -335
+a RSHIFT -335
+state 424
+a BAND -313
+a BOR -313
+a BXOR -313
+a CO -313
+a COMMA -313
+a DIV 270
+a LSHIFT -313
+a MINUS -313
+a MOD 271
+a MUL 269
+a NEWLINE -313
+a PLUS -313
+a POW 272
+a RB -313
+a RP -313
+a RPP -313
+a RSHIFT -313
+state 425
+a BAND -336
+a BOR -336
+a BXOR -336
+a CO -336
+a COMMA -336
+a DIV -336
+a LSHIFT -336
+a MINUS -336
+a MOD -336
+a MUL -336
+a NEWLINE -336
+a PLUS -336
+a POW 283
+a RB -336
+a RP -336
+a RPP -336
+a RSHIFT -336
+state 426
+a BAND -314
+a BOR -314
+a BXOR -314
+a CO -314
+a COMMA -314
+a DIV -314
+a LSHIFT -314
+a MINUS -314
+a MOD -314
+a MUL -314
+a NEWLINE -314
+a PLUS -314
+a POW 272
+a RB -314
+a RP -314
+a RPP -314
+a RSHIFT -314
+state 427
+a BAND -337
+a BOR -337
+a BXOR -337
+a CO -337
+a COMMA -337
+a DIV -337
+a LSHIFT -337
+a MINUS -337
+a MOD -337
+a MUL -337
+a NEWLINE -337
+a PLUS -337
+a POW 283
+a RB -337
+a RP -337
+a RPP -337
+a RSHIFT -337
+state 428
+a BAND -315
+a BOR -315
+a BXOR -315
+a CO -315
+a COMMA -315
+a DIV -315
+a LSHIFT -315
+a MINUS -315
+a MOD -315
+a MUL -315
+a NEWLINE -315
+a PLUS -315
+a POW 272
+a RB -315
+a RP -315
+a RPP -315
+a RSHIFT -315
+state 429
+a BAND -338
+a BOR -338
+a BXOR -338
+a CO -338
+a COMMA -338
+a DIV -338
+a LSHIFT -338
+a MINUS -338
+a MOD -338
+a MUL -338
+a NEWLINE -338
+a PLUS -338
+a POW 283
+a RB -338
+a RP -338
+a RPP -338
+a RSHIFT -338
+state 430
+a BAND -316
+a BOR -316
+a BXOR -316
+a CO -316
+a COMMA -316
+a DIV -316
+a LSHIFT -316
+a MINUS -316
+a MOD -316
+a MUL -316
+a NEWLINE -316
+a PLUS -316
+a POW 272
+a RB -316
+a RP -316
+a RPP -316
+a RSHIFT -316
+state 431
+a BAND -339
+a BOR -339
+a BXOR -339
+a CO -339
+a COMMA -339
+a DIV -339
+a LSHIFT -339
+a MINUS -339
+a MOD -339
+a MUL -339
+a NEWLINE -339
+a PLUS -339
+a POW 283
+a RB -339
+a RP -339
+a RPP -339
+a RSHIFT -339
+state 432
+a BAND -317
+a BOR -317
+a BXOR -317
+a CO -317
+a COMMA -317
+a DIV -317
+a LSHIFT -317
+a MINUS -317
+a MOD -317
+a MUL -317
+a NEWLINE -317
+a PLUS -317
+a POW 272
+a RB -317
+a RP -317
+a RPP -317
+a RSHIFT -317
+state 433
+a BAND -340
+a BOR -340
+a BXOR -340
+a CO -340
+a COMMA -340
+a DIV 281
+a LSHIFT -340
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -340
+a PLUS 278
+a POW 283
+a RB -340
+a RP -340
+a RPP -340
+a RSHIFT -340
+state 434
+a BAND -318
+a BOR -318
+a BXOR -318
+a CO -318
+a COMMA -318
+a DIV 270
+a LSHIFT -318
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -318
+a PLUS 267
+a POW 272
+a RB -318
+a RP -318
+a RPP -318
+a RSHIFT -318
+state 435
+a BAND -341
+a BOR -341
+a BXOR -341
+a CO -341
+a COMMA -341
+a DIV 281
+a LSHIFT -341
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -341
+a PLUS 278
+a POW 283
+a RB -341
+a RP -341
+a RPP -341
+a RSHIFT -341
+state 436
+a BAND -319
+a BOR -319
+a BXOR -319
+a CO -319
+a COMMA -319
+a DIV 270
+a LSHIFT -319
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -319
+a PLUS 267
+a POW 272
+a RB -319
+a RP -319
+a RPP -319
+a RSHIFT -319
+state 437
+a BAND -351
+a BOR -351
+a BXOR -351
+a CO -351
+a COMMA -351
+a DIV -351
+a LSHIFT -351
+a MINUS -351
+a MOD -351
+a MUL -351
+a NEWLINE -351
+a PLUS -351
+a POW -351
+a RB -351
+a RP -351
+a RPP -351
+a RSHIFT -351
+state 438
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -61
+a COMMA -61
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -61
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 439
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -62
+a COMMA -62
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -62
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 440
+a APO 530
+state 441
+a CO -82
+a NEWLINE -82
+state 442
+a COMMA 531
+state 443
+a COMMA 532
+state 444
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -92
+a COMMA 533
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -92
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 445
+a CO -111
+a NEWLINE -111
+state 446
+a CO -112
+a NEWLINE -112
+state 447
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -225
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -225
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 448
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -226
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -226
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 449
+a CO -115
+a NEWLINE -115
+state 450
+a CO -113
+a NEWLINE -113
+state 451
+a CO -114
+a NEWLINE -114
+state 452
+a CO -116
+a NEWLINE -116
+state 453
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -142
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -142
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 454
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -143
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -143
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 455
+a CO -148
+a NEWLINE -148
+state 456
+a ADDR 139
+a HL 247
+a ID 137
+a INTEGER 136
+a IX 248
+a IY 250
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 457
+a CO -120
+a NEWLINE -120
+state 458
+a CO -117
+a NEWLINE -117
+state 459
+a CO -118
+a NEWLINE -118
+state 460
+a CO -119
+a NEWLINE -119
+state 461
+a CO -123
+a NEWLINE -123
+state 462
+a CO -121
+a NEWLINE -121
+state 463
+a CO -122
+a NEWLINE -122
+state 464
+a CO -124
+a NEWLINE -124
+state 465
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -144
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -144
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 466
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -145
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -145
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 467
+a CO -149
+a NEWLINE -149
+state 468
+a CO -131
+a NEWLINE -131
+state 469
+a CO -129
+a NEWLINE -129
+state 470
+a CO -130
+a NEWLINE -130
+state 471
+a CO -132
+a NEWLINE -132
+state 472
+a CO -141
+a NEWLINE -141
+state 473
+a CO -137
+a NEWLINE -137
+state 474
+a CO -138
+a NEWLINE -138
+state 475
+a CO -139
+a NEWLINE -139
+state 476
+a CO -140
+a NEWLINE -140
+state 477
+a CO -127
+a NEWLINE -127
+state 478
+a CO -125
+a NEWLINE -125
+state 479
+a CO -126
+a NEWLINE -126
+state 480
+a CO -128
+a NEWLINE -128
+state 481
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -146
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -146
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 482
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -147
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -147
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 483
+a CO -150
+a NEWLINE -150
+state 484
+a CO -135
+a NEWLINE -135
+state 485
+a CO -133
+a NEWLINE -133
+state 486
+a CO -134
+a NEWLINE -134
+state 487
+a CO -136
+a NEWLINE -136
+state 488
+a CO -183
+a NEWLINE -183
+state 489
+a CO -185
+a NEWLINE -185
+state 490
+a CO -187
+a NEWLINE -187
+state 491
+a CO -189
+a NEWLINE -189
+state 492
+a CO -184
+a NEWLINE -184
+state 493
+a CO -186
+a NEWLINE -186
+state 494
+a CO -188
+a NEWLINE -188
+state 495
+a CO -190
+a NEWLINE -190
+state 496
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -227
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -227
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 497
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -228
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -228
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 498
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -235
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -235
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 499
+a BAND 275
+a BOR 276
+a BXOR 277
+a CO -236
+a DIV 281
+a LSHIFT 284
+a MINUS 279
+a MOD 282
+a MUL 280
+a NEWLINE -236
+a PLUS 278
+a POW 283
+a RSHIFT 285
+state 500
+a ADDR 139
+a C 534
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 249
+g pexpr 251
+state 501
+a ADDR 139
+a C 535
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 256
+g pexpr 221
+state 502
+a CO -259
+a NEWLINE -259
+state 503
+a CO -260
+a NEWLINE -260
+state 504
+a C 536
+state 505
+a C 537
+state 506
+a COMMA 538
+state 507
+a COMMA 539
+state 508
+a CO -261
+a NEWLINE -261
+state 509
+a CO -262
+a NEWLINE -262
+state 510
+a RP 540
+state 511
+a RP 541
+state 512
+a RB 542
+state 513
+a RB 543
+state 514
+a A 544
+state 515
+a A 545
+state 516
+a CO -69
+a COMMA -69
+a NEWLINE -69
+state 517
+a BAND -348
+a BOR -348
+a BXOR -348
+a DIV -348
+a LSHIFT -348
+a MINUS -348
+a MOD -348
+a MUL -348
+a PLUS -348
+a POW -348
+a RP -348
+a RSHIFT -348
+state 518
+a BAND -347
+a BOR -347
+a BXOR -347
+a DIV -347
+a LSHIFT -347
+a MINUS -347
+a MOD -347
+a MUL -347
+a PLUS -347
+a POW -347
+a RP -347
+a RSHIFT -347
+state 519
+a CO -70
+a COMMA -70
+a NEWLINE -70
+state 520
+a BAND -348
+a BOR -348
+a BXOR -348
+a DIV -348
+a LSHIFT -348
+a MINUS -348
+a MOD -348
+a MUL -348
+a PLUS -348
+a POW -348
+a RP -348
+a RSHIFT -348
+state 521
+a BAND -347
+a BOR -347
+a BXOR -347
+a DIV -347
+a LSHIFT -347
+a MINUS -347
+a MOD -347
+a MUL -347
+a PLUS -347
+a POW -347
+a RP -347
+a RSHIFT -347
+state 522
+a A 550
+state 523
+a A 551
+state 524
+a CO -75
+a COMMA -75
+a NEWLINE -75
+state 525
+a BAND -348
+a BOR -348
+a BXOR -348
+a DIV -348
+a LSHIFT -348
+a MINUS -348
+a MOD -348
+a MUL -348
+a PLUS -348
+a POW -348
+a RB -348
+a RSHIFT -348
+state 526
+a BAND -347
+a BOR -347
+a BXOR -347
+a DIV -347
+a LSHIFT -347
+a MINUS -347
+a MOD -347
+a MUL -347
+a PLUS -347
+a POW -347
+a RB -347
+a RSHIFT -347
+state 527
+a CO -76
+a COMMA -76
+a NEWLINE -76
+state 528
+a BAND -348
+a BOR -348
+a BXOR -348
+a DIV -348
+a LSHIFT -348
+a MINUS -348
+a MOD -348
+a MUL -348
+a PLUS -348
+a POW -348
+a RB -348
+a RSHIFT -348
+state 529
+a BAND -347
+a BOR -347
+a BXOR -347
+a DIV -347
+a LSHIFT -347
+a MINUS -347
+a MOD -347
+a MUL -347
+a PLUS -347
+a POW -347
+a RB -347
+a RSHIFT -347
+state 530
+a CO -81
+a NEWLINE -81
+state 531
+a HL 557
+a IX 122
+a IY 123
+g reg16i 556
+state 532
+a HL 559
+a IX 122
+a IY 123
+g reg16i 558
+state 533
+a ADDR 139
+a ID 137
+a INTEGER 136
+a LP 140
+a LPP 138
+a MINUS 135
+a PLUS 134
+g expr 560
+g pexpr 221
+state 534
+a RP 561
+state 535
+a RB 562
+state 536
+a RP 563
+state 537
+a RB 564
+state 538
+a A 565
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a L 117
+g reg8 566
+g regBCDE 107
+state 539
+a A 567
+a B 124
+a C 125
+a D 126
+a E 127
+a H 116
+a L 117
+g reg8 568
+g regBCDE 107
+state 540
+a CO -37
+a NEWLINE -37
+state 541
+a CO -39
+a NEWLINE -39
+state 542
+a CO -38
+a NEWLINE -38
+state 543
+a CO -40
+a NEWLINE -40
+state 544
+a CO -41
+a NEWLINE -41
+state 545
+a CO -43
+a NEWLINE -43
+state 546
+a CO -71
+a COMMA -71
+a NEWLINE -71
+state 547
+a CO -72
+a COMMA -72
+a NEWLINE -72
+state 548
+a CO -73
+a COMMA -73
+a NEWLINE -73
+state 549
+a CO -74
+a COMMA -74
+a NEWLINE -74
+state 550
+a CO -42
+a NEWLINE -42
+state 551
+a CO -44
+a NEWLINE -44
+state 552
+a CO -77
+a COMMA -77
+a NEWLINE -77
+state 553
+a CO -78
+a COMMA -78
+a NEWLINE -78
+state 554
+a CO -79
+a COMMA -79
+a NEWLINE -79
+state 555
+a CO -80
+a COMMA -80
+a NEWLINE -80
+state 556
+a CO -94
+a NEWLINE -94
+state 557
+a CO -96
+a NEWLINE -96
+state 558
+a CO -95
+a NEWLINE -95
+state 559
+a CO -97
+a NEWLINE -97
+state 560
+a BAND 264
+a BOR 265
+a BXOR 266
+a CO -93
+a DIV 270
+a LSHIFT 273
+a MINUS 268
+a MOD 271
+a MUL 269
+a NEWLINE -93
+a PLUS 267
+a POW 272
+a RSHIFT 274
+state 561
+a CO -251
+a NEWLINE -251
+state 562
+a CO -252
+a NEWLINE -252
+state 563
+a CO -253
+a NEWLINE -253
+state 564
+a CO -254
+a NEWLINE -254
+state 565
+a CO -255
+a NEWLINE -255
+state 566
+a CO -257
+a NEWLINE -257
+state 567
+a CO -256
+a NEWLINE -256
+state 568
+a CO -258
+a NEWLINE -258

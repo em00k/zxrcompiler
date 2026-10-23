@@ -1,0 +1,6 @@
+cast_const_to_int.bas:2: warning: [W120] Conversion may lose significant digits
+cast_const_to_int.bas:4: warning: [W120] Conversion may lose significant digits
+cast_const_to_int.bas:6: warning: [W120] Conversion may lose significant digits
+cast_const_to_int.bas:8: warning: [W150] Variable 'r_int' is never used
+cast_const_to_int.bas:9: warning: [W150] Variable 'r_long' is never used
+cast_const_to_int.bas:10: warning: [W150] Variable 'r_ulong' is never used

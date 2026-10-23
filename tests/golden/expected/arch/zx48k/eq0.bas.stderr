@@ -1,0 +1,4 @@
+eq0.bas:2: warning: [W100] Using default implicit type 'float' for 'b'
+eq0.bas:2: warning: [W100] Using default implicit type 'float' for 'c'
+eq0.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'a'
+eq0.bas:2: warning: [W150] Variable 'a' is never used

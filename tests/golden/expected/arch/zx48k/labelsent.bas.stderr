@@ -1,0 +1,2 @@
+labelsent.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+labelsent.bas:3: warning: [W100] Using default implicit type 'float' for 'b'

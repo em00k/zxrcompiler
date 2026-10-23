@@ -1,0 +1,2 @@
+ltee9.bas:9: warning: [W100] Using default implicit type 'long' for 'c'
+ltee9.bas:9: warning: [W150] Variable 'c' is never used

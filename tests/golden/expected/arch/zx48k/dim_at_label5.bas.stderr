@@ -1,0 +1,1 @@
+dim_at_label5.bas:3: error: Circular dependency between 'x' and 'x'

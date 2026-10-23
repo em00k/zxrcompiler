@@ -1,0 +1,3 @@
+db256.asm:3: warning: [W200] Value will be truncated
+db256.asm:4: warning: [W200] Value will be truncated
+db256.asm:6: warning: [W200] Value will be truncated

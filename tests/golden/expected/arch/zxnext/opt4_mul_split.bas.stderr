@@ -1,0 +1,4 @@
+opt4_mul_split.bas:5: warning: [W150] Parameter 'x' is never used
+opt4_mul_split.bas:5: warning: [W150] Parameter 'w' is never used
+opt4_mul_split.bas:5: warning: [W150] Parameter 'h' is never used
+opt4_mul_split.bas:6: warning: [W190] Function 'Blit' should return a value

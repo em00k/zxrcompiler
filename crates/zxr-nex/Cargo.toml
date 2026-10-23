@@ -1,0 +1,7 @@
+[package]
+name = "zxr-nex"
+description = "Writes ZX Spectrum Next .nex files from a NextBuild .cfg description"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true

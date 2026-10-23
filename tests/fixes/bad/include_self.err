@@ -1,0 +1,2 @@
+include_self.bas:2: warning: Recursive inclusion
+include_self.bas:2: error: Recursive inclusion of 'include_self.bas' does not end

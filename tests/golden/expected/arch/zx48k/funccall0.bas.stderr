@@ -1,0 +1,2 @@
+funccall0.bas:2: warning: [W100] Using default implicit type 'float' for 'x'
+funccall0.bas:2: warning: [W150] Parameter 'x' is never used

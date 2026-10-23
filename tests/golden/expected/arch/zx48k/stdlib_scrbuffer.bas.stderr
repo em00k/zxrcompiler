@@ -1,0 +1,6 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/scrbuffer.bas:43: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scrbuffer.bas:74: warning: [W150] Parameter 'addr' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/scrbuffer.bas:26: warning: [W190] Function 'GetScreenBufferAddr' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/scrbuffer.bas:44: warning: [W190] Function 'SetScreenBufferAddr' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/scrbuffer.bas:57: warning: [W190] Function 'GetAttrBufferAddr' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/scrbuffer.bas:75: warning: [W190] Function 'SetAttrBufferAddr' should return a value

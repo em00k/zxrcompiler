@@ -1,0 +1,10 @@
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:27: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:27: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:65: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:65: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:65: warning: [W150] Parameter 'value' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:101: warning: [W160] FUNCTION 'attraddr' declared as FASTCALL with 2 parameters
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:101: warning: [W150] Parameter 'row' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:101: warning: [W150] Parameter 'col' is never used
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:28: warning: [W190] Function 'attr' should return a value
+/zxbasic/src/lib/arch/zx48k/stdlib/attr.bas:102: warning: [W190] Function 'attraddr' should return a value

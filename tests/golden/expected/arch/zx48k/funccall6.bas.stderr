@@ -1,0 +1,12 @@
+funccall6.bas:1: warning: [W100] Using default implicit type 'float' for 'a'
+funccall6.bas:1: warning: [W100] Using default implicit type 'float' for 'b'
+funccall6.bas:2: warning: [W100] Using default implicit type 'float' for 'SNETopen'
+funccall6.bas:1: warning: [W150] Parameter 'x' is never used
+funccall6.bas:1: warning: [W150] Parameter 'n' is never used
+funccall6.bas:1: warning: [W150] Parameter 'a' is never used
+funccall6.bas:1: warning: [W150] Parameter 'b' is never used
+funccall6.bas:6: error: 'SNETcurrMPoint' is neither an array nor a function.
+funccall6.bas:6: warning: [W100] Using default implicit type 'float' for 'flags'
+funccall6.bas:6: error: Type Error: Function must return a numeric value, not a string
+funccall6.bas:4: warning: [W150] Parameter 'mode' is never used
+funccall6.bas:11: warning: [W100] Using default implicit type 'float' for 'SNETcurrMPoint'

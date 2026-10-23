@@ -1,0 +1,3 @@
+func0.bas:5: warning: Using default implicit type 'float' for 'f'
+func0.bas:4: warning: Function 'f' should return a value
+func0.bas:4: warning: Function 'f' is never called and has been ignored

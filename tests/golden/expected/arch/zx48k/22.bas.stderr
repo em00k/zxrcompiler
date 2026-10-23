@@ -1,0 +1,2 @@
+22.bas:2: warning: [W100] Using default implicit type 'byte' for 'a'
+22.bas:2: warning: [W150] Variable 'a' is never used

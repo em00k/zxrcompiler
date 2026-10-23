@@ -1,0 +1,2 @@
+opt2_label_ref_in_func1.bas:10: warning: [W180] Unreachable code
+opt2_label_ref_in_func1.bas:2: warning: [W170] Function 'test2' is never called and has been ignored

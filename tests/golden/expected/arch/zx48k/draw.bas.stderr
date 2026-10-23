@@ -1,0 +1,2 @@
+draw.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+draw.bas:5: warning: [W100] Using default implicit type 'float' for 'b'

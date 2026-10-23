@@ -1,0 +1,2 @@
+slice2.bas:9: warning: [W150] Parameter 'y' is never used
+slice2.bas:15: warning: [W150] Variable 'a' is never used

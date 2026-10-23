@@ -1,0 +1,2 @@
+opt2_func_call.bas:14: warning: [W170] Function 'c3' is never called and has been ignored
+opt2_func_call.bas:19: warning: [W170] Function 'c2' is never called and has been ignored

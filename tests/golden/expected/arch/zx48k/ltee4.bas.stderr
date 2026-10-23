@@ -1,0 +1,3 @@
+ltee4.bas:8: warning: [W150] Parameter 'hsY' is never used
+ltee4.bas:4: warning: [W190] Function 'hsGetName' should return a value
+ltee4.bas:2: warning: [W150] Variable 'hsName' is never used

@@ -1,0 +1,3 @@
+opt3_xorxor.bas:5: warning: [W100] Using default implicit type 'ubyte' for 'push'
+opt3_xorxor.bas:6: warning: [W100] Using default implicit type 'ubyte' for 'suck'
+opt3_xorxor.bas:7: warning: [W100] Using default implicit type 'ubyte' for 'paso'

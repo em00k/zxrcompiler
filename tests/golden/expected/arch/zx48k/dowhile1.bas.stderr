@@ -1,0 +1,2 @@
+dowhile1.bas:1: warning: [W110] Condition is always True
+dowhile1.bas:1: warning: [W130] Empty loop

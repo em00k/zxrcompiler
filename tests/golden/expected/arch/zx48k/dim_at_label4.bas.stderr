@@ -1,0 +1,6 @@
+dim_at_label4.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+dim_at_label4.bas:4: warning: [W100] Using default implicit type 'float' for 'b'
+dim_at_label4.bas:5: warning: [W100] Using default implicit type 'float' for 'c'
+dim_at_label4.bas:3: error: Circular dependency between 'b' and 'a'
+dim_at_label4.bas:3: error: Circular dependency between 'a' and 'c'
+dim_at_label4.bas:4: error: Circular dependency between 'c' and 'b'

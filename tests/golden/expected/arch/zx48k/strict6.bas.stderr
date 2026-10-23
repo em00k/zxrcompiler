@@ -1,0 +1,2 @@
+strict6.bas:4: error: strict mode: missing type declaration for 'a'
+strict6.bas:5: error: strict mode: missing type declaration for 'b'

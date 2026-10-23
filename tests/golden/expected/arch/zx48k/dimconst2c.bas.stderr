@@ -1,0 +1,4 @@
+dimconst2c.bas:2: warning: [W100] Using default implicit type 'float' for 'q'
+dimconst2c.bas:5: warning: [W100] Using default implicit type 'ubyte' for 'Map'
+dimconst2c.bas:2: warning: [W190] Function 'q' should return a value
+dimconst2c.bas:2: warning: [W150] Variable 'q' is never used

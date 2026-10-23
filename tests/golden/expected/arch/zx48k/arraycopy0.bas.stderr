@@ -1,0 +1,2 @@
+arraycopy0.bas:6: warning: [W100] Using default implicit type 'ubyte' for 'a'
+arraycopy0.bas:6: warning: [W150] Variable 'a' is never used

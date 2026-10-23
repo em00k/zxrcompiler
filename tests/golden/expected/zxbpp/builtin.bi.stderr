@@ -1,0 +1,3 @@
+builtin.bi:5: warning: [W520] missing whitespace after macro name
+builtin.bi:16: warning: [W500] builtin macro "__FILE__" redefined
+builtin.bi:17: warning: [W500] builtin macro "__LINE__" redefined

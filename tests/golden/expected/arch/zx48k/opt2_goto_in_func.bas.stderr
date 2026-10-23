@@ -1,0 +1,3 @@
+opt2_goto_in_func.bas:10: warning: [W180] Unreachable code
+opt2_goto_in_func.bas:2: warning: [W170] Function 'test2' is never called and has been ignored
+opt2_goto_in_func.bas:7: warning: [W170] Function 'test' is never called and has been ignored

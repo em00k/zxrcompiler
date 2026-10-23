@@ -1,0 +1,4 @@
+45.bas:2: warning: [W100] Using default implicit type 'float' for 'test'
+45.bas:6: warning: [W100] Using default implicit type 'ubyte' for 'a'
+45.bas:6: warning: [W190] Function 'test' should return a value
+45.bas:6: warning: [W150] Variable 'a' is never used

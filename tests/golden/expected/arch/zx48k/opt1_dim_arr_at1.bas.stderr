@@ -1,0 +1,3 @@
+opt1_dim_arr_at1.bas:7: warning: [W920] '@a' is the address of the array descriptor, not its data. Since 1.18.3 write '@a(0,0)' for the address of the first element
+opt1_dim_arr_at1.bas:8: warning: [W920] '@b' is the address of the array descriptor, not its data. Since 1.18.3 write '@b(0,0)' for the address of the first element
+opt1_dim_arr_at1.bas:5: warning: [W150] Variable 'c' is never used

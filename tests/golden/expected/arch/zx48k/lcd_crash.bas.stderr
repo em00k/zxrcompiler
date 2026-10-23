@@ -1,0 +1,8 @@
+lcd_crash.bas:8: warning: [W150] Parameter 'x' is never used
+lcd_crash.bas:8: warning: [W150] Parameter 'y' is never used
+lcd_crash.bas:8: warning: [W150] Parameter 'a' is never used
+lcd_crash.bas:8: warning: [W150] Parameter 'b' is never used
+lcd_crash.bas:8: warning: [W150] Parameter 'addr' is never used
+lcd_crash.bas:11: warning: [W150] Parameter 'x' is never used
+lcd_crash.bas:11: warning: [W150] Parameter 'y' is never used
+lcd_crash.bas:11: warning: [W150] Parameter 'tile' is never used

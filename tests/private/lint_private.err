@@ -1,0 +1,1 @@
+lint_private.bas:3: warning: [W930] 'Inner' is only called from its own CODEBANK 1. Declared PRIVATE it would be called directly, with no trampoline

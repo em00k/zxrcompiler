@@ -1,0 +1,2 @@
+ifemptylabel2.bas:2: warning: [W110] Condition is always True
+ifemptylabel2.bas:7: warning: [W110] Condition is always False

@@ -1,0 +1,2 @@
+rnd.bas:3: warning: [W100] Using default implicit type 'float' for 'a'
+rnd.bas:3: warning: [W150] Variable 'a' is never used

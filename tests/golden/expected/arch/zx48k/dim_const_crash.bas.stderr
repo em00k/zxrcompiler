@@ -1,0 +1,4 @@
+dim_const_crash.bas:2: warning: [W100] Using default implicit type 'float' for 'MHEIGHT'
+dim_const_crash.bas:2: error: Initializer expression is not constant.
+dim_const_crash.bas:3: warning: [W100] Using default implicit type 'float' for 'MAXMOBS'
+dim_const_crash.bas:3: error: Array bounds must be constants

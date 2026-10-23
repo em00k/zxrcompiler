@@ -1,0 +1,4 @@
+opt3_atohl_a.bas:3: warning: [W160] SUB 'putTile10x8Box' declared as FASTCALL with 3 parameters
+opt3_atohl_a.bas:2: warning: [W150] Parameter 'dir1' is never used
+opt3_atohl_a.bas:2: warning: [W150] Parameter 'd1' is never used
+opt3_atohl_a.bas:2: warning: [W150] Parameter 'd2' is never used

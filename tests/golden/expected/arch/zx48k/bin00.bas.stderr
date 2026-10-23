@@ -1,0 +1,4 @@
+bin00.bas:2: warning: [W100] Using default implicit type 'ubyte' for 'c'
+bin00.bas:3: warning: [W100] Using default implicit type 'uinteger' for 'd'
+bin00.bas:2: warning: [W150] Variable 'c' is never used
+bin00.bas:3: warning: [W150] Variable 'd' is never used

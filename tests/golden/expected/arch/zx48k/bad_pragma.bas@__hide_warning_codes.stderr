@@ -1,0 +1,3 @@
+bad_pragma.bas:2: warning: Ignoring unknown pragma 'BAD_PRAGMA'
+bad_pragma.bas:4: warning: Ignoring unknown pragma 'BAD_PRAGMA'
+bad_pragma.bas:6: warning: Ignoring unknown pragma 'BAD_PRAGMA'

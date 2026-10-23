@@ -1,0 +1,4 @@
+dimconst.bas:5: warning: [W100] Using default implicit type 'float' for 'p'
+dimconst.bas:4: warning: [W190] Function 'p' should return a value
+dimconst.bas:5: warning: [W150] Variable 'q' is never used
+dimconst.bas:2: warning: [W150] Variable 'MapPtr' is never used

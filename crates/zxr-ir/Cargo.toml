@@ -1,0 +1,10 @@
+[package]
+name = "zxr-ir"
+description = "The intermediate code between the front end and the backend: quads"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+zxr-core = { path = "../zxr-core" }

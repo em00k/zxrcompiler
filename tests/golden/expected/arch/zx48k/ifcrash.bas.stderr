@@ -1,0 +1,7 @@
+ifcrash.bas:1: warning: [W100] Using default implicit type 'float' for 'KEYSPACE'
+ifcrash.bas:2: warning: [W100] Using default implicit type 'float' for 'keyspacepressed'
+ifcrash.bas:3: warning: [W100] Using default implicit type 'float' for 'nfires'
+ifcrash.bas:3: warning: [W100] Using default implicit type 'float' for 'fire'
+ifcrash.bas:4: warning: [W100] Using default implicit type 'float' for 'nsfx'
+ifcrash.bas:6: warning: [W100] Using default implicit type 'ubyte' for 'a'
+ifcrash.bas:6: warning: [W150] Variable 'a' is never used

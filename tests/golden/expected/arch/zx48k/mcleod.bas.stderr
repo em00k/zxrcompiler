@@ -1,0 +1,2 @@
+mcleod.bas:1: warning: [W100] Using default implicit type 'long' for 'a'
+mcleod.bas:1: warning: [W150] Variable 'a' is never used

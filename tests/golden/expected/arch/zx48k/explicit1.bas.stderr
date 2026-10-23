@@ -1,0 +1,2 @@
+explicit1.bas:3: error: Undeclared variable "b"
+explicit1.bas:3: warning: [W100] Using default implicit type 'float' for 'b'

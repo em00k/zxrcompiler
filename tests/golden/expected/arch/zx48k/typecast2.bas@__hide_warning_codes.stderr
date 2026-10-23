@@ -1,0 +1,2 @@
+typecast2.bas:1: warning: Parameter 'c' is never used
+typecast2.bas:10: error: Cannot convert string to a value. Use VAL() function

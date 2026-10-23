@@ -1,0 +1,2 @@
+opt2_rnd_opt.bas:2: warning: [W100] Using default implicit type 'float' for 'c'
+opt2_rnd_opt.bas:2: warning: [W150] Variable 'c' is never used

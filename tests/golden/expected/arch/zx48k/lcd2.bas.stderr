@@ -1,0 +1,2 @@
+lcd2.bas:10: warning: [W100] Using default implicit type 'float' for 'adr'
+lcd2.bas:10: error: Cannot convert string to a value. Use VAL() function

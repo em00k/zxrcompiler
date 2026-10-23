@@ -1,0 +1,7 @@
+[package]
+name = "zxr-re"
+description = "A small backtracking regular expression matcher with Python `re` semantics"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true

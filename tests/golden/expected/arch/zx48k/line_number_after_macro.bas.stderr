@@ -1,0 +1,2 @@
+line_number_after_macro.bas:8: warning: [W100] Using default implicit type 'float' for 'a'
+line_number_after_macro.bas:11: error: Syntax Error. Unexpected token '+' <PLUS>

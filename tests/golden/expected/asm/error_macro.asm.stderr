@@ -1,0 +1,2 @@
+error_macro.asm:1: warning: this is a warning
+error_macro.asm:2: error: this is an error

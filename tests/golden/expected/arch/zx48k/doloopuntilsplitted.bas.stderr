@@ -1,0 +1,5 @@
+doloopuntilsplitted.bas:3: warning: [W100] Using default implicit type 'ubyte' for 'M'
+doloopuntilsplitted.bas:3: error: Syntax Error. Unexpected token 'LOOP' <LOOP>
+doloopuntilsplitted.bas:3: warning: [W100] Using default implicit type 'ubyte' for 'i'
+doloopuntilsplitted.bas:5: error: Syntax Error. Unexpected token 'LET' <LET>
+doloopuntilsplitted.bas:5: error: Syntax Error. Unexpected token 'LOOP' <LOOP>

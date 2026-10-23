@@ -1,0 +1,2 @@
+params_implicit.bas:2: warning: [W100] Using default implicit type 'float' for 'y'
+params_implicit.bas:2: warning: [W150] Parameter 'y' is never used

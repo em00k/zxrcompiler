@@ -1,0 +1,3 @@
+abs.bas:1: warning: Redundant operation ABS for unsigned value
+abs.bas:1: warning: [W100] Using default implicit type 'ubyte' for 'a'
+abs.bas:2: warning: Redundant operation ABS for unsigned value

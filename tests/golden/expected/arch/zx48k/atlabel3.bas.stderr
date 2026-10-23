@@ -1,0 +1,5 @@
+atlabel3.bas:2: warning: [W100] Using default implicit type 'float' for 'test'
+atlabel3.bas:2: warning: [W100] Using default implicit type 'uinteger' for 'a'
+atlabel3.bas:6: warning: [W100] Using default implicit type 'float' for 'test2'
+atlabel3.bas:2: warning: [W190] Function 'test' should return a value
+atlabel3.bas:2: warning: [W150] Variable 'a' is never used
