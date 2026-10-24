@@ -97,10 +97,10 @@ pub fn relative_to_cwd(name: &str) -> String {
 
 /// `os.path.dirname`.
 pub fn dirname(name: &str) -> String {
-    match name.rfind('/') {
+    match name.rfind(is_sep) {
         Some(at) => {
             let head = &name[..=at];
-            let trimmed = head.trim_end_matches('/');
+            let trimmed = head.trim_end_matches(is_sep);
             if trimmed.is_empty() { head.to_string() } else { trimmed.to_string() }
         }
         None => String::new(),
@@ -109,18 +109,25 @@ pub fn dirname(name: &str) -> String {
 
 /// `os.path.basename`.
 pub fn basename(name: &str) -> String {
-    name[name.rfind('/').map_or(0, |at| at + 1)..].to_string()
+    name[name.rfind(is_sep).map_or(0, |at| at + 1)..].to_string()
 }
 
 /// `os.path.join(a, b)`.
 pub fn join(a: &str, b: &str) -> String {
-    if b.starts_with('/') || has_drive(b) || a.is_empty() {
+    if b.starts_with(is_sep) || has_drive(b) || a.is_empty() {
         b.to_string()
-    } else if a.ends_with('/') {
+    } else if a.ends_with(is_sep) {
         format!("{a}{b}")
     } else {
         format!("{a}/{b}")
     }
+}
+
+/// A directory separator: `/`, and on Windows `\` as well, as Python's
+/// `ntpath` has it. NextBuild on Windows names the source file
+/// `C:\...\Game.bas`, and its own includes are looked for beside it.
+fn is_sep(c: char) -> bool {
+    c == '/' || (cfg!(windows) && c == '\\')
 }
 
 #[cfg(test)]

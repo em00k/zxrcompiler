@@ -1,10 +1,12 @@
 # Changelog
 
 What changed in zxrcompiler, the Rust port of the NextBuild fork of
-Boriel's ZX BASIC compiler. Fixes are made here only: the Python compiler
-(`1.18.7-nb12`, pinned in `oracle.lock`) still has the bugs listed under
-"Fixed". A program that does not meet one of them builds byte for byte as
-the Python compiler builds it. Detail of every difference is in
+Boriel's ZX BASIC compiler. Fixes are made here only. Most entries under
+"Fixed" are bugs the Python compiler (`1.18.7-nb12`, pinned in
+`oracle.lock`) still has; the Windows paths, the 127-bit and `DEFS` limits
+and the `zxr-asm` tests are this compiler's own, and each entry says which.
+A program that does not meet one of them builds byte for byte as the Python
+compiler builds it. Detail of every difference is in
 [docs/quirks.md](docs/quirks.md); a summary for upstream in
 [docs/upstream-notes.md](docs/upstream-notes.md).
 
@@ -13,10 +15,16 @@ harness does: `ZXR_ORACLE_OPTIMISER=1` (the flow optimiser),
 `ZXR_ORACLE_RUNTIME=1` (the runtime library), `ZXR_ORACLE_DIAGNOSTICS=1`
 (warnings, kept variables and routines, file names in errors).
 
-## Unreleased
+## 0.2.0 (2026-10-24)
+
+Records, `PRIVATE` routines, `--sld` debug data, drop-in builds for Linux,
+Windows and macOS, and the fixes below, among them the string bug that
+corrupted the heap.
 
 ### Added
 
+- NextBuild's build log names the compiler `zxrcompiler 0.2.0`, in place of
+  `1.18.7-nb12-zxr0.1.0`.
 - Drop-in directories for Linux (x86-64, static musl), Windows (x86-64) and
   macOS (universal: Intel and Apple Silicon), with an archive of each:
   `cargo xtask dist --all`, cross-built in the cargo-zigbuild container.
@@ -41,29 +49,40 @@ harness does: `ZXR_ORACLE_OPTIMISER=1` (the flow optimiser),
 
 ### Fixed
 
-- On Windows: paths are handled as `C:/dir/file` throughout, so a local
-  `#include` is found beside the file that includes it, and messages and
-  `#line` markers name files without the `\\?\` prefix; a drive letter in
-  `-I` (`C:\NextBuild\Scripts`) is kept with its path, where the Python
-  compiler splits it at the colon.
+- On Windows (this compiler's own): `\` separates directories as well as
+  `/`, so a local `#include` is found beside a source file named
+  `C:\...\Game.bas`, as NextBuild names it, whatever the current directory;
+  paths are kept as `C:/dir/file`, so messages and `#line` markers carry no
+  `\\?\` prefix. A drive letter in `-I` (`C:\NextBuild\Scripts`) is kept
+  with its path, where the Python compiler splits it at the colon.
+- A string that did not fit in the heap corrupted it, and the program
+  crashed some time later: `k$ = "/" + k$` with no room for the result made
+  `k$` the literal `"/"`, which the next assignment freed into the program;
+  `a$ = "..."` with no room for the copy made `a$` name the literal itself.
+  The heap is 1 K in NextBuild and fragments, so this came of ordinary
+  string work. Now a concatenation that does not fit gives `""`, and an
+  assignment that does not fit leaves `a$` as it was. Behind
+  `ZXR_ORACLE_RUNTIME`. `tests/fixes/string_heap.bas` with `heap_check.py`.
 - `__SWAP32` was not interrupt-safe: an interrupt during it wrote over the
   low word of an operand, and a 32-bit or fixed-point division, modulo,
   subtraction or comparison came out wrong now and then. Found by
   NextTestSuite under a 15625 Hz interrupt.
 - PEEK(FIXED, …), PEEK(FLOAT, …) and POKE FLOAT at a constant address
-  (`@g(0) + 16`), and a 32-bit or FIXED PEEK as the second operand of an
-  operation, read or wrote garbage and left the stack a word out, at every
-  `-O`.
+  (`@g(0) + 16`), and a FIXED PEEK as the second operand of an operation,
+  read or wrote garbage and left the stack a word out, at every `-O`. The
+  32-bit operand loader has the same gap, now closed, but no BASIC program
+  has been found that reaches it.
 - Arithmetic on the address of a local or parameter array's element
   (`@r(1) + 1`) ended in "Initializer expression is not constant".
 - `arr(i) = @label` with an index known only at run time stored junk and
-  left the stack a word out, at every `-O`, in global, local and parameter
-  arrays.
+  left the stack a word out, at every `-O`: in global UBYTE and UINTEGER
+  arrays, and in local and parameter arrays of every width. (A global ULONG
+  array was right.)
 - `-O3`/`-O4`: a store to `x` did not change what the optimiser knew of the
   word at `x - 1`, so `x = 1 - x : F(1 - x)` passed the old `x`.
 - `-O3`/`-O4`: a store through a pointer left what was known of every
-  variable believed; `rlca`, `rrca`, `rlc` and `rrc` were taken to leave the
-  carry alone; `mul d, e` was taken to change the flags. Each could delete
+  variable believed; `rlca` and `rrca` were taken to leave the carry alone
+  (`rlc r` and `rrc r` were not: the model forgets everything after them); `mul d, e` was taken to change the flags. Each could delete
   an instruction that was needed.
 - A global variable or array only asm uses, and a SUB or FUNCTION only asm
   names (`call ._Foo`, `jp ._Foo`, `dw ._Foo`), were removed above `-O1`,
@@ -77,12 +96,17 @@ harness does: `ZXR_ORACLE_OPTIMISER=1` (the flow optimiser),
   `Undefined GLOBAL label`, a reference across banks) named the last file
   read instead of its own.
 - Input that ended a tool with a stack overflow, a panic, an allocation of
-  all memory, a silent zero or no end is an error: EQUs defined in terms of
-  each other, a file that includes itself, an array over 64K, a `DEFS`
-  count beyond any memory, expressions and literals over 127 bits. A NEX
+  all memory or no end is an error: EQUs defined in terms of each other
+  (Python: `RecursionError`), a file that includes itself (no end in either),
+  an array over 64K and a huge `DEFS` count (Python: `MemoryError`). A NEX
   bank outside 0-111 is an error instead of being left out of the file
-  without a message.
-- The unit tests of `zxr-asm` compile again.
+  without a message, as both did.
+- This compiler's own: values are 127-bit, and an expression or literal
+  beyond that is an error, where earlier builds of it gave a wrong number
+  without a word (`$1000…0` loaded as 255, an overflowing `DEFW` as 0).
+  Python computes such values exactly; this is a limit, not a Python bug.
+  So is the ceiling of 2^24 on a `DEFS` count.
+- This compiler's own: the unit tests of `zxr-asm` compile again.
 
 ### Docs
 
@@ -109,7 +133,7 @@ Fixed in the Python fork and so in the port, which was built against
   `uByte * constant` multiplied by whatever D held. nb10.
 - `-O2`+: `IF F() THEN unused = 1` dropped the call to `F()`. nb10.
 - `-O3`+: output differed from run to run unless `PYTHONHASHSEED` was set.
-  nb11.
+  Both outputs were correct; builds could not be compared. nb11.
 - `-O3`+: peephole rule 102 dropped `ld h, (ix+5)` before `ld h, (hl)`, as
   in `WHILE k <> 0 AND peek(p) <> 0`. nb12.
 - `PEEK(ulong, NAME)` and `PEEK(long, NAME)` with `NAME` a `CONST` read
@@ -120,6 +144,6 @@ Not in the Python compiler:
 - Input on which it ends in a traceback is a one-line error, exit 1 (the
   table in [docs/quirks.md](docs/quirks.md)); an internal fault in the
   backend is `zxbc: internal error in the backend: ...`, exit 70.
-- A path of some 480 basic blocks no longer ends the `-O3`/`-O4` optimiser
-  in `RecursionError`; a float constant that is an infinity is an internal
+- A long path of basic blocks (600 in a test; where Python gives up depends
+  on its stack) no longer ends the `-O3`/`-O4` optimiser in `RecursionError`; a float constant that is an infinity is an internal
   error where Python loops for ever.

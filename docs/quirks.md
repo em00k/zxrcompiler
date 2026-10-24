@@ -256,8 +256,9 @@ Where the port differs:
   (`Bits32.get_oper` has had it since nb12), `Float.get_oper` loads an
   address only from a variable, and `_storef` takes only a number, `_name`
   or `.label`. Each pops the address from the stack, where nothing put it.
-  The same is true of a 32-bit or FIXED PEEK as the second operand of an
-  operation. PEEK(FIXED, …), PEEK(FLOAT, …) and POKE FLOAT were wrong at
+  The same is true of a FIXED PEEK as the second operand of an operation.
+  `Bits32.get_oper` had the same gap for the second operand, closed here
+  too, though no BASIC program found reaches it. PEEK(FIXED, …), PEEK(FLOAT, …) and POKE FLOAT were wrong at
   every `-O`, and the stack off by a word; the port loads the address. No
   program the oracle compiles correctly changes. The fields of a global
   record are reached this way. `tests/fixes/const_address.bas`.
@@ -372,8 +373,11 @@ with which they are made after all and output compares equal again.
   everything else on a store through an unknown pointer, and what unknown
   pointers point at on any store. `tests/fixes/pointer_alias.bas`. Cost on
   NextBench: 168 bytes in 92 K.
-- **`rlca`, `rrca`, `rlc`, `rrc`** leave the carry as it was in the oracle's
-  model, and `rl`/`rr` then rotate in the wrong bit.
+- **`rlca` and `rrca`** leave the carry as it was in the oracle's model, and
+  `rl`/`rr` then rotate in the wrong bit. (The model's helpers for them are
+  named `rlc` and `rrc`; the CB-prefixed `rlc r` and `rrc r` never reach
+  them, and the model forgets everything after an instruction it does not
+  know.)
 - **`mul d, e`** sets Z, C and S in the oracle's model; the instruction
   preserves the flags.
 - **Overlapping addresses.** A cell is known by the text of its address,
@@ -395,8 +399,9 @@ with which they are made after all and output compares equal again.
   corpus programs or 1,139 functional cases gets there; `flow_fuzz.py` finds
   the same programs fatal on both sides.
 - **`RecursionError`.** `is_used` recurses along the flow graph, two Python
-  frames per block, so a path of some 480 blocks on which a register is
-  neither read nor written ends the oracle. The port has no such limit. The
+  frames per block, so a long path on which a register is neither read nor
+  written ends the oracle (600 blocks did in a test, 480 did not; it depends
+  on the stack). The port has no such limit. The
   deepest walk in the corpus and the functional suite at -O3 and -O4 is 29
   blocks.
 - **`simplify_arg` asks `eval`.** The port's evaluator (`pyeval.rs`) knows
@@ -430,6 +435,26 @@ check`). A routine found wrong is replaced as it is read
 (`crates/zxr-pp/src/runtime_fixes.rs`, the new text in `crates/zxr-pp/fixes/`),
 and only when the file's text is exactly the one known to be wrong. The
 harness sets `ZXR_ORACLE_RUNTIME=1`, which reads the library as it is.
+
+- **A string that does not fit corrupts the heap.** The heap is small
+  (NextBuild gives it 1,024 bytes) and fragments, so an allocation can fail
+  with plenty free in total. Two routines then return a pointer the caller
+  takes for a new block of its own:
+  `__ADDSTR` (`a$ + b$`, `strcat.asm`) returns a$, the first operand; in
+  `k$ = "/" + k$` that is the literal, and the next assignment to `k$`
+  frees it into the program, after which the free list runs through code.
+  `__STRASSIGN` (`a$ = "literal"`, `strcpy.asm`, also used by string-array
+  copies) returns the address of the source, which `__STORE_STR` stores in
+  a$: a literal again, or a block named twice, and a$'s old block is lost.
+  A program then crashes some time later, far from the cause. The port
+  returns NULL (the empty string) from `__ADDSTR`, and leaves a$ as it was
+  in `__STRASSIGN` on the Next, whose `__REALLOC` keeps the old block when
+  it cannot allocate (zx48k's frees it first, so there a$ becomes empty).
+  `tests/fixes/string_heap.bas`, run with `heap_check.py`, which walks the
+  heap: each fix alone leaves the other case corrupt or hung. There is no
+  leak besides: 300 rounds of string parameters, locals, results, slices
+  and arrays in SUBs and FUNCTIONs give all their memory back in both
+  compilers.
 
 - **`__SWAP32` is not interrupt-safe.** It moves SP up past the low word of
   the operand in the stack (`inc sp` twice) and back four instructions

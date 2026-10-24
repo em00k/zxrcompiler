@@ -23,7 +23,7 @@ Built on {DATE} from commit {COMMIT}.
 
 {PLATFORM_NOTES}
 To check it is the one in use: the build log names the compiler version
-`{BASE}-zxr{VERSION}`, and `{ZXBC} --version` prints `zxbc {VERSION}`.
+`zxrcompiler {VERSION}`, and `{ZXBC} --version` prints `zxbc {VERSION}`.
 
 **To go back** to the Python compiler, put the old `ZXBASIC=` line back.
 

@@ -51,7 +51,7 @@ four ways. Each can delete an instruction that was needed.
 | What | Detail |
 |---|---|
 | A store through a pointer does not invalidate what is known of memory | Memory is tracked by the text of an address. After `ld (hl), a` with HL unknown, everything known of every variable is still believed. `ptr = @x : x = 1 : poke ptr, 2 : result = x` gives 1 at `-O3`+. The port forgets all other facts on a store through an unknown pointer. Cost: 168 bytes in NextBench's 92 K. |
-| `rlca`, `rrca`, `rlc`, `rrc` leave the carry unchanged | A following `rl`/`rr` then rotates in the wrong bit. |
+| `rlca` and `rrca` leave the carry unchanged | A following `rl`/`rr` then rotates in the wrong bit: `rrca : rla` stored 1 for 0, `rlca : rra` 128. (The helpers are also named `rlc` and `rrc`, but the CB-prefixed `rlc r`/`rrc r` are not dispatched to them and are handled safely.) |
 | `mul d, e` sets Z, C and S | The instruction preserves all flags. |
 | Overlapping addresses | A cell is known by the text of its address with its spaces, so a store to `_x` leaves what was read from `(_x - 1)` believed. `x = 1 - x : F(1 - x)` then passes the old `x` (`-O3`+). |
 
@@ -71,13 +71,14 @@ In the backend:
 
 | What | Detail |
 |---|---|
-| PEEK(FIXED, …), PEEK(FLOAT, …) and POKE FLOAT at a constant address store or read garbage | `@g(0) + 16` is an immediate expression. `F16.get_oper` (`backend/_f16.py`) has no case for it (`_32bit.py` gained one in nb12), `Float.get_oper` (`_float.py`) loads an indirect address only from `_name`, and `_storef` takes only a number, `_name` or `.label`. Each pops the address, which nobody pushed. Also a 32-bit or FIXED PEEK as the second operand of an operation. Every `-O` level. |
+| PEEK(FIXED, …), PEEK(FLOAT, …) and POKE FLOAT at a constant address store or read garbage | `@g(0) + 16` is an immediate expression. `F16.get_oper` (`backend/_f16.py`) has no case for it (`_32bit.py` gained one in nb12), `Float.get_oper` (`_float.py`) loads an indirect address only from `_name`, and `_storef` takes only a number, `_name` or `.label`. Each pops the address, which nobody pushed. Also a FIXED PEEK as the second operand of an operation. Every `-O` level. `Bits32.get_oper` has the same gap for the second operand, but no BASIC source found reaches it. |
 | `arr(i) = @label` stores garbage | `_astore8`/`_astore16` (`backend/_array.py`) take an immediate for a constant only when it starts with `_`; a label is `#.LABEL._x`. `_pastore*` (`_parray.py`) take only numbers. Otherwise the value is popped from the stack, where nothing put it. Every `-O` level; the stack is then off by a word. |
 
 In the runtime library:
 
 | What | Detail |
 |---|---|
+| A string that does not fit corrupts the heap | When `__MEM_ALLOC` cannot find a block (a fragmented 1 K heap is enough), `__ADDSTR` (`runtime/strcat.asm`) returns its first operand, `ret z` with HL = a$, as if it were the new string: `k$ = "/" + k$` then makes k$ the literal and frees it into the program on the next assignment. `__STRASSIGN` (`runtime/strcpy.asm`) returns `&b$` when `__REALLOC` fails, and `__STORE_STR` stores it in a$. Long-standing "heap fills up and the program crashes" reports. The port returns NULL from the first and leaves a$ as it was from the second. |
 | `__SWAP32` is not interrupt-safe | `runtime/swap32.asm` moves SP past the low word of the operand in the stack and back four instructions later; an interrupt there writes its return address over it. Reversed 32-bit and fixed-point division, modulo, subtraction and comparison call it. Seen as a wrong division under a 15625 Hz interrupt. The port reads a version that only pops and pushes (it changes AF, which no routine called after it reads first). |
 
 Variables and routines that only inline asm uses:
@@ -147,7 +148,7 @@ Ten files of the NextBuild corpus reach one of these.
 | A file that `#include`s itself (without `once`) | never ends | error after 200 levels |
 | An array of more than 64K | built item by item until memory runs out | `Array 'a' is too large` |
 | A `DEFS` with an enormous count | builds the bytes | error over 2^24 |
-| `is_used` on a path of some 480 basic blocks | `RecursionError` | no limit |
+| `is_used` on a long path of basic blocks (600 in a test; the limit depends on the stack) | `RecursionError` | no limit in practice (native recursion) |
 | A float constant that is an infinity | `fp.immediate_float` loops for ever | internal error |
 
 Tests: `tests/fixes/bad/`.

@@ -7,7 +7,10 @@ lowered text with `records_test.lowered.bas`, and checks the messages for
 `records_errors.bas` against `records_errors.err`.
 
 `records_test.bas` checks itself when run; with NextBuild's far-call emulator
-(`Sources/Tests/BankedCode/run_far.py`, which needs the `z80` Python module):
+(`Sources/Tests/BankedCode/run_far.py`, which needs the `z80` Python
+module; use NextBuild's own copy, not the snapshot in `reference/corpus`,
+which predates fixes to the emulator and fails
+`tests/fixes/emulator_check.bas`):
 
 ```
 zxbc --arch=zxnext -O2 -S 32768 records_test.bas -o /tmp/r.bin -M /tmp/r.map

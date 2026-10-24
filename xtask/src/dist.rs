@@ -145,7 +145,8 @@ fn assemble(out: &std::path::Path, built: &std::path::Path, exe: &str, os: &str)
     put("src/zxbc/zxbc.py", MODULE.as_bytes())?;
     let lock = fs::read_to_string(root.join("oracle.lock")).unwrap_or_default();
     let base = lock.lines().find_map(|l| l.strip_prefix("version ")).unwrap_or("unknown").trim().to_string();
-    put("src/zxbc/version.py", format!("VERSION = \"{base}-zxr{}\"\n", env!("CARGO_PKG_VERSION")).as_bytes())?;
+    // What NextBuild prints as `ZXbasic ver`: the name and version, short.
+    put("src/zxbc/version.py", format!("VERSION = \"zxrcompiler {}\"\n", env!("CARGO_PKG_VERSION")).as_bytes())?;
 
     // The runtime and standard library, where the binary looks for them.
     let lib = root.join("lib");
@@ -205,7 +206,7 @@ fn assemble(out: &std::path::Path, built: &std::path::Path, exe: &str, os: &str)
         .replace("{EXE_NOTE}", exe_note);
     put("README.md", readme.as_bytes())?;
     let version_file = format!(
-        "zxrcompiler {version}\nplatform: {os}\ncommit: {commit}\nbuilt: {date}\ncompatible with: zxbasic {base} (the NextBuild fork), the Python compiler\nnextbuild.py sees: {base}-zxr{version}\n"
+        "zxrcompiler {version}\nplatform: {os}\ncommit: {commit}\nbuilt: {date}\ncompatible with: zxbasic {base} (the NextBuild fork), the Python compiler\nnextbuild.py shows: zxrcompiler {version}\n"
     );
     put("VERSION", version_file.as_bytes())?;
     Ok(())

@@ -8,6 +8,15 @@ const FIXES: &[(&str, &str, &str)] = &[
     // An interrupt between `inc sp` and `dec sp` writes over the low word
     // of the operand in the stack.
     ("runtime/swap32.asm", include_str!("../../../lib/arch/zxnext/runtime/swap32.asm"), include_str!("../fixes/swap32.asm")),
+    // With no memory for a$ + b$, __ADDSTR returned a$ itself as the new
+    // string: the caller then owned, and freed, a$'s block or a literal.
+    ("runtime/strcat.asm", include_str!("../../../lib/arch/zxnext/runtime/strcat.asm"), include_str!("../fixes/strcat.asm")),
+    // With no memory for a$ = b$, __STRASSIGN returned the address of b$,
+    // and the caller stored it in a$. What it returns instead depends on
+    // whether that architecture's __REALLOC kept a$'s block (zxnext) or
+    // freed it already (zx48k).
+    ("zxnext/runtime/strcpy.asm", include_str!("../../../lib/arch/zxnext/runtime/strcpy.asm"), include_str!("../fixes/strcpy_zxnext.asm")),
+    ("zx48k/runtime/strcpy.asm", include_str!("../../../lib/arch/zx48k/runtime/strcpy.asm"), include_str!("../fixes/strcpy_zx48k.asm")),
 ];
 
 /// What to read in place of `text`, the contents of `filename`.
