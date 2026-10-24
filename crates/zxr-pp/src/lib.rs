@@ -92,6 +92,29 @@ fn to_int(expr: &str) -> u128 {
     if is_digits(expr) { expr.parse().unwrap_or(u128::MAX) } else { 0 }
 }
 
+/// `-I` directories, separated by `:` as in Python. On Windows a drive
+/// letter is put back together with the path after it (`C:\Scripts`), where
+/// Python leaves `C` and `\Scripts`.
+fn split_include_path(path: &str) -> Vec<String> {
+    let parts: Vec<&str> = path.split(':').collect();
+    if !cfg!(windows) {
+        return parts.into_iter().map(String::from).collect();
+    }
+    let mut dirs = Vec::new();
+    let mut i = 0;
+    while i < parts.len() {
+        let drive = parts[i].len() == 1 && parts[i].as_bytes()[0].is_ascii_alphabetic();
+        if drive && parts.get(i + 1).is_some_and(|next| next.starts_with(['\\', '/'])) {
+            dirs.push(format!("{}:{}", parts[i], parts[i + 1]));
+            i += 2;
+        } else {
+            dirs.push(parts[i].to_string());
+            i += 1;
+        }
+    }
+    dirs
+}
+
 fn remove_spaces(x: String) -> String {
     if x.is_empty() {
         return x;
@@ -130,9 +153,9 @@ impl Resolver {
         let known = self.include_dirs(arch);
         dirs.extend(if known.is_empty() { self.include_dirs("") } else { known });
         if !self.include_path.is_empty() {
-            dirs.extend(self.include_path.split(':').map(String::from));
+            dirs.extend(split_include_path(&self.include_path));
         }
-        if fname.starts_with('/') {
+        if fname.starts_with('/') || std::path::Path::new(&fname).is_absolute() {
             if std::path::Path::new(&fname).is_file() {
                 return fname;
             }

@@ -13,6 +13,7 @@ const USAGE: &str = "\
 usage: cargo xtask <command>
 
   dist                         build dist/zxrcompiler, the drop-in directory for NextBuild
+  dist --all                   dist/zxrcompiler-{linux-x64,windows-x64,macos} and archives (Docker)
   oracle check                 verify reference/zxbasic is at the commit in oracle.lock
   lib sync | lib check         copy the runtime library from the oracle / verify the copy
   golden import                copy the functional suite's inputs from the oracle
@@ -73,6 +74,7 @@ fn main() {
     let toolchain = || Toolchain::parse(&value(&args, "--toolchain").unwrap_or_else(|| "port".into()));
     let result: Result<bool, String> = (|| match words.as_slice() {
         ["dist"] => dist::dist().map(|_| true),
+        ["dist", "--all"] => dist::dist_all().map(|_| true),
         ["oracle", "check"] => corpus::oracle_check().map(|_| true),
         ["lib", "sync"] => corpus::lib_sync().map(|_| true),
         ["lib", "check"] => corpus::lib_check(),

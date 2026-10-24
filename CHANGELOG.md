@@ -17,6 +17,10 @@ harness does: `ZXR_ORACLE_OPTIMISER=1` (the flow optimiser),
 
 ### Added
 
+- Drop-in directories for Linux (x86-64, static musl), Windows (x86-64) and
+  macOS (universal: Intel and Apple Silicon), with an archive of each:
+  `cargo xtask dist --all`, cross-built in the cargo-zigbuild container.
+- [docs/codebanks.md](docs/codebanks.md): CODEBANK as this compiler has it.
 - `--sld FILE`: source-level debug data in sjasmplus's SLD format, for
   DeZog. Breakpoints on lines of BASIC, stepping, code banks and the
   library's asm. With `ZXR_SLD=1` in the environment the file is written
@@ -37,6 +41,11 @@ harness does: `ZXR_ORACLE_OPTIMISER=1` (the flow optimiser),
 
 ### Fixed
 
+- On Windows: paths are handled as `C:/dir/file` throughout, so a local
+  `#include` is found beside the file that includes it, and messages and
+  `#line` markers name files without the `\\?\` prefix; a drive letter in
+  `-I` (`C:\NextBuild\Scripts`) is kept with its path, where the Python
+  compiler splits it at the colon.
 - `__SWAP32` was not interrupt-safe: an interrupt during it wrote over the
   low word of an operand, and a 32-bit or fixed-point division, modulo,
   subtraction or comparison came out wrong now and then. Found by

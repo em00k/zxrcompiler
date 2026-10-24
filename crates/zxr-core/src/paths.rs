@@ -34,6 +34,26 @@ fn normalise(path: &Path) -> PathBuf {
     out
 }
 
+/// On Windows, a path in the form the rest of the compiler handles, as on
+/// other systems: `C:/dir/file`, with `/` and without the `\\?\` prefix
+/// `canonicalize` puts on it. Windows takes `/` as well as `\`.
+fn portable(path: String) -> String {
+    if !cfg!(windows) {
+        return path;
+    }
+    let path = match path.strip_prefix(r"\\?\UNC\") {
+        Some(share) => format!(r"\\{share}"),
+        None => path.strip_prefix(r"\\?\").map_or(path.clone(), String::from),
+    };
+    path.replace('\\', "/")
+}
+
+/// `C:/...` or `C:\...`: absolute on Windows, where it does not start with `/`.
+fn has_drive(name: &str) -> bool {
+    let b = name.as_bytes();
+    cfg!(windows) && b.len() >= 3 && b[0].is_ascii_alphabetic() && b[1] == b':' && (b[2] == b'/' || b[2] == b'\\')
+}
+
 /// `os.path.realpath(os.path.expanduser(name))`: absolute, with symbolic links
 /// resolved as far as the path exists. An empty name is the current directory.
 pub fn absolute(name: &str) -> String {
@@ -52,14 +72,14 @@ pub fn absolute(name: &str) -> String {
             for part in rest.iter().rev() {
                 out.push(part);
             }
-            return out.to_string_lossy().into_owned();
+            return portable(out.to_string_lossy().into_owned());
         }
         match existing.file_name() {
             Some(name) => {
                 rest.push(name.to_os_string());
                 existing.pop();
             }
-            None => return path.to_string_lossy().into_owned(),
+            None => return portable(path.to_string_lossy().into_owned()),
         }
     }
 }
@@ -94,7 +114,7 @@ pub fn basename(name: &str) -> String {
 
 /// `os.path.join(a, b)`.
 pub fn join(a: &str, b: &str) -> String {
-    if b.starts_with('/') || a.is_empty() {
+    if b.starts_with('/') || has_drive(b) || a.is_empty() {
         b.to_string()
     } else if a.ends_with('/') {
         format!("{a}{b}")
