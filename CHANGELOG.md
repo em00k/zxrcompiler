@@ -15,6 +15,17 @@ harness does: `ZXR_ORACLE_OPTIMISER=1` (the flow optimiser),
 `ZXR_ORACLE_RUNTIME=1` (the runtime library), `ZXR_ORACLE_DIAGNOSTICS=1`
 (warnings, kept variables and routines, file names in errors).
 
+## 0.2.1 (2026-11-08)
+
+### Fixed
+
+- `RND` returned the same number on every call after the first, on the Next.
+  The fork's nb10 moved its seed out of the system variables into the
+  program, but left the routine starting from the constant `$C0DE` that had
+  been the operand holding the seed. A seed of 0 from `RANDOMIZE` (the
+  frame counter at 0) no longer leaves `RND` at 0 for ever either. Behind
+  `ZXR_ORACLE_RUNTIME`. `tests/fixes/rnd_repeat.bas`.
+
 ## 0.2.0 (2026-10-24)
 
 Records, `PRIVATE` routines, `--sld` debug data, drop-in builds for Linux,

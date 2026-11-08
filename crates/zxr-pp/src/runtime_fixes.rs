@@ -16,6 +16,11 @@ const FIXES: &[(&str, &str, &str)] = &[
     // whether that architecture's __REALLOC kept a$'s block (zxnext) or
     // freed it already (zx48k).
     ("zxnext/runtime/strcpy.asm", include_str!("../../../lib/arch/zxnext/runtime/strcpy.asm"), include_str!("../fixes/strcpy_zxnext.asm")),
+    // RAND's state moved from its own `ld de, nn` operand into a word of its
+    // own, but the load stayed `ld de, 0C0DEh`: every RND after the first
+    // returned the same number. zx48k still has the operand form, and is
+    // right.
+    ("zxnext/runtime/random.asm", include_str!("../../../lib/arch/zxnext/runtime/random.asm"), include_str!("../fixes/random_zxnext.asm")),
     ("zx48k/runtime/strcpy.asm", include_str!("../../../lib/arch/zx48k/runtime/strcpy.asm"), include_str!("../fixes/strcpy_zx48k.asm")),
 ];
 

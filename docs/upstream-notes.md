@@ -78,6 +78,7 @@ In the runtime library:
 
 | What | Detail |
 |---|---|
+| `RND` repeats after the first call (the NextBuild fork only) | nb10 moved `RAND`'s state out of its own `ld de, nn` operand and the ROM's `SEED` into words in `zxnext/runtime/random.asm`, but kept `ld de, 0C0DEh`: every call after the first starts from the same state. Upstream's file is right. The port loads the word, and `RANDOMIZE` with the frame counter at 0 keeps a non-zero state. |
 | A string that does not fit corrupts the heap | When `__MEM_ALLOC` cannot find a block (a fragmented 1 K heap is enough), `__ADDSTR` (`runtime/strcat.asm`) returns its first operand, `ret z` with HL = a$, as if it were the new string: `k$ = "/" + k$` then makes k$ the literal and frees it into the program on the next assignment. `__STRASSIGN` (`runtime/strcpy.asm`) returns `&b$` when `__REALLOC` fails, and `__STORE_STR` stores it in a$. Long-standing "heap fills up and the program crashes" reports. The port returns NULL from the first and leaves a$ as it was from the second. |
 | `__SWAP32` is not interrupt-safe | `runtime/swap32.asm` moves SP past the low word of the operand in the stack and back four instructions later; an interrupt there writes its return address over it. Reversed 32-bit and fixed-point division, modulo, subtraction and comparison call it. Seen as a wrong division under a 15625 Hz interrupt. The port reads a version that only pops and pushes (it changes AF, which no routine called after it reads first). |
 

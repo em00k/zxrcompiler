@@ -4,7 +4,7 @@ A Rust port of the NextBuild fork of Boriel's ZX BASIC compiler (`zxbc`,
 `zxbasm`, `zxbpp`), including CODEBANK, for NextBuild. It targets the ZX Spectrum
 Next only; a build ends in a `.nex` file.
 
-Status: version 0.2.0. Every stage is written. For 1,408 of the 1,418 source
+Status: version 0.2.1. Every stage is written. For 1,408 of the 1,418 source
 files in the NextBuild corpus a native build gives the same binaries, bank
 files, map and diagnostics as the Python compiler (1.18.7-nb12); the other 10
 are inputs on which the Python compiler ends in a traceback. `nextbuild.py`
@@ -68,7 +68,7 @@ cargo xtask dist          dist/zxrcompiler, for this Linux machine
 both need the Python compiler in `reference/zxbasic` (see below) for
 `nextcreator.py`.
 
-Each directory is named with the version (`zxrcompiler-0.2.0-windows-x64`)
+Each directory is named with the version (`zxrcompiler-0.2.1-windows-x64`)
 and holds a `README.md` for whoever unpacks it (installing, checking,
 going back), a `VERSION` file naming the commit and date it was built from,
 the `CHANGELOG.md` and the licence.

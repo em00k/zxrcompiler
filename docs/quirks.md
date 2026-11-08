@@ -436,6 +436,16 @@ check`). A routine found wrong is replaced as it is read
 and only when the file's text is exactly the one known to be wrong. The
 harness sets `ZXR_ORACLE_RUNTIME=1`, which reads the library as it is.
 
+- **`RND` repeats after the first call (the fork's nb10).** `RAND`'s state
+  was the operand of its own `ld de, nn` (`RANDOM_SEED_HIGH EQU RAND+1`) and
+  the ROM's `SEED`; nb10 moved both into words in the program, but the load
+  stayed `ld de, 0C0DEh`. Each call stores that constant as the low word and
+  starts again from it, so every `RND` after the first is the same number.
+  The port loads the word. `RANDOMIZE` with the frame counter at 0 gave a
+  state of 0, where xorshift stays: it now keeps the state there is.
+  zx48k's `random.asm` still has the operand form and is right.
+  `tests/fixes/rnd_repeat.bas`.
+
 - **A string that does not fit corrupts the heap.** The heap is small
   (NextBuild gives it 1,024 bytes) and fragments, so an allocation can fail
   with plenty free in total. Two routines then return a pointer the caller
